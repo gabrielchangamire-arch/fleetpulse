@@ -4,7 +4,7 @@ FleetPulse is a local-first Linux fleet reliability and incident-response platfo
 
 ## Project status
 
-Phases 0 through 3 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, and an Nginx/TLS edge with load balancing and cache-aside fleet reads. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+Phases 0 through 4 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, and a provisioned Prometheus/Grafana/Alertmanager observability stack. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
 
 ## Verified today
 
@@ -17,6 +17,10 @@ Phases 0 through 3 are complete and verified. FleetPulse now has durable ingesti
 Evidence: [Phase 1 verification](evidence/runs/20260717T080135Z-phase-1/summary.md).
 
 Phase 2 evidence: [distributed processing verification](evidence/runs/20260717T081555Z-phase-2/summary.md).
+
+Phase 3 evidence: [TLS edge and cache verification](evidence/runs/20260717-phase-3/summary.md).
+
+Phase 4 evidence: [SLO observability verification](evidence/runs/20260717-phase-4/summary.md).
 
 ## Non-negotiable boundaries
 
@@ -44,7 +48,7 @@ make compose-up
 make phase1-smoke
 ```
 
-The API is temporarily bound to `127.0.0.1:8000` for Phase 1 verification. PostgreSQL has no host port. Nginx becomes the only application ingress in Phase 3. Later phases add `make kind-up`, `make k3d-up`, load-test, and recovery-drill targets.
+Nginx is the only application ingress and terminates local TLS. PostgreSQL and Redis have no host ports; Prometheus, Grafana, and Alertmanager bind only to loopback. Later phases add local Kubernetes, load-test, and recovery-drill targets.
 
 ## Architecture
 

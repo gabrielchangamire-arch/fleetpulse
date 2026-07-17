@@ -1,0 +1,13 @@
+Cross-service correlation trace
+Correlation ID: 035951c9-3357-4842-b514-5c5e84367850
+
+2026-07-17T22:33:50.460789Z agent
+  event=batch_delivered status=accepted attempt=1
+
+2026-07-17T22:33:50.458011Z api
+  event=request_completed status=202 duration_ms=6.601
+
+2026-07-17T22:33:50.612834Z worker
+  event=event_processed
+
+The same bounded correlation ID was emitted as structured JSON by the agent, API, and asynchronous worker. It crossed HTTPS, the PostgreSQL transactional outbox, and Redis Streams.

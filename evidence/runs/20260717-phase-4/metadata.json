@@ -1,0 +1,13 @@
+{
+  "commit_under_test": "ab6ba945bd8374f4e8ee82b8c7c6f4507b3370e1",
+  "date": "2026-07-17",
+  "environment": {
+    "architecture": "arm64",
+    "docker_compose": "v5.1.4",
+    "docker_engine": "29.5.3",
+    "host": "macOS Darwin 25.5.0",
+    "python": "3.13.14"
+  },
+  "phase": 4,
+  "result": "passed"
+}
