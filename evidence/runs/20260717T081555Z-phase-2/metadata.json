@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "classification": "measured",
+  "scenario": "phase-2-redis-stream-workers",
+  "started_at_utc": "2026-07-17T08:15:55Z",
+  "git_sha": "76cde6c0946a1ef8574d272c53e1167dfc985fc8",
+  "git_dirty": false,
+  "environment": {
+    "operating_system": "macOS 26.5.2",
+    "architecture": "arm64",
+    "cpu": "Apple M5 Pro",
+    "memory_bytes": 25769803776,
+    "python": "3.13.14",
+    "docker_engine": "29.5.3",
+    "docker_compose": "5.1.4",
+    "redis_image": "redis@sha256:9d317178eceac8454a2284a9e6df2466b93c745529947f0cd42a0fa9609d7005",
+    "worker_image": "sha256:95f8b2cad15c9af2bb836b1c8db06127a58d35e9a4291d28108fcddb73dde199"
+  },
+  "configuration": {
+    "consumer_group": "fleetpulse-workers",
+    "reclaim_idle_ms": 1000,
+    "max_delivery_attempts": 3,
+    "worker_scale_sample": 3,
+    "scale_sample_events": 12,
+    "source_repository_status_sha256_before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_repository_status_sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "limitations": [
+    "The one-versus-three worker check is functional distribution evidence, not a throughput benchmark.",
+    "Redis caching is not implemented or measured until Phase 3.",
+    "No p50, p95, p99, capacity, or production-scale claim is made.",
+    "GitHub-hosted CI has not run because the repository has not been pushed."
+  ]
+}

@@ -4,7 +4,7 @@ FleetPulse is a local-first Linux fleet reliability and incident-response platfo
 
 ## Project status
 
-Phases 0 and 1 are complete and verified. FleetPulse now has a working local agent-to-PostgreSQL telemetry-ingestion slice; Redis worker processing begins in Phase 2. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+Phases 0 through 2 are complete and verified. FleetPulse now has durable agent ingestion plus Redis Stream relay/worker processing, fleet summaries, incident deduplication, deployment records, reclaim, bounded retries, and dead-letter handling. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
 
 ## Verified today
 
@@ -15,6 +15,8 @@ Phases 0 and 1 are complete and verified. FleetPulse now has a working local age
 - Compose starts healthy non-root agent/API containers and private PostgreSQL storage; only the API is bound to loopback during this phase.
 
 Evidence: [Phase 1 verification](evidence/runs/20260717T080135Z-phase-1/summary.md).
+
+Phase 2 evidence: [distributed processing verification](evidence/runs/20260717T081555Z-phase-2/summary.md).
 
 ## Non-negotiable boundaries
 

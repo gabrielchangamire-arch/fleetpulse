@@ -1,0 +1,24 @@
+POISON MESSAGE
+08:13:00.783947Z attempt 1: left pending
+08:13:01.871466Z attempt 2: left pending
+08:13:02.930550Z attempt 3: copied to Redis DLQ and PostgreSQL dead_letters, source acknowledged
+Redis DLQ length after test: 1
+PostgreSQL poison-event rows: 1
+Recorded attempts: 3
+
+CRASH RECLAIM
+Batch: 00000000-0000-4000-8000-000000000003
+Abandoned consumer: crashed-consumer
+Abandoned stream message: 1784276004097-0
+Reclaimed by: 894ea947f3fc-9efa1932
+Pending messages after recovery: 0
+
+THREE-WORKER FUNCTIONAL DISTRIBUTION
+Sample: 12 distinct telemetry events, IDs ending 010 through 021
+consumer 1e36df62c827-9775fec0: 3 events
+consumer 894ea947f3fc-9efa1932: 3 events
+consumer 983ec307d4a8-2bc52985: 6 events
+All three active consumers processed at least one event.
+
+This demonstrates horizontal work distribution only. It is not a performance comparison.
+
