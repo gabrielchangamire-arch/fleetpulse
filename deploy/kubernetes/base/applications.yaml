@@ -17,6 +17,27 @@ spec:
     spec:
       terminationGracePeriodSeconds: 30
       securityContext: {runAsNonRoot: true, runAsUser: 999, runAsGroup: 999, seccompProfile: {type: RuntimeDefault}}
+      initContainers:
+        - name: wait-for-postgres
+          image: fleetpulse-api:dev
+          imagePullPolicy: IfNotPresent
+          command: [python, -c]
+          args:
+            - |
+              import socket, time
+              deadline = time.monotonic() + 120
+              while True:
+                  try:
+                      socket.create_connection(("postgres", 5432), 2).close()
+                      break
+                  except OSError:
+                      if time.monotonic() >= deadline:
+                          raise TimeoutError("postgres readiness deadline exceeded")
+                      time.sleep(1)
+          resources:
+            requests: {cpu: 10m, memory: 24Mi}
+            limits: {cpu: 100m, memory: 64Mi}
+          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
       containers:
         - name: api
           image: fleetpulse-api:dev
@@ -67,6 +88,28 @@ spec:
     spec:
       terminationGracePeriodSeconds: 30
       securityContext: {runAsNonRoot: true, runAsUser: 999, runAsGroup: 999, seccompProfile: {type: RuntimeDefault}}
+      initContainers:
+        - name: wait-for-state-services
+          image: fleetpulse-worker:dev
+          imagePullPolicy: IfNotPresent
+          command: [python, -c]
+          args:
+            - |
+              import socket, time
+              for endpoint in (("postgres", 5432), ("redis", 6379)):
+                  deadline = time.monotonic() + 120
+                  while True:
+                      try:
+                          socket.create_connection(endpoint, 2).close()
+                          break
+                      except OSError:
+                          if time.monotonic() >= deadline:
+                              raise TimeoutError(f"readiness deadline exceeded: {endpoint}")
+                          time.sleep(1)
+          resources:
+            requests: {cpu: 10m, memory: 24Mi}
+            limits: {cpu: 100m, memory: 64Mi}
+          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
       containers:
         - name: worker
           image: fleetpulse-worker:dev
@@ -104,6 +147,28 @@ spec:
     spec:
       terminationGracePeriodSeconds: 30
       securityContext: {runAsNonRoot: true, runAsUser: 999, runAsGroup: 999, seccompProfile: {type: RuntimeDefault}}
+      initContainers:
+        - name: wait-for-state-services
+          image: fleetpulse-outbox-relay:dev
+          imagePullPolicy: IfNotPresent
+          command: [python, -c]
+          args:
+            - |
+              import socket, time
+              for endpoint in (("postgres", 5432), ("redis", 6379)):
+                  deadline = time.monotonic() + 120
+                  while True:
+                      try:
+                          socket.create_connection(endpoint, 2).close()
+                          break
+                      except OSError:
+                          if time.monotonic() >= deadline:
+                              raise TimeoutError(f"readiness deadline exceeded: {endpoint}")
+                          time.sleep(1)
+          resources:
+            requests: {cpu: 10m, memory: 24Mi}
+            limits: {cpu: 100m, memory: 64Mi}
+          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
       containers:
         - name: outbox-relay
           image: fleetpulse-outbox-relay:dev

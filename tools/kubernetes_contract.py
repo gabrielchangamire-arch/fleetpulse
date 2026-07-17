@@ -48,6 +48,10 @@ def check_workload(document: dict[str, Any]) -> None:
         require(resources.get("limits"), f"{kind}/{name} lacks resource limits")
         require(container.get("readinessProbe"), f"{kind}/{name} lacks a readiness probe")
         require(container.get("livenessProbe"), f"{kind}/{name} lacks a liveness probe")
+    for container in pod_spec.get("initContainers", []):
+        resources = container.get("resources", {})
+        require(resources.get("requests"), f"{kind}/{name} init container lacks requests")
+        require(resources.get("limits"), f"{kind}/{name} init container lacks limits")
     if kind == "Deployment" and name in {"api", "worker", "outbox-relay", "nginx"}:
         require(
             document["spec"].get("strategy", {}).get("type") == "RollingUpdate",
