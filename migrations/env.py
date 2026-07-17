@@ -7,7 +7,7 @@ import os
 from logging.config import fileConfig
 
 from alembic import context
-from sqlalchemy import pool
+from sqlalchemy import pool, text
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
@@ -22,6 +22,7 @@ if not database_url:
     raise RuntimeError("FLEETPULSE_DATABASE_URL is required for migrations")
 configuration.set_main_option("sqlalchemy.url", database_url)
 target_metadata = Base.metadata
+MIGRATION_LOCK_ID = 527_644_501_933_021
 
 
 def run_migrations_offline() -> None:
@@ -49,7 +50,15 @@ async def run_async_migrations() -> None:
         poolclass=pool.NullPool,
     )
     async with connectable.connect() as connection:
-        await connection.run_sync(run_sync_migrations)
+        await connection.execute(
+            text("SELECT pg_advisory_lock(:lock_id)"), {"lock_id": MIGRATION_LOCK_ID}
+        )
+        try:
+            await connection.run_sync(run_sync_migrations)
+        finally:
+            await connection.execute(
+                text("SELECT pg_advisory_unlock(:lock_id)"), {"lock_id": MIGRATION_LOCK_ID}
+            )
     await connectable.dispose()
 
 
