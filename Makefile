@@ -20,6 +20,9 @@ compose-down:
 compose-up:
 	$(COMPOSE) up -d --build --wait
 
+local-tls:
+	./scripts/generate_local_tls.sh
+
 contract:
 	$(BIN)/python tools/repository_contract.py
 

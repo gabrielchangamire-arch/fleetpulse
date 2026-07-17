@@ -70,7 +70,8 @@ def smoke_batch() -> TelemetryBatch:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--api-url", default="http://127.0.0.1:8000")
+    parser.add_argument("--api-url", default="https://localhost:8443")
+    parser.add_argument("--ca-bundle", default="certs/generated/ca.crt")
     parser.add_argument("--token", required=True)
     arguments = parser.parse_args()
 
@@ -78,7 +79,12 @@ def main() -> int:
         "Authorization": f"Bearer {arguments.token}",
         "X-Request-ID": "phase1-smoke-correlation",
     }
-    with httpx.Client(base_url=arguments.api_url, headers=headers, timeout=5) as client:
+    with httpx.Client(
+        base_url=arguments.api_url,
+        headers=headers,
+        timeout=5,
+        verify=arguments.ca_bundle,
+    ) as client:
         unauthorized = client.get("/v1/fleet/agents", headers={"Authorization": ""})
         first = client.post("/v1/telemetry/batches", json=smoke_batch().model_dump(mode="json"))
         second = client.post("/v1/telemetry/batches", json=smoke_batch().model_dump(mode="json"))

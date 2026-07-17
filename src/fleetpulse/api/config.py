@@ -11,5 +11,8 @@ class ApiSettings(BaseSettings):
 
     database_url: str
     agent_token: SecretStr
+    redis_url: str = "redis://redis:6379/0"
+    cache_enabled: bool = True
+    cache_ttl_seconds: int = 15
     log_level: str = "INFO"
     environment: str = "development"

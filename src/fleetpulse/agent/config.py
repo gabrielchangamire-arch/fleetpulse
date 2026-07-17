@@ -22,6 +22,7 @@ class AgentSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="FLEETPULSE_", extra="ignore")
 
     api_url: str = "http://127.0.0.1:8000"
+    ca_bundle: Path | None = None
     agent_token: SecretStr
     agent_id: str = Field(default_factory=default_agent_id)
     hostname: str = Field(default_factory=socket.gethostname)

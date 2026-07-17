@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import socket
 import time
 from uuid import uuid4
 
@@ -23,6 +24,7 @@ async def correlation_middleware(request: Request, call_next: RequestResponseEnd
         response = await call_next(request)
         duration_ms = round((time.monotonic() - started) * 1000, 3)
         response.headers["X-Request-ID"] = request_id
+        response.headers["X-FleetPulse-Instance"] = socket.gethostname()
         LOGGER.info(
             "request completed",
             extra={

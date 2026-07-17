@@ -36,6 +36,7 @@ async def run(settings: AgentSettings) -> None:
         settings.api_url,
         settings.agent_token.get_secret_value(),
         settings.request_timeout_seconds,
+        str(settings.ca_bundle) if settings.ca_bundle else None,
     )
     samples: list[TelemetrySample] = []
     try:

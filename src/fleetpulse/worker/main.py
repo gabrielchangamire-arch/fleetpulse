@@ -164,6 +164,7 @@ async def handle_message(
     try:
         event = decode_event(fields)
         await process_event(settings, message_id, event)
+        await redis.delete("fleetpulse:cache:fleet-state:v1")
         await redis.xack(settings.telemetry_stream, settings.consumer_group, message_id)
         LOGGER.info(
             "event processed", extra={"event": "event_processed", "status": settings.consumer_name}

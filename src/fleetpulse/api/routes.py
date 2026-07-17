@@ -6,7 +6,7 @@ from datetime import UTC, datetime
 from typing import Annotated, Literal
 from uuid import UUID, uuid4
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request, Response
 from pydantic import BaseModel
 from sqlalchemy import func, select, text
 from sqlalchemy.dialects.postgresql import insert as postgres_insert
@@ -169,11 +169,58 @@ async def list_agents(session: Session) -> list[AgentSummary]:
     dependencies=[Depends(require_agent_token)],
     tags=["fleet"],
 )
-async def list_fleet_state(session: Session) -> list[FleetStateView]:
+async def list_fleet_state(
+    session: Session, request: Request, response: Response
+) -> list[FleetStateView]:
+    cache_key = "fleetpulse:cache:fleet-state:v1"
+    if request.app.state.settings.cache_enabled:
+        try:
+            cached = await request.app.state.redis.get(cache_key)
+            if cached:
+                await request.app.state.redis.hincrby("fleetpulse:cache:stats", "hits", 1)
+                response.headers["X-Cache"] = "HIT"
+                return [
+                    FleetStateView.model_validate(item) for item in __import__("json").loads(cached)
+                ]
+            await request.app.state.redis.hincrby("fleetpulse:cache:stats", "misses", 1)
+        except Exception:
+            response.headers["X-Cache"] = "BYPASS"
     rows = (
         await session.execute(select(FleetStateRecord).order_by(FleetStateRecord.agent_id))
     ).scalars()
-    return [FleetStateView.model_validate(row, from_attributes=True) for row in rows]
+    result = [FleetStateView.model_validate(row, from_attributes=True) for row in rows]
+    if request.app.state.settings.cache_enabled:
+        try:
+            await request.app.state.redis.set(
+                cache_key,
+                __import__("json").dumps([item.model_dump(mode="json") for item in result]),
+                ex=request.app.state.settings.cache_ttl_seconds,
+            )
+            response.headers.setdefault("X-Cache", "MISS")
+        except Exception:
+            response.headers["X-Cache"] = "BYPASS"
+    else:
+        response.headers["X-Cache"] = "DISABLED"
+    return result
+
+
+@router.get(
+    "/v1/cache/stats",
+    dependencies=[Depends(require_agent_token)],
+    tags=["fleet"],
+)
+async def cache_stats(request: Request) -> dict[str, int | bool]:
+    if not request.app.state.settings.cache_enabled:
+        return {"enabled": False, "hits": 0, "misses": 0}
+    try:
+        values = await request.app.state.redis.hgetall("fleetpulse:cache:stats")
+        return {
+            "enabled": True,
+            "hits": int(values.get("hits", 0)),
+            "misses": int(values.get("misses", 0)),
+        }
+    except Exception:
+        return {"enabled": True, "hits": 0, "misses": 0}
 
 
 @router.get(

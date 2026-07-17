@@ -64,9 +64,13 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--token", required=True)
     parser.add_argument("--batch-id", default="00000000-0000-4000-8000-000000000002")
+    parser.add_argument("--api-url", default="https://localhost:8443")
+    parser.add_argument("--ca-bundle", default="certs/generated/ca.crt")
     args = parser.parse_args()
     headers = {"Authorization": f"Bearer {args.token}", "X-Request-ID": "phase2-smoke"}
-    with httpx.Client(base_url="http://127.0.0.1:8000", headers=headers, timeout=5) as client:
+    with httpx.Client(
+        base_url=args.api_url, headers=headers, timeout=5, verify=args.ca_bundle
+    ) as client:
         ingest = client.post(
             "/v1/telemetry/batches",
             json=high_cpu_batch(UUID(args.batch_id)).model_dump(mode="json"),
