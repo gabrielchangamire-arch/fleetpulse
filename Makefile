@@ -4,7 +4,7 @@ BIN := $(VENV)/bin
 
 COMPOSE := docker compose
 
-.PHONY: bootstrap compose-build compose-down compose-up contract format-check k3d-down k3d-up k8s-build k8s-validate kind-down kind-up lint phase1-smoke phase2-smoke test typecheck verify
+.PHONY: bootstrap compose-build compose-down compose-up contract format-check k3d-down k3d-up k8s-build k8s-validate kind-down kind-up lint performance-matrix performance-smoke phase1-smoke phase2-smoke test typecheck verify
 
 bootstrap:
 	$(PYTHON) -m venv $(VENV)
@@ -59,6 +59,12 @@ phase1-smoke:
 
 phase2-smoke:
 	$(BIN)/python scripts/phase2_smoke.py --token "$(FLEETPULSE_AGENT_TOKEN)"
+
+performance-smoke:
+	$(BIN)/python tools/performance_runner.py --profile smoke
+
+performance-matrix:
+	$(BIN)/python tools/performance_runner.py --profile full
 
 test:
 	$(BIN)/pytest
