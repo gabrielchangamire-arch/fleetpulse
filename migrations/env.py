@@ -6,8 +6,9 @@ import asyncio
 import os
 from logging.config import fileConfig
 
+import asyncpg
 from alembic import context
-from sqlalchemy import pool, text
+from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
@@ -49,17 +50,16 @@ async def run_async_migrations() -> None:
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
     )
-    async with connectable.connect() as connection:
-        await connection.execute(
-            text("SELECT pg_advisory_lock(:lock_id)"), {"lock_id": MIGRATION_LOCK_ID}
-        )
-        try:
+    lock_url = database_url.replace("postgresql+asyncpg://", "postgresql://", 1)
+    lock_connection = await asyncpg.connect(lock_url)
+    try:
+        await lock_connection.execute("SELECT pg_advisory_lock($1)", MIGRATION_LOCK_ID)
+        async with connectable.connect() as connection:
             await connection.run_sync(run_sync_migrations)
-        finally:
-            await connection.execute(
-                text("SELECT pg_advisory_unlock(:lock_id)"), {"lock_id": MIGRATION_LOCK_ID}
-            )
-    await connectable.dispose()
+    finally:
+        await lock_connection.execute("SELECT pg_advisory_unlock($1)", MIGRATION_LOCK_ID)
+        await lock_connection.close()
+        await connectable.dispose()
 
 
 if context.is_offline_mode():
