@@ -1,0 +1,23 @@
+COMPOSE HEALTH
+agent: healthy, no published ports
+api: healthy, 127.0.0.1:8000->8000/tcp
+postgres: healthy, container port 5432 with no published host port
+
+IMAGE USERS
+fleetpulse-api: user=fleetpulse
+fleetpulse-agent: user=fleetpulse
+
+IDEMPOTENCY
+First submission before restart: accepted
+Second submission: duplicate
+Submission after PostgreSQL and API stop/start: duplicate
+Post-restart telemetry rows for deterministic batch UUID: 1
+Post-restart outbox rows for deterministic batch UUID: 1
+
+MIGRATIONS
+Disposable database upgrade head: passed
+Disposable database downgrade base: passed
+Disposable database second upgrade head: passed
+Resulting revision: 20260717_0001
+Alembic model-drift check: no new upgrade operations detected
+

@@ -4,7 +4,17 @@ FleetPulse is a local-first Linux fleet reliability and incident-response platfo
 
 ## Project status
 
-Phase 0 (repository isolation and engineering foundations) is complete and verified. Phase 1, the durable telemetry-ingestion vertical slice, is in progress. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+Phases 0 and 1 are complete and verified. FleetPulse now has a working local agent-to-PostgreSQL telemetry-ingestion slice; Redis worker processing begins in Phase 2. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+
+## Verified today
+
+- A Linux container agent collects bounded CPU, memory, disk, process, socket, and network telemetry with `psutil`.
+- Batches survive agent restarts in a bounded SQLite spool and retry with capped exponential backoff and full jitter.
+- FastAPI authenticates agents, propagates correlation IDs, and atomically commits telemetry, idempotency state, and an outbox event to PostgreSQL.
+- Replaying a batch UUID creates no duplicate telemetry or outbox event.
+- Compose starts healthy non-root agent/API containers and private PostgreSQL storage; only the API is bound to loopback during this phase.
+
+Evidence: [Phase 1 verification](evidence/runs/20260717T080135Z-phase-1/summary.md).
 
 ## Non-negotiable boundaries
 

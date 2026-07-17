@@ -1,0 +1,12 @@
+CONTROLLED API OUTAGE / AGENT SPOOL RECOVERY
+
+2026-07-17T07:59:22.350605Z batch a244fd37-cfb5-4eba-ab50-04a9c6411c5f spooled
+2026-07-17T07:59:22.388933Z delivery failed, retrying, attempt 1
+2026-07-17T07:59:24.406508Z delivery failed, retrying, attempt 2
+2026-07-17T07:59:26.414208Z delivery failed, retrying, attempt 3
+2026-07-17T07:59:28.443174Z same batch delivered, accepted, attempt 4
+2026-07-17T07:59:32.261735Z agent stopped gracefully
+
+Measured time from first recorded failure to accepted delivery: 6.054 seconds.
+This is a spool-recovery observation, not an availability SLO or general recovery-time claim.
+

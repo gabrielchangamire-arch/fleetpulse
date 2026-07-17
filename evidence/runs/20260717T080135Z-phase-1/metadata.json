@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "classification": "measured",
+  "scenario": "phase-1-durable-ingestion-vertical-slice",
+  "started_at_utc": "2026-07-17T08:01:35Z",
+  "git_sha": "cb4be1ac428268e93c696c7fe13c10a5f0b68a4c",
+  "git_dirty": false,
+  "environment": {
+    "operating_system": "macOS 26.5.2",
+    "architecture": "arm64",
+    "cpu": "Apple M5 Pro",
+    "memory_bytes": 25769803776,
+    "python": "3.13.14",
+    "docker_engine": "29.5.3",
+    "docker_compose": "5.1.4",
+    "postgres_image": "postgres@sha256:742f40ea20b9ff2ff31db5458d127452988a2164df9e17441e191f3b72252193",
+    "api_image": "sha256:9a733f0623ba3503a314be29fd90f16997e274a18b6b694a51c6bdeb3cd0c43e",
+    "agent_image": "sha256:c89dfc7ff58e7e50255fc727b4f707ca1ecf78d63d67e7a0d04c33ee7df10679"
+  },
+  "commands": [
+    "make verify",
+    "docker compose up -d --build --wait",
+    "make phase1-smoke",
+    "docker compose exec postgres psql (count and migration queries)",
+    "docker compose stop api postgres; docker compose up (persistence test)",
+    "alembic upgrade head; downgrade base; upgrade head (disposable database)",
+    "docker stop api; docker start agent; docker start api (spool recovery test)",
+    "python -m pip_audit"
+  ],
+  "configuration": {
+    "agent_collection_interval_seconds": 2,
+    "agent_batch_size": 2,
+    "api_host_binding": "127.0.0.1:8000",
+    "postgres_host_port_published": false,
+    "source_repository_status_sha256_before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_repository_status_sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "limitations": [
+    "The agent observed its Linux container namespace, not the macOS host.",
+    "This phase did not run a load test and makes no throughput or percentile-latency claim.",
+    "Nginx, TLS, Redis, workers, monitoring, Kubernetes, and AI are later phases.",
+    "GitHub-hosted CI is configured but has not run because the repository has not been pushed.",
+    "The local dependency audit skipped the unpublished FleetPulse package itself."
+  ]
+}
