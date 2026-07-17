@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "classification": "measured",
+  "scenario": "phase-0-repository-foundation",
+  "started_at_utc": "2026-07-17T07:33:52Z",
+  "git_sha": "c9dc0c4e17b71cb1189528e52472a5bc85fab5b2",
+  "git_dirty": false,
+  "environment": {
+    "operating_system": "macOS 26.5.2",
+    "architecture": "arm64",
+    "cpu": "Apple M5 Pro",
+    "memory_bytes": 25769803776,
+    "python": "3.13.14",
+    "git": "2.50.1 (Apple Git-155)",
+    "container_runtime": "Docker CLI 29.5.3; daemon unavailable during Phase 0"
+  },
+  "commands": [
+    "make verify",
+    ".venv/bin/python -m pip_audit",
+    "ruby -e require-yaml-and-parse-workflow",
+    "git diff --check",
+    "git -C /Users/gabriel/Documents/Fleet-Pulse status --porcelain=v1 --untracked-files=all"
+  ],
+  "configuration": {
+    "python_target": ">=3.11",
+    "test_python": "3.13.14",
+    "source_repository_status_sha256_before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_repository_status_sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "limitations": [
+    "GitHub Actions was defined and YAML-parsed locally but not executed on GitHub.",
+    "actionlint was not installed on the development machine.",
+    "The Docker daemon was unavailable and is not required for Phase 0.",
+    "The local dependency audit skipped the unpublished FleetPulse package itself."
+  ]
+}

@@ -4,7 +4,7 @@ FleetPulse is a local-first Linux fleet reliability and incident-response platfo
 
 ## Project status
 
-Phase 0 (repository isolation and engineering foundations) is in progress. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+Phase 0 (repository isolation and engineering foundations) is complete and verified. Phase 1 is the next implementation gate. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
 
 ## Non-negotiable boundaries
 
@@ -30,4 +30,3 @@ Later phases will add `make compose-up`, `make kind-up`, `make k3d-up`, load-tes
 ## Architecture
 
 The system design and network boundaries are documented in [docs/architecture/system.md](docs/architecture/system.md). Security assumptions are in [docs/security/threat-model.md](docs/security/threat-model.md).
-

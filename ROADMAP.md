@@ -2,6 +2,8 @@
 
 FleetPulse advances only after the current phase has a reproducible verification record. A phase report records the exact commands, results, environment, known limitations, and the Git commit under test.
 
+Current status: Phase 0 is complete. Phase 1 has not started.
+
 | Phase | Scope | Exit evidence |
 | --- | --- | --- |
 | 0 | Isolated Git repository, architecture, ADRs, threat model, tooling, CI foundation | Repository contract, lint, type check, unit tests, source-repository isolation check |
@@ -16,4 +18,3 @@ FleetPulse advances only after the current phase has a reproducible verification
 | 9 | Complete CI hardening, image and manifest scanning, SBOMs, evidence index | Clean-clone CI-equivalent run and evidence-to-claim audit |
 
 Targets and projections are not accepted as measurements. All performance comparisons use identical workloads and disclose machine and runtime conditions.
-
