@@ -1,0 +1,26 @@
+PHASE 5 MANIFEST VALIDATION
+Commit: f3aef45f5b5d8a07be7e3c55207141a0ee511770
+
+make verify
+  PASS: Ruff lint and formatting
+  PASS: strict mypy, 33 source files
+  PASS: pytest, 16 tests
+  PASS: repository contract
+
+make k8s-validate
+  kind overlay: 42 resources; valid=42 invalid=0 errors=0 skipped=0
+  k3d overlay: 42 resources; valid=42 invalid=0 errors=0 skipped=0
+  Kubernetes contract satisfied: kind and k3d
+
+The repository contract requires:
+  - API, worker, relay, Nginx, Prometheus, Alertmanager, and Grafana Deployments
+  - agent DaemonSet and PostgreSQL/Redis StatefulSets
+  - readiness/liveness probes and CPU/memory requests/limits on every runtime container
+  - resource bounds on init containers
+  - RollingUpdate for application Deployments
+  - runtime and TLS Secret references, with no rendered Secret objects
+  - private ClusterIP state/monitoring services
+  - Nginx as the only NodePort
+  - a namespace-wide default-deny NetworkPolicy
+
+Shell syntax validation also passed for all scripts under scripts/k8s/.

@@ -4,7 +4,7 @@ FleetPulse is a local-first Linux fleet reliability and incident-response platfo
 
 ## Project status
 
-Phases 0 through 4 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, and a provisioned Prometheus/Grafana/Alertmanager observability stack. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+Phases 0 through 5 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, a provisioned Prometheus/Grafana/Alertmanager stack, and reproducible kind/k3d deployments. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
 
 ## Verified today
 
@@ -12,7 +12,7 @@ Phases 0 through 4 are complete and verified. FleetPulse now has durable ingesti
 - Batches survive agent restarts in a bounded SQLite spool and retry with capped exponential backoff and full jitter.
 - FastAPI authenticates agents, propagates correlation IDs, and atomically commits telemetry, idempotency state, and an outbox event to PostgreSQL.
 - Replaying a batch UUID creates no duplicate telemetry or outbox event.
-- Compose starts healthy non-root agent/API containers and private PostgreSQL storage; only the API is bound to loopback during this phase.
+- Compose and local Kubernetes run non-root application containers with bounded resources, health probes, private state services, and loopback-only ingress.
 
 Evidence: [Phase 1 verification](evidence/runs/20260717T080135Z-phase-1/summary.md).
 
@@ -21,6 +21,8 @@ Phase 2 evidence: [distributed processing verification](evidence/runs/20260717T0
 Phase 3 evidence: [TLS edge and cache verification](evidence/runs/20260717-phase-3/summary.md).
 
 Phase 4 evidence: [SLO observability verification](evidence/runs/20260717-phase-4/summary.md).
+
+Phase 5 evidence: [local Kubernetes verification](evidence/runs/20260717-phase-5/summary.md).
 
 ## Non-negotiable boundaries
 
@@ -48,8 +50,18 @@ make compose-up
 make phase1-smoke
 ```
 
-Nginx is the only application ingress and terminates local TLS. PostgreSQL and Redis have no host ports; Prometheus, Grafana, and Alertmanager bind only to loopback. Later phases add local Kubernetes, load-test, and recovery-drill targets.
+Nginx is the only application ingress and terminates local TLS. PostgreSQL and Redis have no host ports; Prometheus, Grafana, and Alertmanager bind only to loopback in Compose and remain ClusterIP in Kubernetes.
+
+For local Kubernetes, set non-production runtime credentials and use either supported runtime:
+
+```bash
+make k8s-validate
+make kind-up
+# or: make k3d-up
+```
+
+See the [local Kubernetes runbook](docs/runbooks/local-kubernetes.md) for startup, inspection, rollback, and cleanup. Later phases add the controlled load-test matrix and recovery drills.
 
 ## Architecture
 
-The system design and network boundaries are documented in [docs/architecture/system.md](docs/architecture/system.md). Security assumptions are in [docs/security/threat-model.md](docs/security/threat-model.md).
+The system design and network boundaries are documented in [docs/architecture/system.md](docs/architecture/system.md). Security assumptions are in [docs/security/threat-model.md](docs/security/threat-model.md), and outstanding engineering risks are tracked in the [risk register](docs/risk-register.md).

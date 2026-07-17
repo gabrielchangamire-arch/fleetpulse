@@ -1,0 +1,25 @@
+ROLLING UPDATE AND ROLLBACK DRILL
+Runtime: k3d 5.9.0 / k3s 1.35.5-k3s1
+Commit: f3aef45f5b5d8a07be7e3c55207141a0ee511770
+
+Normal rolling restart
+  kubectl rollout restart deployment/api
+  result: successfully rolled out
+  HTTPS probes during rollout: 40 successes, 0 failures
+
+Controlled failed rollout
+  before image: fleetpulse-api:phase5
+  proposed image: fleetpulse-api:phase5-missing
+  rollout status: expected timeout/failure
+  during failure: ready=2 available=2 updated=1 unavailable=1
+  HTTPS /livez during failure: alive
+
+Rollback
+  kubectl rollout undo deployment/api
+  result: successfully rolled out
+  restored image: fleetpulse-api:phase5
+  after rollback: ready=2 available=2 updated=2 unavailable=0
+  post-rollback authentication/idempotency smoke: PASS
+  post-rollback application and init container restarts: 0
+
+The intentionally missing image was never allowed to reduce the two good replicas because the API strategy sets maxUnavailable=0 and maxSurge=1.

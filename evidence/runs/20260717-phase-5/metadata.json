@@ -1,0 +1,16 @@
+{
+  "commit_under_test": "f3aef45f5b5d8a07be7e3c55207141a0ee511770",
+  "date": "2026-07-17",
+  "environment": {
+    "architecture": "arm64",
+    "host": "macOS Darwin 25.5.0",
+    "k3d": "5.9.0",
+    "k3s": "1.35.5-k3s1",
+    "kind": "0.32.0",
+    "kind_node": "1.36.1",
+    "kubeconform": "0.8.0",
+    "kubectl_client": "1.34.1"
+  },
+  "phase": 5,
+  "result": "passed"
+}

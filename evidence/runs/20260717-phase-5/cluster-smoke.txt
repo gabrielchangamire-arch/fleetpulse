@@ -1,0 +1,37 @@
+LOCAL CLUSTER SMOKE TESTS
+Commit: f3aef45f5b5d8a07be7e3c55207141a0ee511770
+
+kind 0.32.0 / Kubernetes 1.36.1
+  cold start via scripts/k8s/kind_up.sh: PASS
+  HTTPS authentication boundary: PASS
+  first batch: accepted
+  replay: duplicate
+  durable batch count: 1
+  ready pods: 13/13
+  application container restarts: 0
+  init container restarts: 0
+  PostgreSQL PVC: Bound, 1Gi
+  Redis PVC: Bound, 1Gi
+  Prometheus targets: agent 1/1, API 2/2, relay 1/1, worker 2/2, self 1/1 all up
+
+k3d 5.9.0 / k3s 1.35.5-k3s1
+  cold start via scripts/k8s/k3d_up.sh: PASS
+  HTTPS authentication boundary: PASS
+  first batch: accepted
+  replay: duplicate
+  durable batch count: 1
+  ready pods: 13/13
+  application container restarts: 0
+  init container restarts: 0
+  PostgreSQL PVC: Bound, 1Gi
+  Redis PVC: Bound, 1Gi
+  Prometheus targets: agent 1/1, API 2/2, relay 1/1, worker 2/2, self 1/1 all up
+
+Service boundary in both overlays:
+  nginx: NodePort mapped to host loopback 8080/8443
+  postgres, redis, prometheus, alertmanager, grafana: ClusterIP only
+  api/worker/agent metrics: headless ClusterIP discovery only
+  NetworkPolicies installed: 12
+  runtime Secret objects: fleetpulse-runtime and fleetpulse-tls, created at runtime only
+
+The final cold starts also exercised two concurrent API migrations. A dedicated PostgreSQL advisory-lock session serialized Alembic without restarts or missing-table errors.
