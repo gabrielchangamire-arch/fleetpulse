@@ -1,0 +1,29 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.idea/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+coverage.xml
+htmlcov/
+.coverage
+
+# Generated secrets and local TLS material
+secrets/
+certs/generated/
+*.key
+*.pem
+*.p12
+
+# Local runtime state
+.fleetpulse/
+data/
+

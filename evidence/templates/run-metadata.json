@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "classification": "measured",
+  "scenario": "replace-me",
+  "started_at_utc": "YYYY-MM-DDTHH:MM:SSZ",
+  "git_sha": "replace-me",
+  "git_dirty": false,
+  "environment": {
+    "operating_system": "replace-me",
+    "architecture": "replace-me",
+    "cpu": "replace-me",
+    "memory_bytes": 0,
+    "container_runtime": "replace-me"
+  },
+  "commands": [],
+  "configuration": {},
+  "limitations": []
+}
+
