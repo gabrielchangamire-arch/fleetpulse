@@ -4,7 +4,7 @@ FleetPulse is a local-first Linux fleet reliability and incident-response platfo
 
 ## Project status
 
-Phases 0 through 2 are complete and verified. FleetPulse now has durable agent ingestion plus Redis Stream relay/worker processing, fleet summaries, incident deduplication, deployment records, reclaim, bounded retries, and dead-letter handling. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+Phases 0 through 3 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, and an Nginx/TLS edge with load balancing and cache-aside fleet reads. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
 
 ## Verified today
 
