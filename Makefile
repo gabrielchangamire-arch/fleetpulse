@@ -4,7 +4,7 @@ BIN := $(VENV)/bin
 
 COMPOSE := docker compose
 
-.PHONY: bootstrap compose-build compose-down compose-up contract format-check lint phase1-smoke test typecheck verify
+.PHONY: bootstrap compose-build compose-down compose-up contract format-check lint phase1-smoke phase2-smoke test typecheck verify
 
 bootstrap:
 	$(PYTHON) -m venv $(VENV)
@@ -31,6 +31,9 @@ lint:
 
 phase1-smoke:
 	$(BIN)/python scripts/phase1_smoke.py --token "$(FLEETPULSE_AGENT_TOKEN)"
+
+phase2-smoke:
+	$(BIN)/python scripts/phase2_smoke.py --token "$(FLEETPULSE_AGENT_TOKEN)"
 
 test:
 	$(BIN)/pytest

@@ -53,8 +53,11 @@ REQUIRED_FILES = (
     "docs/security/threat-model.md",
     "evidence/README.md",
     "migrations/versions/20260717_0001_phase1.py",
+    "migrations/versions/20260717_0002_phase2.py",
     "pyproject.toml",
     "services/api/Dockerfile",
+    "services/outbox_relay/Dockerfile",
+    "services/worker/Dockerfile",
     "src/fleetpulse/telemetry.py",
 )
 

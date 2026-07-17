@@ -69,7 +69,9 @@ jobs:
       - name: Start the local vertical slice
         run: docker compose up -d --build --wait
       - name: Verify idempotent ingestion
-        run: python scripts/phase1_smoke.py --token "${FLEETPULSE_AGENT_TOKEN}"
+        run: |
+          python scripts/phase1_smoke.py --token "${FLEETPULSE_AGENT_TOKEN}"
+          python scripts/phase2_smoke.py --token "${FLEETPULSE_AGENT_TOKEN}"
       - name: Show service state
         if: always()
         run: docker compose ps

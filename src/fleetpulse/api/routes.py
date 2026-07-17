@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 from typing import Annotated, Literal
+from uuid import UUID, uuid4
 
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
@@ -12,7 +13,14 @@ from sqlalchemy.dialects.postgresql import insert as postgres_insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from fleetpulse.api.database import session_dependency
-from fleetpulse.api.models import AgentRecord, OutboxEventRecord, TelemetryBatchRecord
+from fleetpulse.api.models import (
+    AgentRecord,
+    DeploymentRecord,
+    FleetStateRecord,
+    IncidentRecord,
+    OutboxEventRecord,
+    TelemetryBatchRecord,
+)
 from fleetpulse.api.security import require_agent_token
 from fleetpulse.logging import correlation_id
 from fleetpulse.telemetry import IngestionResponse, TelemetryBatch
@@ -28,6 +36,38 @@ class AgentSummary(BaseModel):
     first_seen_at: datetime
     last_seen_at: datetime
     batch_count: int
+
+
+class IncidentView(BaseModel):
+    incident_id: UUID
+    agent_id: str
+    incident_type: str
+    status: str
+    severity: str
+    summary: str
+    evidence: dict[str, object]
+    opened_at: datetime
+
+
+class DeploymentCreate(BaseModel):
+    service: str
+    version: str
+    status: str = "recorded"
+    requested_by: str
+
+
+class DeploymentView(DeploymentCreate):
+    deployment_id: UUID
+    created_at: datetime
+
+
+class FleetStateView(BaseModel):
+    agent_id: str
+    last_batch_id: UUID
+    observed_at: datetime
+    cpu_percent: float
+    memory_percent: float
+    disk_percent: float
 
 
 @router.get("/livez", tags=["health"])
@@ -121,3 +161,57 @@ async def list_agents(session: Session) -> list[AgentSummary]:
     )
     rows = (await session.execute(statement)).all()
     return [AgentSummary.model_validate(row._mapping) for row in rows]
+
+
+@router.get(
+    "/v1/fleet/state",
+    response_model=list[FleetStateView],
+    dependencies=[Depends(require_agent_token)],
+    tags=["fleet"],
+)
+async def list_fleet_state(session: Session) -> list[FleetStateView]:
+    rows = (
+        await session.execute(select(FleetStateRecord).order_by(FleetStateRecord.agent_id))
+    ).scalars()
+    return [FleetStateView.model_validate(row, from_attributes=True) for row in rows]
+
+
+@router.get(
+    "/v1/incidents",
+    response_model=list[IncidentView],
+    dependencies=[Depends(require_agent_token)],
+    tags=["incidents"],
+)
+async def list_incidents(session: Session) -> list[IncidentView]:
+    rows = (
+        await session.execute(select(IncidentRecord).order_by(IncidentRecord.opened_at))
+    ).scalars()
+    return [IncidentView.model_validate(row, from_attributes=True) for row in rows]
+
+
+@router.post(
+    "/v1/deployments",
+    response_model=DeploymentView,
+    status_code=201,
+    dependencies=[Depends(require_agent_token)],
+    tags=["deployments"],
+)
+async def create_deployment(payload: DeploymentCreate, session: Session) -> DeploymentView:
+    deployment = DeploymentRecord(deployment_id=uuid4(), **payload.model_dump())
+    async with session.begin():
+        session.add(deployment)
+    await session.refresh(deployment)
+    return DeploymentView.model_validate(deployment, from_attributes=True)
+
+
+@router.get(
+    "/v1/deployments",
+    response_model=list[DeploymentView],
+    dependencies=[Depends(require_agent_token)],
+    tags=["deployments"],
+)
+async def list_deployments(session: Session) -> list[DeploymentView]:
+    rows = (
+        await session.execute(select(DeploymentRecord).order_by(DeploymentRecord.created_at))
+    ).scalars()
+    return [DeploymentView.model_validate(row, from_attributes=True) for row in rows]
