@@ -1,0 +1,69 @@
+{
+  "accepted_events": 30,
+  "configuration": "4",
+  "drain_seconds": 1.7517851660377346,
+  "error_rate": 0.0,
+  "experiment": "workers",
+  "initial_backlog": 30,
+  "iterations": 30.0,
+  "p50_ms": 6.489000000000001,
+  "p95_ms": 9.8962,
+  "p99_ms": 10.881599999999999,
+  "peak_backlog": 30,
+  "processed_events": 30,
+  "repetition": 1,
+  "requests": 30.0,
+  "resource_api_cpu_max_percent": 41.26,
+  "resource_api_memory_max_bytes": 293192335.0,
+  "resource_nginx_cpu_max_percent": 4.67,
+  "resource_nginx_memory_max_bytes": 6991905.0,
+  "resource_outbox-relay_cpu_max_percent": 3.69,
+  "resource_outbox-relay_memory_max_bytes": 124172370.0,
+  "resource_postgres_cpu_max_percent": 3.79,
+  "resource_postgres_memory_max_bytes": 61708697.0,
+  "resource_redis_cpu_max_percent": 1.19,
+  "resource_redis_memory_max_bytes": 25637683.0,
+  "resource_worker_cpu_max_percent": 28.709999999999997,
+  "resource_worker_memory_max_bytes": 367106457.0,
+  "resources": {
+    "api": {
+      "cpu_max_percent": 41.26,
+      "cpu_median_percent": 41.26,
+      "memory_max_bytes": 293192335.0,
+      "samples": 1.0
+    },
+    "nginx": {
+      "cpu_max_percent": 4.67,
+      "cpu_median_percent": 4.67,
+      "memory_max_bytes": 6991905.0,
+      "samples": 1.0
+    },
+    "outbox-relay": {
+      "cpu_max_percent": 3.69,
+      "cpu_median_percent": 3.69,
+      "memory_max_bytes": 124172370.0,
+      "samples": 1.0
+    },
+    "postgres": {
+      "cpu_max_percent": 3.79,
+      "cpu_median_percent": 3.79,
+      "memory_max_bytes": 61708697.0,
+      "samples": 1.0
+    },
+    "redis": {
+      "cpu_max_percent": 1.19,
+      "cpu_median_percent": 1.19,
+      "memory_max_bytes": 25637683.0,
+      "samples": 1.0
+    },
+    "worker": {
+      "cpu_max_percent": 28.709999999999997,
+      "cpu_median_percent": 28.709999999999997,
+      "memory_max_bytes": 367106457.0,
+      "samples": 1.0
+    }
+  },
+  "throughput_rps": 9.99858686638955,
+  "worker_count": 4,
+  "worker_throughput_eps": 17.125387622647434
+}

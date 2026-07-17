@@ -1,0 +1,34 @@
+Phase 6 verification record
+===========================
+
+Implementation commit under test:
+2e59244f72f16c403e17a434268bc5e149eb892d
+
+Static and unit gate (`make verify`):
+- Ruff lint: passed
+- Ruff format check: 41 files already formatted
+- mypy strict: passed, 36 source files
+- pytest: passed, 19 tests in 0.43 seconds
+- repository isolation contract: passed
+
+Live smoke matrix:
+- cache enabled: completed, zero request errors
+- cache disabled: completed, zero request errors
+- one worker: accepted backlog matched processed count and drained to zero
+- four workers: accepted backlog matched processed count and drained to zero
+
+Full matrix (`python tools/performance_runner.py --profile full`):
+- 12 of 12 trials completed (3 repetitions x 4 configurations)
+- all k6 request error rates were zero
+- all six worker trials had accepted events = initial backlog = processed events
+- all six worker trials drained Redis pending + lag to zero
+- no resource sampler errors were produced
+- the isolated Compose project and its benchmark-owned volumes were removed after the run
+
+Measurement artifacts:
+- 12 compressed k6 raw sample streams
+- 12 k6 summary files and console reports
+- 12 per-run Docker CPU/memory sample files
+- 6 Redis queue-drain sample files
+- 12 per-run normalized result files
+- aggregate medians, metadata, and capacity plan

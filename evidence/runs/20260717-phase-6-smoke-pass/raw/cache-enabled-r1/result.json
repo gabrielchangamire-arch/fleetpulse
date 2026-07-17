@@ -1,0 +1,50 @@
+{
+  "cache_enabled": true,
+  "cache_hit_rate": 1.0,
+  "cache_hits": 31,
+  "cache_misses": 0,
+  "configuration": "enabled",
+  "error_rate": 0.0,
+  "experiment": "cache",
+  "iterations": 31.0,
+  "p50_ms": 3.835,
+  "p95_ms": 5.9254999999999995,
+  "p99_ms": 6.408799999999999,
+  "repetition": 1,
+  "requests": 31.0,
+  "resource_api_cpu_max_percent": 2.6500000000000004,
+  "resource_api_memory_max_bytes": 135853506.0,
+  "resource_nginx_cpu_max_percent": 1.8,
+  "resource_nginx_memory_max_bytes": 4669309.0,
+  "resource_postgres_cpu_max_percent": 1.42,
+  "resource_postgres_memory_max_bytes": 30282875.0,
+  "resource_redis_cpu_max_percent": 0.38,
+  "resource_redis_memory_max_bytes": 13201572.0,
+  "resources": {
+    "api": {
+      "cpu_max_percent": 2.6500000000000004,
+      "cpu_median_percent": 1.4900000000000002,
+      "memory_max_bytes": 135853506.0,
+      "samples": 2.0
+    },
+    "nginx": {
+      "cpu_max_percent": 1.8,
+      "cpu_median_percent": 1.12,
+      "memory_max_bytes": 4669309.0,
+      "samples": 2.0
+    },
+    "postgres": {
+      "cpu_max_percent": 1.42,
+      "cpu_median_percent": 1.2149999999999999,
+      "memory_max_bytes": 30282875.0,
+      "samples": 2.0
+    },
+    "redis": {
+      "cpu_max_percent": 0.38,
+      "cpu_median_percent": 0.33499999999999996,
+      "memory_max_bytes": 13201572.0,
+      "samples": 2.0
+    }
+  },
+  "throughput_rps": 10.320669871401124
+}

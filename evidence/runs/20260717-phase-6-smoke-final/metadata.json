@@ -1,0 +1,30 @@
+{
+  "compose_project": "fleetpulse-p6-2a89572d",
+  "docker": {
+    "cpus": 15,
+    "memory_bytes": 8320815104,
+    "version": "29.5.3"
+  },
+  "git_commit": "9e68ba1dc513363c45fab1a164dd8898a9f5d07b",
+  "host": {
+    "logical_cpus": 15,
+    "machine": "arm64",
+    "release": "25.5.0",
+    "system": "Darwin"
+  },
+  "k6_version": "k6 v2.1.0 (commit/devel, go1.26.4, darwin/arm64)",
+  "profile": "smoke",
+  "recorded_at": "2026-07-17T23:23:55.207711+00:00",
+  "repetitions": 1,
+  "repository": "/Users/gabriel/Projects/fleetpulse",
+  "security": {
+    "credentials": "ephemeral and excluded from artifacts",
+    "ingress": "loopback TLS via Nginx",
+    "k6_tls_verification": "disabled only for generated local CA benchmark traffic"
+  },
+  "workloads": {
+    "arrival_model": "constant-arrival-rate",
+    "cache_read_rate_rps": 10,
+    "worker_ingest_rate_rps": 10
+  }
+}

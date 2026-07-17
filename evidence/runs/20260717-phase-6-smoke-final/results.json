@@ -1,0 +1,240 @@
+[
+  {
+    "cache_enabled": true,
+    "cache_hit_rate": 1.0,
+    "cache_hits": 31,
+    "cache_misses": 0,
+    "configuration": "enabled",
+    "error_rate": 0.0,
+    "experiment": "cache",
+    "iterations": 31.0,
+    "p50_ms": 3.736,
+    "p95_ms": 4.4695,
+    "p99_ms": 4.6526000000000005,
+    "repetition": 1,
+    "requests": 31.0,
+    "resource_api_cpu_max_percent": 2.3600000000000003,
+    "resource_api_memory_max_bytes": 135654277.0,
+    "resource_nginx_cpu_max_percent": 3.91,
+    "resource_nginx_memory_max_bytes": 3641704.0,
+    "resource_postgres_cpu_max_percent": 1.64,
+    "resource_postgres_memory_max_bytes": 30041702.0,
+    "resource_redis_cpu_max_percent": 1.29,
+    "resource_redis_memory_max_bytes": 13044285.0,
+    "resources": {
+      "api": {
+        "cpu_max_percent": 2.3600000000000003,
+        "cpu_median_percent": 1.3800000000000001,
+        "memory_max_bytes": 135654277.0,
+        "samples": 2.0
+      },
+      "nginx": {
+        "cpu_max_percent": 3.91,
+        "cpu_median_percent": 2.105,
+        "memory_max_bytes": 3641704.0,
+        "samples": 2.0
+      },
+      "postgres": {
+        "cpu_max_percent": 1.64,
+        "cpu_median_percent": 0.85,
+        "memory_max_bytes": 30041702.0,
+        "samples": 2.0
+      },
+      "redis": {
+        "cpu_max_percent": 1.29,
+        "cpu_median_percent": 0.8300000000000001,
+        "memory_max_bytes": 13044285.0,
+        "samples": 2.0
+      }
+    },
+    "throughput_rps": 10.310704773257623
+  },
+  {
+    "cache_enabled": false,
+    "cache_hit_rate": 0,
+    "cache_hits": 0,
+    "cache_misses": 0,
+    "configuration": "disabled",
+    "error_rate": 0.0,
+    "experiment": "cache",
+    "iterations": 30.0,
+    "p50_ms": 4.818,
+    "p95_ms": 6.00475,
+    "p99_ms": 6.60864,
+    "repetition": 1,
+    "requests": 30.0,
+    "resource_api_cpu_max_percent": 3.7399999999999998,
+    "resource_api_memory_max_bytes": 136021279.0,
+    "resource_nginx_cpu_max_percent": 0.46,
+    "resource_nginx_memory_max_bytes": 4157604.0,
+    "resource_postgres_cpu_max_percent": 2.01,
+    "resource_postgres_memory_max_bytes": 30880563.0,
+    "resource_redis_cpu_max_percent": 1.38,
+    "resource_redis_memory_max_bytes": 13799260.0,
+    "resources": {
+      "api": {
+        "cpu_max_percent": 3.7399999999999998,
+        "cpu_median_percent": 2.045,
+        "memory_max_bytes": 136021279.0,
+        "samples": 2.0
+      },
+      "nginx": {
+        "cpu_max_percent": 0.46,
+        "cpu_median_percent": 0.23,
+        "memory_max_bytes": 4157604.0,
+        "samples": 2.0
+      },
+      "postgres": {
+        "cpu_max_percent": 2.01,
+        "cpu_median_percent": 1.0299999999999998,
+        "memory_max_bytes": 30880563.0,
+        "samples": 2.0
+      },
+      "redis": {
+        "cpu_max_percent": 1.38,
+        "cpu_median_percent": 1.335,
+        "memory_max_bytes": 13799260.0,
+        "samples": 2.0
+      }
+    },
+    "throughput_rps": 9.999143406714825
+  },
+  {
+    "accepted_events": 31,
+    "configuration": "1",
+    "drain_seconds": 1.6781910409918055,
+    "error_rate": 0.0,
+    "experiment": "workers",
+    "initial_backlog": 31,
+    "iterations": 31.0,
+    "p50_ms": 8.086,
+    "p95_ms": 12.625499999999999,
+    "p99_ms": 14.371599999999999,
+    "peak_backlog": 31,
+    "processed_events": 31,
+    "repetition": 1,
+    "requests": 31.0,
+    "resource_api_cpu_max_percent": 5.880000000000001,
+    "resource_api_memory_max_bytes": 271119811.0,
+    "resource_nginx_cpu_max_percent": 0.4,
+    "resource_nginx_memory_max_bytes": 7458522.0,
+    "resource_outbox-relay_cpu_max_percent": 4.42,
+    "resource_outbox-relay_memory_max_bytes": 124266742.0,
+    "resource_postgres_cpu_max_percent": 18.58,
+    "resource_postgres_memory_max_bytes": 61771612.0,
+    "resource_redis_cpu_max_percent": 3.91,
+    "resource_redis_memory_max_bytes": 26109542.0,
+    "resource_worker_cpu_max_percent": 53.04,
+    "resource_worker_memory_max_bytes": 123448853.0,
+    "resources": {
+      "api": {
+        "cpu_max_percent": 5.880000000000001,
+        "cpu_median_percent": 3.0850000000000004,
+        "memory_max_bytes": 271119811.0,
+        "samples": 2.0
+      },
+      "nginx": {
+        "cpu_max_percent": 0.4,
+        "cpu_median_percent": 0.2,
+        "memory_max_bytes": 7458522.0,
+        "samples": 2.0
+      },
+      "outbox-relay": {
+        "cpu_max_percent": 4.42,
+        "cpu_median_percent": 4.345,
+        "memory_max_bytes": 124266742.0,
+        "samples": 2.0
+      },
+      "postgres": {
+        "cpu_max_percent": 18.58,
+        "cpu_median_percent": 9.59,
+        "memory_max_bytes": 61771612.0,
+        "samples": 2.0
+      },
+      "redis": {
+        "cpu_max_percent": 3.91,
+        "cpu_median_percent": 2.6350000000000002,
+        "memory_max_bytes": 26109542.0,
+        "samples": 2.0
+      },
+      "worker": {
+        "cpu_max_percent": 53.04,
+        "cpu_median_percent": 26.52,
+        "memory_max_bytes": 123448853.0,
+        "samples": 2.0
+      }
+    },
+    "throughput_rps": 10.314907470288908,
+    "worker_count": 1,
+    "worker_throughput_eps": 18.472271179376037
+  },
+  {
+    "accepted_events": 30,
+    "configuration": "4",
+    "drain_seconds": 1.7517851660377346,
+    "error_rate": 0.0,
+    "experiment": "workers",
+    "initial_backlog": 30,
+    "iterations": 30.0,
+    "p50_ms": 6.489000000000001,
+    "p95_ms": 9.8962,
+    "p99_ms": 10.881599999999999,
+    "peak_backlog": 30,
+    "processed_events": 30,
+    "repetition": 1,
+    "requests": 30.0,
+    "resource_api_cpu_max_percent": 41.26,
+    "resource_api_memory_max_bytes": 293192335.0,
+    "resource_nginx_cpu_max_percent": 4.67,
+    "resource_nginx_memory_max_bytes": 6991905.0,
+    "resource_outbox-relay_cpu_max_percent": 3.69,
+    "resource_outbox-relay_memory_max_bytes": 124172370.0,
+    "resource_postgres_cpu_max_percent": 3.79,
+    "resource_postgres_memory_max_bytes": 61708697.0,
+    "resource_redis_cpu_max_percent": 1.19,
+    "resource_redis_memory_max_bytes": 25637683.0,
+    "resource_worker_cpu_max_percent": 28.709999999999997,
+    "resource_worker_memory_max_bytes": 367106457.0,
+    "resources": {
+      "api": {
+        "cpu_max_percent": 41.26,
+        "cpu_median_percent": 41.26,
+        "memory_max_bytes": 293192335.0,
+        "samples": 1.0
+      },
+      "nginx": {
+        "cpu_max_percent": 4.67,
+        "cpu_median_percent": 4.67,
+        "memory_max_bytes": 6991905.0,
+        "samples": 1.0
+      },
+      "outbox-relay": {
+        "cpu_max_percent": 3.69,
+        "cpu_median_percent": 3.69,
+        "memory_max_bytes": 124172370.0,
+        "samples": 1.0
+      },
+      "postgres": {
+        "cpu_max_percent": 3.79,
+        "cpu_median_percent": 3.79,
+        "memory_max_bytes": 61708697.0,
+        "samples": 1.0
+      },
+      "redis": {
+        "cpu_max_percent": 1.19,
+        "cpu_median_percent": 1.19,
+        "memory_max_bytes": 25637683.0,
+        "samples": 1.0
+      },
+      "worker": {
+        "cpu_max_percent": 28.709999999999997,
+        "cpu_median_percent": 28.709999999999997,
+        "memory_max_bytes": 367106457.0,
+        "samples": 1.0
+      }
+    },
+    "throughput_rps": 9.99858686638955,
+    "worker_count": 4,
+    "worker_throughput_eps": 17.125387622647434
+  }
+]

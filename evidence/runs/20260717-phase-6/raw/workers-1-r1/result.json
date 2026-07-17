@@ -1,0 +1,69 @@
+{
+  "accepted_events": 500,
+  "configuration": "1",
+  "drain_seconds": 11.055108417000156,
+  "error_rate": 0.0,
+  "experiment": "workers",
+  "initial_backlog": 500,
+  "iterations": 500.0,
+  "p50_ms": 4.606999999999999,
+  "p95_ms": 6.2120999999999995,
+  "p99_ms": 6.76952,
+  "peak_backlog": 500,
+  "processed_events": 500,
+  "repetition": 1,
+  "requests": 500.0,
+  "resource_api_cpu_max_percent": 16.66,
+  "resource_api_memory_max_bytes": 272661217.0,
+  "resource_nginx_cpu_max_percent": 2.46,
+  "resource_nginx_memory_max_bytes": 8495563.0,
+  "resource_outbox-relay_cpu_max_percent": 5.18,
+  "resource_outbox-relay_memory_max_bytes": 125283861.0,
+  "resource_postgres_cpu_max_percent": 30.060000000000002,
+  "resource_postgres_memory_max_bytes": 74165781.0,
+  "resource_redis_cpu_max_percent": 3.83,
+  "resource_redis_memory_max_bytes": 26277314.0,
+  "resource_worker_cpu_max_percent": 77.25,
+  "resource_worker_memory_max_bytes": 124707144.0,
+  "resources": {
+    "api": {
+      "cpu_max_percent": 16.66,
+      "cpu_median_percent": 16.05,
+      "memory_max_bytes": 272661217.0,
+      "samples": 4.0
+    },
+    "nginx": {
+      "cpu_max_percent": 2.46,
+      "cpu_median_percent": 1.79,
+      "memory_max_bytes": 8495563.0,
+      "samples": 4.0
+    },
+    "outbox-relay": {
+      "cpu_max_percent": 5.18,
+      "cpu_median_percent": 3.995,
+      "memory_max_bytes": 125283861.0,
+      "samples": 4.0
+    },
+    "postgres": {
+      "cpu_max_percent": 30.060000000000002,
+      "cpu_median_percent": 29.59,
+      "memory_max_bytes": 74165781.0,
+      "samples": 4.0
+    },
+    "redis": {
+      "cpu_max_percent": 3.83,
+      "cpu_median_percent": 3.12,
+      "memory_max_bytes": 26277314.0,
+      "samples": 4.0
+    },
+    "worker": {
+      "cpu_max_percent": 77.25,
+      "cpu_median_percent": 74.88499999999999,
+      "memory_max_bytes": 124707144.0,
+      "samples": 4.0
+    }
+  },
+  "throughput_rps": 49.99830005779804,
+  "worker_count": 1,
+  "worker_throughput_eps": 45.22795988423937
+}

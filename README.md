@@ -4,7 +4,7 @@ FleetPulse is a local-first Linux fleet reliability and incident-response platfo
 
 ## Project status
 
-Phases 0 through 5 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, a provisioned Prometheus/Grafana/Alertmanager stack, and reproducible kind/k3d deployments. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+Phases 0 through 6 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, a provisioned Prometheus/Grafana/Alertmanager stack, reproducible kind/k3d deployments, and a repeated local performance/capacity evidence suite. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
 
 ## Verified today
 
@@ -23,6 +23,8 @@ Phase 3 evidence: [TLS edge and cache verification](evidence/runs/20260717-phase
 Phase 4 evidence: [SLO observability verification](evidence/runs/20260717-phase-4/summary.md).
 
 Phase 5 evidence: [local Kubernetes verification](evidence/runs/20260717-phase-5/summary.md).
+
+Phase 6 evidence: [performance and capacity verification](evidence/runs/20260717-phase-6/summary.md).
 
 ## Non-negotiable boundaries
 
@@ -60,7 +62,19 @@ make kind-up
 # or: make k3d-up
 ```
 
-See the [local Kubernetes runbook](docs/runbooks/local-kubernetes.md) for startup, inspection, rollback, and cleanup. Later phases add the controlled load-test matrix and recovery drills.
+See the [local Kubernetes runbook](docs/runbooks/local-kubernetes.md) for startup, inspection,
+rollback, and cleanup. Phase 7 adds controlled failure and recovery drills.
+
+To validate or repeat the local performance suite, install k6 and run the smoke profile before
+the three-repetition matrix:
+
+```bash
+make performance-smoke
+make performance-matrix
+```
+
+See the [performance testing runbook](docs/runbooks/performance-testing.md). Workload rates are
+inputs, not capacity claims; measured results and projections are labeled separately.
 
 ## Architecture
 

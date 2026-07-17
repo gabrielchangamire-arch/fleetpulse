@@ -1,0 +1,161 @@
+{
+    "metrics": {
+        "vus_max": {
+            "max": 10,
+            "value": 10,
+            "min": 10
+        },
+        "data_received": {
+            "rate": 13834.95282926266,
+            "count": 41579
+        },
+        "http_req_duration{expected_response:true}": {
+            "p(99)": 14.371599999999999,
+            "avg": 7.776645161290322,
+            "min": 3.55,
+            "med": 8.086,
+            "max": 14.974,
+            "p(90)": 11.265,
+            "p(95)": 12.625499999999999
+        },
+        "http_req_receiving": {
+            "p(95)": 0.13349999999999998,
+            "p(99)": 0.20539999999999997,
+            "avg": 0.07061290322580643,
+            "min": 0.026,
+            "med": 0.055,
+            "max": 0.233,
+            "p(90)": 0.114
+        },
+        "fleetpulse_endpoint_errors": {
+            "passes": 0,
+            "fails": 31,
+            "value": 0
+        },
+        "iterations": {
+            "count": 31,
+            "rate": 10.314907470288908
+        },
+        "http_req_blocked": {
+            "p(95)": 4.6125,
+            "p(99)": 4.9478,
+            "avg": 0.9568064516129035,
+            "min": 0.002,
+            "med": 0.006,
+            "max": 5.078,
+            "p(90)": 3.038
+        },
+        "http_req_duration": {
+            "p(95)": 12.625499999999999,
+            "p(99)": 14.371599999999999,
+            "avg": 7.776645161290322,
+            "min": 3.55,
+            "med": 8.086,
+            "max": 14.974,
+            "p(90)": 11.265
+        },
+        "data_sent": {
+            "count": 46396,
+            "rate": 15437.756354565296
+        },
+        "http_req_tls_handshaking": {
+            "p(90)": 2.439,
+            "p(95)": 4.1705,
+            "p(99)": 4.4456,
+            "avg": 0.804483870967742,
+            "min": 0,
+            "med": 0,
+            "max": 4.547
+        },
+        "checks": {
+            "passes": 62,
+            "fails": 0,
+            "value": 1
+        },
+        "fleetpulse_endpoint_latency": {
+            "p(90)": 11.265,
+            "p(95)": 12.625499999999999,
+            "p(99)": 14.371599999999999,
+            "avg": 7.776645161290322,
+            "min": 3.55,
+            "med": 8.086,
+            "max": 14.974
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 31,
+            "value": 0
+        },
+        "fleetpulse_endpoint_requests": {
+            "count": 31,
+            "rate": 10.314907470288908
+        },
+        "iteration_duration": {
+            "max": 15.498958,
+            "p(90)": 13.802459,
+            "p(95)": 14.560937999999998,
+            "p(99)": 15.383345799999999,
+            "avg": 9.15787506451613,
+            "min": 4.240625,
+            "med": 8.566
+        },
+        "http_reqs": {
+            "count": 31,
+            "rate": 10.314907470288908
+        },
+        "http_req_connecting": {
+            "med": 0,
+            "max": 0.438,
+            "p(90)": 0.295,
+            "p(95)": 0.3614999999999998,
+            "p(99)": 0.4335,
+            "avg": 0.089,
+            "min": 0
+        },
+        "http_req_waiting": {
+            "p(95)": 12.405,
+            "p(99)": 14.2618,
+            "avg": 7.672225806451613,
+            "min": 3.499,
+            "med": 8.022,
+            "max": 14.893,
+            "p(90)": 11.093
+        },
+        "vus": {
+            "value": 0,
+            "min": 0,
+            "max": 0
+        },
+        "http_req_sending": {
+            "avg": 0.033806451612903236,
+            "min": 0.013,
+            "med": 0.029,
+            "max": 0.115,
+            "p(90)": 0.048,
+            "p(95)": 0.0685,
+            "p(99)": 0.1012
+        }
+    },
+    "root_group": {
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "expected HTTP status": {
+                    "id": "3277eb6f98e4e03576d2bbe690c267ac",
+                    "passes": 31,
+                    "fails": 0,
+                    "name": "expected HTTP status",
+                    "path": "::expected HTTP status"
+                },
+                "correlation ID returned": {
+                    "id": "c5bd7454af08dc65088fd8030e96a0bd",
+                    "passes": 31,
+                    "fails": 0,
+                    "name": "correlation ID returned",
+                    "path": "::correlation ID returned"
+                }
+            },
+        "name": ""
+    }
+}

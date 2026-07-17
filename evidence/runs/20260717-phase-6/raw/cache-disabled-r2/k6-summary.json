@@ -1,0 +1,161 @@
+{
+    "root_group": {
+        "groups": {},
+        "checks": {
+                "expected HTTP status": {
+                    "name": "expected HTTP status",
+                    "path": "::expected HTTP status",
+                    "id": "3277eb6f98e4e03576d2bbe690c267ac",
+                    "passes": 2001,
+                    "fails": 0
+                },
+                "correlation ID returned": {
+                    "name": "correlation ID returned",
+                    "path": "::correlation ID returned",
+                    "id": "c5bd7454af08dc65088fd8030e96a0bd",
+                    "passes": 2001,
+                    "fails": 0
+                }
+            },
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "metrics": {
+        "http_req_blocked": {
+            "p(90)": 0.009,
+            "p(95)": 0.012,
+            "p(99)": 1.914,
+            "avg": 0.05430384807596226,
+            "min": 0.002,
+            "med": 0.005,
+            "max": 4.077
+        },
+        "iterations": {
+            "count": 2001,
+            "rate": 100.02279380008638
+        },
+        "checks": {
+            "passes": 4002,
+            "fails": 0,
+            "value": 1
+        },
+        "data_sent": {
+            "count": 508304,
+            "rate": 25408.28894540685
+        },
+        "data_received": {
+            "count": 1077560,
+            "rate": 53863.34916902603
+        },
+        "fleetpulse_endpoint_requests": {
+            "rate": 100.02279380008638,
+            "count": 2001
+        },
+        "http_req_receiving": {
+            "p(99)": 0.121,
+            "avg": 0.05264717641179447,
+            "min": 0.017,
+            "med": 0.049,
+            "max": 0.381,
+            "p(90)": 0.075,
+            "p(95)": 0.088
+        },
+        "fleetpulse_endpoint_latency": {
+            "avg": 2.8715582208895563,
+            "min": 1.639,
+            "med": 2.662,
+            "max": 6.408,
+            "p(90)": 3.908,
+            "p(95)": 4.203,
+            "p(99)": 4.714
+        },
+        "http_req_waiting": {
+            "p(95)": 4.115,
+            "p(99)": 4.648,
+            "avg": 2.797678160919535,
+            "min": 1.59,
+            "med": 2.589,
+            "max": 6.339,
+            "p(90)": 3.819
+        },
+        "iteration_duration": {
+            "min": 1.869125,
+            "med": 2.949167,
+            "max": 7.767708,
+            "p(90)": 4.188541,
+            "p(95)": 4.507041,
+            "p(99)": 5.1055,
+            "avg": 3.1366106531734053
+        },
+        "http_req_sending": {
+            "min": 0.007,
+            "med": 0.019,
+            "max": 0.227,
+            "p(90)": 0.03,
+            "p(95)": 0.034,
+            "p(99)": 0.056,
+            "avg": 0.021232883558220932
+        },
+        "vus": {
+            "min": 0,
+            "max": 0,
+            "value": 0
+        },
+        "vus_max": {
+            "min": 50,
+            "max": 50,
+            "value": 50
+        },
+        "http_req_duration": {
+            "p(95)": 4.203,
+            "p(99)": 4.714,
+            "avg": 2.8715582208895563,
+            "min": 1.639,
+            "med": 2.662,
+            "max": 6.408,
+            "p(90)": 3.908
+        },
+        "http_reqs": {
+            "count": 2001,
+            "rate": 100.02279380008638
+        },
+        "http_req_duration{expected_response:true}": {
+            "p(95)": 4.203,
+            "p(99)": 4.714,
+            "avg": 2.8715582208895563,
+            "min": 1.639,
+            "med": 2.662,
+            "max": 6.408,
+            "p(90)": 3.908
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 2001,
+            "value": 0
+        },
+        "http_req_connecting": {
+            "med": 0,
+            "max": 0.336,
+            "p(90)": 0,
+            "p(95)": 0,
+            "p(99)": 0.186,
+            "avg": 0.005002998500749624,
+            "min": 0
+        },
+        "fleetpulse_endpoint_errors": {
+            "passes": 0,
+            "fails": 2001,
+            "value": 0
+        },
+        "http_req_tls_handshaking": {
+            "p(95)": 0,
+            "p(99)": 1.666,
+            "avg": 0.04183308345827086,
+            "min": 0,
+            "med": 0,
+            "max": 3.771,
+            "p(90)": 0
+        }
+    }
+}

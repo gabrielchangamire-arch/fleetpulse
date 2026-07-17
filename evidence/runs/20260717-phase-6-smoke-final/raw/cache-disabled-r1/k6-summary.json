@@ -1,0 +1,161 @@
+{
+    "root_group": {
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "expected HTTP status": {
+                    "name": "expected HTTP status",
+                    "path": "::expected HTTP status",
+                    "id": "3277eb6f98e4e03576d2bbe690c267ac",
+                    "passes": 30,
+                    "fails": 0
+                },
+                "correlation ID returned": {
+                    "name": "correlation ID returned",
+                    "path": "::correlation ID returned",
+                    "id": "c5bd7454af08dc65088fd8030e96a0bd",
+                    "passes": 30,
+                    "fails": 0
+                }
+            },
+        "name": "",
+        "path": ""
+    },
+    "metrics": {
+        "fleetpulse_endpoint_requests": {
+            "rate": 9.999143406714825,
+            "count": 30
+        },
+        "vus": {
+            "value": 0,
+            "min": 0,
+            "max": 0
+        },
+        "http_req_blocked": {
+            "p(99)": 5.83462,
+            "avg": 1.3149000000000002,
+            "min": 0.004,
+            "med": 0.007,
+            "max": 5.986,
+            "p(90)": 4.7253,
+            "p(95)": 5.270499999999999
+        },
+        "http_req_connecting": {
+            "avg": 0.07830000000000001,
+            "min": 0,
+            "med": 0,
+            "max": 0.292,
+            "p(90)": 0.2661,
+            "p(95)": 0.2769,
+            "p(99)": 0.28997
+        },
+        "iterations": {
+            "count": 30,
+            "rate": 9.999143406714825
+        },
+        "http_req_receiving": {
+            "p(99)": 0.13468,
+            "avg": 0.07819999999999999,
+            "min": 0.044,
+            "med": 0.07100000000000001,
+            "max": 0.137,
+            "p(90)": 0.11080000000000001,
+            "p(95)": 0.1281
+        },
+        "data_sent": {
+            "count": 22183,
+            "rate": 7393.699939705165
+        },
+        "http_req_duration": {
+            "med": 4.818,
+            "max": 6.836,
+            "p(90)": 5.818300000000001,
+            "p(95)": 6.00475,
+            "p(99)": 6.60864,
+            "avg": 4.579166666666667,
+            "min": 1.769
+        },
+        "data_received": {
+            "count": 44151,
+            "rate": 14715.739351662209
+        },
+        "http_reqs": {
+            "count": 30,
+            "rate": 9.999143406714825
+        },
+        "http_req_duration{expected_response:true}": {
+            "p(95)": 6.00475,
+            "p(99)": 6.60864,
+            "avg": 4.579166666666667,
+            "min": 1.769,
+            "med": 4.818,
+            "max": 6.836,
+            "p(90)": 5.818300000000001
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 30,
+            "value": 0
+        },
+        "http_req_tls_handshaking": {
+            "min": 0,
+            "med": 0,
+            "max": 5.645,
+            "p(90)": 4.368200000000001,
+            "p(95)": 4.9697499999999994,
+            "p(99)": 5.48898,
+            "avg": 1.1560999999999997
+        },
+        "http_req_sending": {
+            "avg": 0.03246666666666668,
+            "min": 0.016,
+            "med": 0.0245,
+            "max": 0.102,
+            "p(90)": 0.0695,
+            "p(95)": 0.07784999999999999,
+            "p(99)": 0.09591
+        },
+        "checks": {
+            "passes": 60,
+            "fails": 0,
+            "value": 1
+        },
+        "iteration_duration": {
+            "min": 2.884708,
+            "med": 5.4725839999999994,
+            "max": 11.298458,
+            "p(90)": 9.907850000000002,
+            "p(95)": 10.80018995,
+            "p(99)": 11.18289329,
+            "avg": 6.145815166666668
+        },
+        "http_req_waiting": {
+            "max": 6.674,
+            "p(90)": 5.676699999999999,
+            "p(95)": 5.90325,
+            "p(99)": 6.47071,
+            "avg": 4.468500000000001,
+            "min": 1.693,
+            "med": 4.734
+        },
+        "fleetpulse_endpoint_latency": {
+            "p(95)": 6.00475,
+            "p(99)": 6.60864,
+            "avg": 4.579166666666667,
+            "min": 1.769,
+            "med": 4.818,
+            "max": 6.836,
+            "p(90)": 5.818300000000001
+        },
+        "vus_max": {
+            "value": 10,
+            "min": 10,
+            "max": 10
+        },
+        "fleetpulse_endpoint_errors": {
+            "passes": 0,
+            "fails": 30,
+            "value": 0
+        }
+    }
+}

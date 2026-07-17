@@ -2,3 +2,5 @@
 *.png binary
 *.gz binary
 
+# k6's human console formatter intentionally emits aligned trailing spaces.
+evidence/**/k6-console.txt -whitespace

@@ -1,0 +1,35 @@
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 4002    200.051088/s
+    checks_succeeded...: 100.00% 4002 out of 4002
+    checks_failed......: 0.00%   0 out of 4002
+
+    ✓ expected HTTP status
+    ✓ correlation ID returned
+
+    CUSTOM
+    fleetpulse_cache_hits..........: 2000   99.975556/s
+    fleetpulse_endpoint_errors.....: 0.00%  0 out of 2001
+    fleetpulse_endpoint_latency....: avg=2.81ms min=1.16ms med=2.94ms max=9.83ms  p(90)=3.82ms p(95)=4.03ms p(99)=4.5ms 
+    fleetpulse_endpoint_requests...: 2001   100.025544/s
+
+    HTTP
+    http_req_duration..............: avg=2.81ms min=1.16ms med=2.94ms max=9.83ms  p(90)=3.82ms p(95)=4.03ms p(99)=4.5ms 
+      { expected_response:true }...: avg=2.81ms min=1.16ms med=2.94ms max=9.83ms  p(90)=3.82ms p(95)=4.03ms p(99)=4.5ms 
+    http_req_failed................: 0.00%  0 out of 2001
+    http_reqs......................: 2001   100.025544/s
+
+    EXECUTION
+    iteration_duration.............: avg=3.09ms min=1.26ms med=3.2ms  max=12.39ms p(90)=4.13ms p(95)=4.34ms p(99)=4.99ms
+    iterations.....................: 2001   100.025544/s
+    vus............................: 1      min=0         max=1 
+    vus_max........................: 50     min=50        max=50
+
+    NETWORK
+    data_received..................: 1.1 MB 53 kB/s
+    data_sent......................: 506 kB 25 kB/s
+
+
+

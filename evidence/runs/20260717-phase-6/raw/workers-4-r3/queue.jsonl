@@ -1,0 +1,12 @@
+{"backlog": 498, "lag": 490, "pending": 8, "processed": 6, "sampled_at": "2026-07-17T23:32:17.029937+00:00"}
+{"backlog": 483, "lag": 480, "pending": 3, "processed": 21, "sampled_at": "2026-07-17T23:32:17.313028+00:00"}
+{"backlog": 468, "lag": 460, "pending": 8, "processed": 37, "sampled_at": "2026-07-17T23:32:17.608196+00:00"}
+{"backlog": 450, "lag": 420, "pending": 30, "processed": 69, "sampled_at": "2026-07-17T23:32:17.899935+00:00"}
+{"backlog": 388, "lag": 370, "pending": 18, "processed": 132, "sampled_at": "2026-07-17T23:32:18.198639+00:00"}
+{"backlog": 324, "lag": 290, "pending": 34, "processed": 196, "sampled_at": "2026-07-17T23:32:18.479416+00:00"}
+{"backlog": 260, "lag": 250, "pending": 10, "processed": 260, "sampled_at": "2026-07-17T23:32:18.767304+00:00"}
+{"backlog": 199, "lag": 170, "pending": 29, "processed": 321, "sampled_at": "2026-07-17T23:32:19.046769+00:00"}
+{"backlog": 136, "lag": 120, "pending": 16, "processed": 384, "sampled_at": "2026-07-17T23:32:19.337697+00:00"}
+{"backlog": 72, "lag": 50, "pending": 22, "processed": 445, "sampled_at": "2026-07-17T23:32:19.630825+00:00"}
+{"backlog": 12, "lag": 0, "pending": 12, "processed": 496, "sampled_at": "2026-07-17T23:32:19.909019+00:00"}
+{"backlog": 0, "lag": 0, "pending": 0, "processed": 500, "sampled_at": "2026-07-17T23:32:20.185469+00:00"}

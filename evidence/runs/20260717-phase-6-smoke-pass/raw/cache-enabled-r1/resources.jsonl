@@ -1,0 +1,10 @@
+{"container": "fleetpulse-p6-926bdfed-nginx-1", "cpu_percent": 0.44, "memory_bytes": 4669309, "sample_id": 0, "sampled_at": "2026-07-17T23:22:44.961633+00:00", "service": "nginx"}
+{"container": "fleetpulse-p6-926bdfed-api-2", "cpu_percent": 1.33, "memory_bytes": 68063068, "sample_id": 0, "sampled_at": "2026-07-17T23:22:44.961633+00:00", "service": "api"}
+{"container": "fleetpulse-p6-926bdfed-api-1", "cpu_percent": 1.32, "memory_bytes": 67790438, "sample_id": 0, "sampled_at": "2026-07-17T23:22:44.961633+00:00", "service": "api"}
+{"container": "fleetpulse-p6-926bdfed-postgres-1", "cpu_percent": 1.01, "memory_bytes": 30282875, "sample_id": 0, "sampled_at": "2026-07-17T23:22:44.961633+00:00", "service": "postgres"}
+{"container": "fleetpulse-p6-926bdfed-redis-1", "cpu_percent": 0.38, "memory_bytes": 13201572, "sample_id": 0, "sampled_at": "2026-07-17T23:22:44.961633+00:00", "service": "redis"}
+{"container": "fleetpulse-p6-926bdfed-nginx-1", "cpu_percent": 1.8, "memory_bytes": 3649044, "sample_id": 1, "sampled_at": "2026-07-17T23:22:48.125584+00:00", "service": "nginx"}
+{"container": "fleetpulse-p6-926bdfed-api-2", "cpu_percent": 0.15, "memory_bytes": 67821896, "sample_id": 1, "sampled_at": "2026-07-17T23:22:48.125584+00:00", "service": "api"}
+{"container": "fleetpulse-p6-926bdfed-api-1", "cpu_percent": 0.18, "memory_bytes": 67821896, "sample_id": 1, "sampled_at": "2026-07-17T23:22:48.125584+00:00", "service": "api"}
+{"container": "fleetpulse-p6-926bdfed-postgres-1", "cpu_percent": 1.42, "memory_bytes": 30031217, "sample_id": 1, "sampled_at": "2026-07-17T23:22:48.125584+00:00", "service": "postgres"}
+{"container": "fleetpulse-p6-926bdfed-redis-1", "cpu_percent": 0.29, "memory_bytes": 12666798, "sample_id": 1, "sampled_at": "2026-07-17T23:22:48.125584+00:00", "service": "redis"}

@@ -534,7 +534,14 @@ class PerformanceHarness:
         self.results.append(result)
         write_json(self.output / "results.json", self.results)
 
-    def metadata(self, profile: str, cache_rate: int, worker_rate: int) -> dict[str, Any]:
+    def metadata(
+        self,
+        profile: str,
+        cache_rate: int,
+        cache_duration: str,
+        worker_rate: int,
+        worker_duration: str,
+    ) -> dict[str, Any]:
         def output(arguments: list[str]) -> str:
             return self.command(arguments).stdout.strip()
 
@@ -545,6 +552,7 @@ class PerformanceHarness:
             "repository": str(ROOT),
             "compose_project": self.project_name,
             "git_commit": output(["git", "rev-parse", "HEAD"]),
+            "git_worktree_dirty": bool(output(["git", "status", "--porcelain"])),
             "host": {
                 "system": platform.system(),
                 "release": platform.release(),
@@ -559,7 +567,12 @@ class PerformanceHarness:
             "k6_version": output(["k6", "version"]),
             "workloads": {
                 "cache_read_rate_rps": cache_rate,
+                "cache_duration": cache_duration,
+                "cache_seeded_records": 1,
                 "worker_ingest_rate_rps": worker_rate,
+                "worker_duration": worker_duration,
+                "api_replicas": 2,
+                "worker_counts": [1, 4],
                 "arrival_model": "constant-arrival-rate",
             },
             "security": {
@@ -724,7 +737,9 @@ def main() -> int:
     harness = PerformanceHarness(output.resolve(), repetitions, bool(arguments.keep_running))
     try:
         harness.setup()
-        metadata = harness.metadata(profile, cache_rate, worker_rate)
+        metadata = harness.metadata(
+            profile, cache_rate, cache_duration, worker_rate, worker_duration
+        )
         harness.run_cache_experiment(cache_rate, cache_duration)
         harness.run_worker_experiment(worker_rate, worker_duration)
         harness.finalize(metadata)
