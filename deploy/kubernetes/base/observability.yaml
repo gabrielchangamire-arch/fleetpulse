@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {app.kubernetes.io/name: prometheus}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: prometheus, app.kubernetes.io/part-of: fleetpulse}
+    spec:
+      securityContext: {runAsNonRoot: true, runAsUser: 65534, runAsGroup: 65534, fsGroup: 65534, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: prometheus
+          image: prom/prometheus:v3.5.0
+          args: [--config.file=/etc/prometheus/prometheus.yml, --storage.tsdb.path=/prometheus]
+          ports: [{name: http, containerPort: 9090}]
+          readinessProbe: {httpGet: {path: /-/ready, port: http}, periodSeconds: 3, timeoutSeconds: 2}
+          livenessProbe: {httpGet: {path: /-/healthy, port: http}, initialDelaySeconds: 10, periodSeconds: 10, timeoutSeconds: 2}
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: 500m, memory: 512Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {drop: [ALL]}
+          volumeMounts:
+            - {name: config, mountPath: /etc/prometheus/prometheus.yml, subPath: prometheus.yml, readOnly: true}
+            - {name: config, mountPath: /etc/prometheus/rules.yml, subPath: rules.yml, readOnly: true}
+            - {name: data, mountPath: /prometheus}
+      volumes:
+        - {name: config, configMap: {name: prometheus-config}}
+        - {name: data, emptyDir: {sizeLimit: 512Mi}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alertmanager
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {app.kubernetes.io/name: alertmanager}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: alertmanager, app.kubernetes.io/part-of: fleetpulse}
+    spec:
+      securityContext: {runAsNonRoot: true, runAsUser: 65534, runAsGroup: 65534, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: alertmanager
+          image: prom/alertmanager:v0.28.1
+          args: [--config.file=/etc/alertmanager/alertmanager.yml]
+          ports: [{name: http, containerPort: 9093}]
+          readinessProbe: {httpGet: {path: /-/ready, port: http}, periodSeconds: 3, timeoutSeconds: 2}
+          livenessProbe: {httpGet: {path: /-/healthy, port: http}, initialDelaySeconds: 10, periodSeconds: 10, timeoutSeconds: 2}
+          resources:
+            requests: {cpu: 25m, memory: 32Mi}
+            limits: {cpu: 200m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {drop: [ALL]}
+          volumeMounts: [{name: config, mountPath: /etc/alertmanager/alertmanager.yml, subPath: alertmanager.yml, readOnly: true}]
+      volumes: [{name: config, configMap: {name: alertmanager-config}}]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {app.kubernetes.io/name: grafana}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: grafana, app.kubernetes.io/part-of: fleetpulse}
+    spec:
+      securityContext: {runAsNonRoot: true, runAsUser: 472, runAsGroup: 0, fsGroup: 472, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: grafana
+          image: grafana/grafana:12.1.0
+          env:
+            - {name: GF_AUTH_ANONYMOUS_ENABLED, value: "true"}
+            - {name: GF_AUTH_ANONYMOUS_ORG_ROLE, value: Viewer}
+            - {name: GF_AUTH_DISABLE_LOGIN_FORM, value: "true"}
+            - {name: GF_PLUGINS_PREINSTALL, value: ""}
+          ports: [{name: http, containerPort: 3000}]
+          readinessProbe: {httpGet: {path: /api/health, port: http}, periodSeconds: 3, timeoutSeconds: 2}
+          livenessProbe: {httpGet: {path: /api/health, port: http}, initialDelaySeconds: 15, periodSeconds: 10, timeoutSeconds: 2}
+          resources:
+            requests: {cpu: 50m, memory: 96Mi}
+            limits: {cpu: 300m, memory: 256Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {drop: [ALL]}
+          volumeMounts:
+            - {name: config, mountPath: /etc/grafana/provisioning/datasources/datasource.yml, subPath: datasource.yml, readOnly: true}
+            - {name: config, mountPath: /etc/grafana/provisioning/dashboards/dashboards.yml, subPath: dashboards.yml, readOnly: true}
+            - {name: config, mountPath: /var/lib/grafana/dashboards/fleetpulse.json, subPath: fleetpulse.json, readOnly: true}
+            - {name: data, mountPath: /var/lib/grafana}
+      volumes:
+        - {name: config, configMap: {name: grafana-provisioning}}
+        - {name: data, emptyDir: {sizeLimit: 256Mi}}

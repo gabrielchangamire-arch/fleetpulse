@@ -4,7 +4,7 @@ BIN := $(VENV)/bin
 
 COMPOSE := docker compose
 
-.PHONY: bootstrap compose-build compose-down compose-up contract format-check lint phase1-smoke phase2-smoke test typecheck verify
+.PHONY: bootstrap compose-build compose-down compose-up contract format-check k3d-down k3d-up k8s-build k8s-validate kind-down kind-up lint phase1-smoke phase2-smoke test typecheck verify
 
 bootstrap:
 	$(PYTHON) -m venv $(VENV)
@@ -19,6 +19,28 @@ compose-down:
 
 compose-up:
 	$(COMPOSE) up -d --build --wait
+
+k8s-build:
+	./scripts/k8s/build_images.sh phase5
+
+k8s-validate:
+	kubectl kustomize deploy/kubernetes/overlays/kind >/dev/null
+	kubectl kustomize deploy/kubernetes/overlays/k3d >/dev/null
+	kubectl kustomize deploy/kubernetes/overlays/kind | kubeconform -strict -summary
+	kubectl kustomize deploy/kubernetes/overlays/k3d | kubeconform -strict -summary
+	$(BIN)/python tools/kubernetes_contract.py
+
+kind-up: k8s-build k8s-validate
+	./scripts/k8s/kind_up.sh
+
+kind-down:
+	kind delete cluster --name fleetpulse
+
+k3d-up: k8s-build k8s-validate
+	./scripts/k8s/k3d_up.sh
+
+k3d-down:
+	k3d cluster delete fleetpulse
 
 local-tls:
 	./scripts/generate_local_tls.sh

@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources: [../../base]
+images:
+  - {name: fleetpulse-api, newTag: phase5}
+  - {name: fleetpulse-worker, newTag: phase5}
+  - {name: fleetpulse-outbox-relay, newTag: phase5}
+  - {name: fleetpulse-agent, newTag: phase5}
+patches:
+  - path: nginx-nodeport.yaml

@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+spec:
+  serviceName: postgres
+  replicas: 1
+  updateStrategy: {type: RollingUpdate}
+  selector:
+    matchLabels: {app.kubernetes.io/name: postgres}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: postgres, app.kubernetes.io/part-of: fleetpulse}
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: postgres
+          image: postgres:17-alpine
+          imagePullPolicy: IfNotPresent
+          env:
+            - {name: POSTGRES_DB, value: fleetpulse}
+            - {name: POSTGRES_USER, value: fleetpulse}
+            - name: POSTGRES_PASSWORD
+              valueFrom: {secretKeyRef: {name: fleetpulse-runtime, key: postgres-password}}
+          ports: [{name: postgres, containerPort: 5432}]
+          readinessProbe:
+            exec: {command: [pg_isready, -U, fleetpulse, -d, fleetpulse]}
+            periodSeconds: 3
+            timeoutSeconds: 2
+          livenessProbe:
+            exec: {command: [pg_isready, -U, fleetpulse, -d, fleetpulse]}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: 500m, memory: 512Mi}
+          volumeMounts: [{name: data, mountPath: /var/lib/postgresql/data}]
+  volumeClaimTemplates:
+    - metadata: {name: data}
+      spec:
+        accessModes: [ReadWriteOnce]
+        resources: {requests: {storage: 1Gi}}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+spec:
+  serviceName: redis
+  replicas: 1
+  updateStrategy: {type: RollingUpdate}
+  selector:
+    matchLabels: {app.kubernetes.io/name: redis}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: redis, app.kubernetes.io/part-of: fleetpulse}
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: redis
+          image: redis:8-alpine
+          imagePullPolicy: IfNotPresent
+          args: [redis-server, --appendonly, "yes", --appendfsync, everysec]
+          ports: [{name: redis, containerPort: 6379}]
+          readinessProbe:
+            exec: {command: [redis-cli, ping]}
+            periodSeconds: 3
+            timeoutSeconds: 2
+          livenessProbe:
+            exec: {command: [redis-cli, ping]}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {cpu: 300m, memory: 256Mi}
+          volumeMounts: [{name: data, mountPath: /data}]
+  volumeClaimTemplates:
+    - metadata: {name: data}
+      spec:
+        accessModes: [ReadWriteOnce]
+        resources: {requests: {storage: 1Gi}}
+
