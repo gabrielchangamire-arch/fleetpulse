@@ -1,0 +1,89 @@
+name: fleetpulse
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: fleetpulse
+      POSTGRES_USER: fleetpulse
+      POSTGRES_PASSWORD: ${FLEETPULSE_POSTGRES_PASSWORD:?set FLEETPULSE_POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fleetpulse -d fleetpulse"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - data
+
+  api:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    environment:
+      FLEETPULSE_AGENT_TOKEN: ${FLEETPULSE_AGENT_TOKEN:?set FLEETPULSE_AGENT_TOKEN}
+      FLEETPULSE_DATABASE_URL: postgresql+asyncpg://fleetpulse:${FLEETPULSE_POSTGRES_PASSWORD}@postgres:5432/fleetpulse
+      FLEETPULSE_ENVIRONMENT: local-compose
+      FLEETPULSE_LOG_LEVEL: INFO
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/readyz', timeout=2)",
+        ]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 8s
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    networks:
+      - edge
+      - data
+
+  agent:
+    build:
+      context: .
+      dockerfile: agent/Dockerfile
+    environment:
+      FLEETPULSE_AGENT_ID: compose-agent-1
+      FLEETPULSE_AGENT_TOKEN: ${FLEETPULSE_AGENT_TOKEN:?set FLEETPULSE_AGENT_TOKEN}
+      FLEETPULSE_API_URL: http://api:8000
+      FLEETPULSE_BATCH_SIZE: 2
+      FLEETPULSE_COLLECTION_INTERVAL_SECONDS: 2
+      FLEETPULSE_HOSTNAME: compose-agent
+      FLEETPULSE_LOG_LEVEL: INFO
+      FLEETPULSE_SPOOL_PATH: /var/lib/fleetpulse/spool.db
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os; os.kill(1, 0)"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+      start_period: 3s
+    restart: unless-stopped
+    volumes:
+      - agent_spool:/var/lib/fleetpulse
+    networks:
+      - edge
+
+networks:
+  edge:
+    internal: false
+  data:
+    internal: true
+
+volumes:
+  agent_spool:
+  postgres_data:

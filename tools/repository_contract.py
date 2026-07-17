@@ -37,6 +37,7 @@ REQUIRED_DIRECTORIES = (
 )
 
 REQUIRED_FILES = (
+    ".dockerignore",
     ".github/workflows/quality.yml",
     ".env.example",
     ".gitignore",
@@ -45,11 +46,16 @@ REQUIRED_FILES = (
     "README.md",
     "ROADMAP.md",
     "SECURITY.md",
+    "agent/Dockerfile",
+    "compose.yaml",
     "docs/architecture/repository-boundary.md",
     "docs/architecture/system.md",
     "docs/security/threat-model.md",
     "evidence/README.md",
+    "migrations/versions/20260717_0001_phase1.py",
     "pyproject.toml",
+    "services/api/Dockerfile",
+    "src/fleetpulse/telemetry.py",
 )
 
 

@@ -9,20 +9,33 @@ description = "Local-first Linux fleet reliability and incident-response platfor
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "FleetPulse contributors" }]
-dependencies = []
+dependencies = [
+  "alembic>=1.14,<2",
+  "asyncpg>=0.30,<1",
+  "fastapi>=0.115,<1",
+  "httpx>=0.28,<1",
+  "psutil>=6.1,<8",
+  "pydantic>=2.10,<3",
+  "pydantic-settings>=2.7,<3",
+  "sqlalchemy[asyncio]>=2.0.36,<3",
+  "uvicorn[standard]>=0.34,<1",
+]
 
 [project.optional-dependencies]
 dev = [
   "mypy>=1.13,<2",
   "pytest>=8.3,<10",
+  "pytest-asyncio>=0.25,<2",
   "ruff>=0.9,<1",
+  "types-psutil>=7.0,<8",
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/fleetpulse_project"]
+packages = ["src/fleetpulse", "src/fleetpulse_project"]
 
 [tool.pytest.ini_options]
 addopts = "--strict-config --strict-markers -ra"
+asyncio_mode = "auto"
 pythonpath = ["."]
 testpaths = ["tests"]
 
