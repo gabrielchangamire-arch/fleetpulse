@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from prometheus_client import make_asgi_app
 from redis.asyncio import Redis
 
 from fleetpulse.api.config import ApiSettings
@@ -38,4 +39,5 @@ def create_app(settings: ApiSettings | None = None) -> FastAPI:
     )
     application.middleware("http")(correlation_middleware)
     application.include_router(router)
+    application.mount("/metrics", make_asgi_app())
     return application

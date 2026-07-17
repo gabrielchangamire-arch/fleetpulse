@@ -23,6 +23,7 @@ from fleetpulse.api.models import (
 )
 from fleetpulse.api.security import require_agent_token
 from fleetpulse.logging import correlation_id
+from fleetpulse.metrics import CACHE_REQUESTS, INGESTION
 from fleetpulse.telemetry import IngestionResponse, TelemetryBatch
 
 router = APIRouter()
@@ -129,10 +130,15 @@ async def ingest_batch(batch: TelemetryBatch, session: Session) -> IngestionResp
                     aggregate_type="telemetry_batch",
                     aggregate_id=str(batch.batch_id),
                     event_type="telemetry.batch.accepted.v1",
-                    payload={"batch_id": str(batch.batch_id), "agent_id": batch.agent_id},
+                    payload={
+                        "batch_id": str(batch.batch_id),
+                        "agent_id": batch.agent_id,
+                        "correlation_id": correlation_id.get(),
+                    },
                 )
             )
 
+    INGESTION.labels(outcome).inc()
     return IngestionResponse(
         batch_id=batch.batch_id,
         status=outcome,
@@ -179,12 +185,15 @@ async def list_fleet_state(
             if cached:
                 await request.app.state.redis.hincrby("fleetpulse:cache:stats", "hits", 1)
                 response.headers["X-Cache"] = "HIT"
+                CACHE_REQUESTS.labels("hit").inc()
                 return [
                     FleetStateView.model_validate(item) for item in __import__("json").loads(cached)
                 ]
             await request.app.state.redis.hincrby("fleetpulse:cache:stats", "misses", 1)
+            CACHE_REQUESTS.labels("miss").inc()
         except Exception:
             response.headers["X-Cache"] = "BYPASS"
+            CACHE_REQUESTS.labels("bypass").inc()
     rows = (
         await session.execute(select(FleetStateRecord).order_by(FleetStateRecord.agent_id))
     ).scalars()
@@ -199,8 +208,10 @@ async def list_fleet_state(
             response.headers.setdefault("X-Cache", "MISS")
         except Exception:
             response.headers["X-Cache"] = "BYPASS"
+            CACHE_REQUESTS.labels("bypass").inc()
     else:
         response.headers["X-Cache"] = "DISABLED"
+        CACHE_REQUESTS.labels("disabled").inc()
     return result
 
 

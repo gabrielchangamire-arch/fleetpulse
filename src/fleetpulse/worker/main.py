@@ -8,6 +8,7 @@ import logging
 import signal
 from typing import Any
 
+from prometheus_client import start_http_server
 from pydantic import ValidationError
 from redis.asyncio import Redis
 from redis.exceptions import ResponseError
@@ -23,6 +24,7 @@ from fleetpulse.api.models import (
     TelemetryBatchRecord,
 )
 from fleetpulse.logging import configure_logging, correlation_id
+from fleetpulse.metrics import QUEUE_PENDING, WORKER_EVENTS
 from fleetpulse.queueing import QueueEvent
 from fleetpulse.telemetry import TelemetryBatch
 from fleetpulse.worker.config import WorkerSettings
@@ -161,14 +163,18 @@ async def handle_message(
     redis: Redis, settings: WorkerSettings, message_id: str, fields: dict[str, str]
 ) -> None:
     token = correlation_id.set(fields.get("event_id", message_id))
+    propagated_token = None
     try:
         event = decode_event(fields)
+        if propagated_id := event.payload.get("correlation_id"):
+            propagated_token = correlation_id.set(propagated_id[:128])
         await process_event(settings, message_id, event)
         await redis.delete("fleetpulse:cache:fleet-state:v1")
         await redis.xack(settings.telemetry_stream, settings.consumer_group, message_id)
         LOGGER.info(
             "event processed", extra={"event": "event_processed", "status": settings.consumer_name}
         )
+        WORKER_EVENTS.labels("processed").inc()
     except (ValidationError, KeyError, ValueError, json.JSONDecodeError) as error:
         attempts = await delivery_attempts(redis, settings, message_id)
         if attempts >= settings.max_delivery_attempts:
@@ -176,11 +182,14 @@ async def handle_message(
             LOGGER.error(
                 "event dead-lettered", extra={"event": "event_dead_lettered", "attempt": attempts}
             )
+            WORKER_EVENTS.labels("dead_lettered").inc()
         else:
             LOGGER.warning(
                 "event left pending for retry", extra={"event": "event_retry", "attempt": attempts}
             )
     finally:
+        if propagated_token is not None:
+            correlation_id.reset(propagated_token)
         correlation_id.reset(token)
 
 
@@ -219,6 +228,12 @@ async def run(settings: WorkerSettings) -> None:
             for _, entries in messages:
                 for message_id, fields in entries:
                     await handle_message(redis, settings, message_id, fields)
+            groups: Any = await redis.xinfo_groups(settings.telemetry_stream)
+            group: dict[str, Any] = next(
+                (item for item in groups if item.get("name") == settings.consumer_group),
+                {},
+            )
+            QUEUE_PENDING.set(int(group.get("pending", 0)) + int(group.get("lag") or 0))
     finally:
         await redis.aclose()
 
@@ -226,6 +241,7 @@ async def run(settings: WorkerSettings) -> None:
 def main() -> None:
     settings = WorkerSettings()  # type: ignore[call-arg]
     configure_logging(settings.log_level)
+    start_http_server(settings.metrics_port)
     asyncio.run(run(settings))
 
 

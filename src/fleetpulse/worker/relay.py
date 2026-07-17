@@ -9,12 +9,14 @@ import signal
 from contextlib import suppress
 from datetime import UTC, datetime
 
+from prometheus_client import start_http_server
 from redis.asyncio import Redis
 from sqlalchemy import select
 
 from fleetpulse.api.database import create_database
 from fleetpulse.api.models import OutboxEventRecord
 from fleetpulse.logging import configure_logging
+from fleetpulse.metrics import OUTBOX_PUBLISHED
 from fleetpulse.worker.config import WorkerSettings
 
 LOGGER = logging.getLogger("fleetpulse.relay")
@@ -63,6 +65,7 @@ async def run(settings: WorkerSettings) -> None:
             try:
                 count = await publish_once(settings, redis)
                 if count:
+                    OUTBOX_PUBLISHED.inc(count)
                     LOGGER.info(
                         "outbox events published",
                         extra={"event": "outbox_published", "status": count},
@@ -78,6 +81,7 @@ async def run(settings: WorkerSettings) -> None:
 def main() -> None:
     settings = WorkerSettings()  # type: ignore[call-arg]
     configure_logging(settings.log_level)
+    start_http_server(settings.metrics_port)
     asyncio.run(run(settings))
 
 

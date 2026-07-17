@@ -24,3 +24,4 @@ class WorkerSettings(BaseSettings):
     cpu_incident_threshold: float = Field(default=90.0, ge=0, le=100)
     memory_incident_threshold: float = Field(default=90.0, ge=0, le=100)
     log_level: str = "INFO"
+    metrics_port: int = Field(default=9101, ge=1, le=65535)

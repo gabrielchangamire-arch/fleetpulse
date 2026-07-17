@@ -35,3 +35,4 @@ class AgentSettings(BaseSettings):
     retry_base_seconds: float = Field(default=1.0, gt=0)
     retry_cap_seconds: float = Field(default=60.0, gt=0)
     log_level: str = "INFO"
+    metrics_port: int = Field(default=9103, ge=1, le=65535)

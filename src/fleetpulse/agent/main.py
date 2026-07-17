@@ -10,6 +10,8 @@ from contextlib import suppress
 from datetime import UTC, datetime
 from uuid import uuid4
 
+from prometheus_client import start_http_server
+
 from fleetpulse.agent.client import IngestionClient, full_jitter_delay
 from fleetpulse.agent.collector import collect_sample
 from fleetpulse.agent.config import AgentSettings
@@ -122,6 +124,7 @@ async def run(settings: AgentSettings) -> None:
 def main() -> None:
     settings = AgentSettings()  # type: ignore[call-arg]
     configure_logging(settings.log_level)
+    start_http_server(settings.metrics_port)
     asyncio.run(run(settings))
 
 

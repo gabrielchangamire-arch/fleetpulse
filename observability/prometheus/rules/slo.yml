@@ -1,0 +1,18 @@
+groups:
+  - name: fleetpulse-slos
+    rules:
+      - record: fleetpulse:availability:ratio5m
+        expr: sum(rate(fleetpulse_http_requests_total{status!~"5.."}[5m])) / clamp_min(sum(rate(fleetpulse_http_requests_total[5m])), 0.000001)
+      - record: fleetpulse:ingestion_latency:p99_5m
+        expr: histogram_quantile(0.99, sum by (le) (rate(fleetpulse_http_request_duration_seconds_bucket{route="/v1/telemetry/batches"}[5m])))
+      - alert: FleetPulseAvailabilityBurn
+        expr: fleetpulse:availability:ratio5m < 0.999
+        for: 2m
+        labels: {severity: warning}
+        annotations: {summary: "FleetPulse availability is below its 99.9% target"}
+      - alert: FleetPulseSynthetic
+        expr: vector(1)
+        for: 5s
+        labels: {severity: test}
+        annotations: {summary: "Synthetic Alertmanager routing verification"}
+

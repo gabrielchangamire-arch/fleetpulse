@@ -11,6 +11,7 @@ from fastapi import Request, Response
 from starlette.middleware.base import RequestResponseEndpoint
 
 from fleetpulse.logging import correlation_id
+from fleetpulse.metrics import HTTP_LATENCY, HTTP_REQUESTS
 
 LOGGER = logging.getLogger("fleetpulse.api.access")
 
@@ -23,6 +24,10 @@ async def correlation_middleware(request: Request, call_next: RequestResponseEnd
     try:
         response = await call_next(request)
         duration_ms = round((time.monotonic() - started) * 1000, 3)
+        route = request.scope.get("route")
+        route_path = getattr(route, "path", "unmatched")
+        HTTP_REQUESTS.labels(request.method, route_path, str(response.status_code)).inc()
+        HTTP_LATENCY.labels(request.method, route_path).observe(duration_ms / 1000)
         response.headers["X-Request-ID"] = request_id
         response.headers["X-FleetPulse-Instance"] = socket.gethostname()
         LOGGER.info(
