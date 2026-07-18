@@ -6,6 +6,7 @@ import asyncio
 import json
 import logging
 import signal
+import time
 from typing import Any
 
 from prometheus_client import start_http_server
@@ -24,7 +25,7 @@ from fleetpulse.api.models import (
     TelemetryBatchRecord,
 )
 from fleetpulse.logging import configure_logging, correlation_id
-from fleetpulse.metrics import QUEUE_PENDING, WORKER_EVENTS
+from fleetpulse.metrics import INCIDENT_LAST_SEEN, INCIDENTS, QUEUE_PENDING, WORKER_EVENTS
 from fleetpulse.queueing import QueueEvent
 from fleetpulse.telemetry import TelemetryBatch
 from fleetpulse.worker.config import WorkerSettings
@@ -45,6 +46,7 @@ def decode_event(fields: dict[str, str]) -> QueueEvent:
 
 async def process_event(settings: WorkerSettings, message_id: str, event: QueueEvent) -> None:
     engine, sessions = create_database(settings.database_url)
+    created_incidents: list[str] = []
     try:
         async with sessions() as session, session.begin():
             inserted = (
@@ -100,23 +102,31 @@ async def process_event(settings: WorkerSettings, message_id: str, event: QueueE
             )
             for incident_type, value, threshold in conditions:
                 if value >= threshold:
-                    await session.execute(
-                        postgres_insert(IncidentRecord)
-                        .values(
-                            agent_id=batch.agent_id,
-                            incident_type=incident_type,
-                            deduplication_key=f"{batch.agent_id}:{incident_type}",
-                            status="open",
-                            severity="warning",
-                            summary=f"{incident_type} threshold crossed",
-                            evidence={
-                                "batch_id": str(batch.batch_id),
-                                "value": value,
-                                "threshold": threshold,
-                            },
+                    inserted_incident = (
+                        await session.execute(
+                            postgres_insert(IncidentRecord)
+                            .values(
+                                agent_id=batch.agent_id,
+                                incident_type=incident_type,
+                                deduplication_key=f"{batch.agent_id}:{incident_type}",
+                                status="open",
+                                severity="warning",
+                                summary=f"{incident_type} threshold crossed",
+                                evidence={
+                                    "batch_id": str(batch.batch_id),
+                                    "value": value,
+                                    "threshold": threshold,
+                                },
+                            )
+                            .on_conflict_do_nothing(constraint="uq_incident_open_deduplication")
+                            .returning(IncidentRecord.incident_id)
                         )
-                        .on_conflict_do_nothing(constraint="uq_incident_open_deduplication")
-                    )
+                    ).scalar_one_or_none()
+                    if inserted_incident is not None:
+                        created_incidents.append(incident_type)
+        for incident_type in created_incidents:
+            INCIDENTS.labels(incident_type).inc()
+            INCIDENT_LAST_SEEN.set(time.time())
     finally:
         await engine.dispose()
 

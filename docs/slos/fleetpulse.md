@@ -19,7 +19,7 @@ These are engineering targets, not measured production claims. FleetPulse is a l
 
 - **SLI:** elapsed time from a threshold-crossing telemetry observation to the incident becoming queryable and its alert entering the firing state.
 - **SLO:** p95 below 60 seconds over controlled drills.
-- **Measurement:** Phase 7 drills will preserve threshold time, incident creation time, Prometheus firing time, and environment metadata. Until then, 60 seconds is a target, not a measured result.
+- **Measurement:** Phase 7 drills preserve acceptance time, incident visibility, Prometheus firing time, and environment metadata. Five controlled threshold trials provide a preliminary local nearest-rank p95. This does not establish a production rolling-window SLO.
 
 ## Metric interpretation
 
@@ -27,5 +27,7 @@ These are engineering targets, not measured production claims. FleetPulse is a l
 - `fleetpulse_queue_pending` tracks Redis Stream pending plus lag for the worker group.
 - `fleetpulse_cache_requests_total` supports cache hit-rate comparisons.
 - `fleetpulse_worker_events_total` and `fleetpulse_outbox_published_total` expose the asynchronous processing path.
+- `fleetpulse_incident_last_seen_timestamp_seconds` and
+  `fleetpulse_outbox_last_failure_timestamp_seconds` drive bounded recent-event drill alerts.
 
 Labels are deliberately bounded. Agent IDs, batch IDs, request IDs, paths supplied by callers, and exception text are never Prometheus labels.

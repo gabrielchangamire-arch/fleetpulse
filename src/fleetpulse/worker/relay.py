@@ -6,6 +6,7 @@ import asyncio
 import json
 import logging
 import signal
+import time
 from contextlib import suppress
 from datetime import UTC, datetime
 
@@ -16,7 +17,7 @@ from sqlalchemy import select
 from fleetpulse.api.database import create_database
 from fleetpulse.api.models import OutboxEventRecord
 from fleetpulse.logging import configure_logging
-from fleetpulse.metrics import OUTBOX_PUBLISHED
+from fleetpulse.metrics import OUTBOX_FAILURES, OUTBOX_LAST_FAILURE, OUTBOX_PUBLISHED
 from fleetpulse.worker.config import WorkerSettings
 
 LOGGER = logging.getLogger("fleetpulse.relay")
@@ -71,6 +72,8 @@ async def run(settings: WorkerSettings) -> None:
                         extra={"event": "outbox_published", "status": count},
                     )
             except Exception:
+                OUTBOX_FAILURES.inc()
+                OUTBOX_LAST_FAILURE.set(time.time())
                 LOGGER.exception("outbox publication failed", extra={"event": "outbox_failed"})
             with suppress(TimeoutError):
                 await asyncio.wait_for(stop.wait(), timeout=settings.relay_poll_seconds)

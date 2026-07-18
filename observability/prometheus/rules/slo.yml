@@ -15,4 +15,16 @@ groups:
         for: 5s
         labels: {severity: test}
         annotations: {summary: "Synthetic Alertmanager routing verification"}
-
+      - alert: FleetPulseAPITargetDown
+        expr: (up{job="api"} == 0) or absent(up{job="api"})
+        for: 5s
+        labels: {severity: critical}
+        annotations: {summary: "No FleetPulse API target is available"}
+      - alert: FleetPulseIncidentDetected
+        expr: time() - fleetpulse_incident_last_seen_timestamp_seconds < 15
+        labels: {severity: warning}
+        annotations: {summary: "FleetPulse created an incident from threshold telemetry"}
+      - alert: FleetPulseOutboxFailure
+        expr: time() - fleetpulse_outbox_last_failure_timestamp_seconds < 15
+        labels: {severity: warning}
+        annotations: {summary: "FleetPulse failed to publish the PostgreSQL outbox"}

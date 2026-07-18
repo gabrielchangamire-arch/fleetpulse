@@ -4,7 +4,7 @@ BIN := $(VENV)/bin
 
 COMPOSE := docker compose
 
-.PHONY: bootstrap compose-build compose-down compose-up contract format-check k3d-down k3d-up k8s-build k8s-validate kind-down kind-up lint performance-matrix performance-smoke phase1-smoke phase2-smoke test typecheck verify
+.PHONY: bootstrap compose-build compose-down compose-up contract format-check k3d-down k3d-up k8s-build k8s-validate kind-down kind-up lint performance-matrix performance-smoke phase1-smoke phase2-smoke reliability-drills reliability-smoke test typecheck verify
 
 bootstrap:
 	$(PYTHON) -m venv $(VENV)
@@ -65,6 +65,12 @@ performance-smoke:
 
 performance-matrix:
 	$(BIN)/python tools/performance_runner.py --profile full
+
+reliability-smoke:
+	$(BIN)/python tools/reliability_runner.py --incident-repetitions 1
+
+reliability-drills:
+	$(BIN)/python tools/reliability_runner.py --incident-repetitions 5
 
 test:
 	$(BIN)/pytest
