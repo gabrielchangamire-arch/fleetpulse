@@ -1,0 +1,29 @@
+{
+  "api_outage": {
+    "alert_clear_seconds": 0.002801208000164479,
+    "alert_detection_seconds": 14.513863375002984,
+    "repair_recovery_seconds": 6.251621166011319,
+    "total_impact_seconds": 20.766115041973535
+  },
+  "redis_outage": {
+    "alert_clear_seconds": 16.864513958978932,
+    "alert_detection_seconds": 4.629485166980885,
+    "batch_id": "daf74155-467e-4fb3-8c8d-f2a69614fcd8",
+    "durable_rows_during_outage": 1,
+    "processed_after_recovery": 1,
+    "repair_recovery_seconds": 3.0768403339898214,
+    "total_impact_seconds": 7.798281042021699
+  },
+  "threshold_incidents": {
+    "p95_end_to_end_seconds": 8.905469125020318,
+    "target_seconds": 60,
+    "trials": [
+      {
+        "alert_detection_seconds": 8.547338958014734,
+        "end_to_end_seconds": 8.905469125020318,
+        "incident_visibility_seconds": 0.3416580830235034,
+        "repetition": 1
+      }
+    ]
+  }
+}

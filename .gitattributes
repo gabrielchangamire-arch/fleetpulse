@@ -4,3 +4,6 @@
 
 # k6's human console formatter intentionally emits aligned trailing spaces.
 evidence/**/k6-console.txt -whitespace
+# Docker's aligned human output also contains intentional trailing spaces.
+evidence/**/compose-logs.txt -whitespace
+evidence/**/compose-ps.txt -whitespace

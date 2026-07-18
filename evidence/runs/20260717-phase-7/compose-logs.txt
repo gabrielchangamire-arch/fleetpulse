@@ -1,0 +1,965 @@
+postgres-1  | The files belonging to this database system will be owned by user "postgres".
+postgres-1  | This user must also own the server process.
+postgres-1  | 
+postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | The default database encoding has accordingly been set to "UTF8".
+postgres-1  | The default text search configuration will be set to "english".
+postgres-1  | 
+postgres-1  | Data page checksums are disabled.
+postgres-1  | 
+postgres-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres-1  | creating subdirectories ... ok
+postgres-1  | selecting dynamic shared memory implementation ... posix
+postgres-1  | selecting default "max_connections" ... 100
+postgres-1  | selecting default "shared_buffers" ... 128MB
+postgres-1  | selecting default time zone ... UTC
+postgres-1  | creating configuration files ... ok
+postgres-1  | running bootstrap script ... ok
+postgres-1  | sh: locale: not found
+postgres-1  | 2026-07-18 00:02:49.786 UTC [35] WARNING:  no usable system locales were found
+postgres-1  | performing post-bootstrap initialization ... ok
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | syncing data to disk ... ok
+postgres-1  | 
+postgres-1  | 
+postgres-1  | Success. You can now start the database server using:
+postgres-1  | 
+postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres-1  | 
+postgres-1  | waiting for server to start....2026-07-18 00:02:49.967 UTC [41] LOG:  starting PostgreSQL 17.10 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-07-18 00:02:49.968 UTC [41] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-07-18 00:02:49.971 UTC [44] LOG:  database system was shut down at 2026-07-18 00:02:49 UTC
+postgres-1  | 2026-07-18 00:02:49.972 UTC [41] LOG:  database system is ready to accept connections
+postgres-1  |  done
+postgres-1  | server started
+postgres-1  | CREATE DATABASE
+postgres-1  | 
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres-1  | 
+postgres-1  | waiting for server to shut down....2026-07-18 00:02:50.085 UTC [41] LOG:  received fast shutdown request
+postgres-1  | 2026-07-18 00:02:50.085 UTC [41] LOG:  aborting any active transactions
+postgres-1  | 2026-07-18 00:02:50.086 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+postgres-1  | 2026-07-18 00:02:50.086 UTC [42] LOG:  shutting down
+postgres-1  | 2026-07-18 00:02:50.087 UTC [42] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-07-18 00:02:50.108 UTC [42] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.015 s, total=0.022 s; sync files=301, longest=0.005 s, average=0.001 s; distance=4266 kB, estimate=4266 kB; lsn=0/191C7D0, redo lsn=0/191C7D0
+postgres-1  | 2026-07-18 00:02:50.109 UTC [41] LOG:  database system is shut down
+postgres-1  |  done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+postgres-1  | 2026-07-18 00:02:50.196 UTC [1] LOG:  starting PostgreSQL 17.10 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-07-18 00:02:50.196 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-07-18 00:02:50.196 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-07-18 00:02:50.197 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-07-18 00:02:50.199 UTC [57] LOG:  database system was shut down at 2026-07-18 00:02:50 UTC
+postgres-1  | 2026-07-18 00:02:50.201 UTC [1] LOG:  database system is ready to accept connections
+redis-1     | Starting Redis Server
+redis-1     | 1:C 18 Jul 2026 00:02:49.624 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1     | 1:C 18 Jul 2026 00:02:49.624 * Redis version=8.8.0, bits=64, commit=00000000, modified=1, pid=1, just started
+redis-1     | 1:C 18 Jul 2026 00:02:49.624 * Configuration loaded
+redis-1     | 1:M 18 Jul 2026 00:02:49.624 * monotonic clock: ARM CNTVCT @ 24 ticks/us
+redis-1     | 1:M 18 Jul 2026 00:02:49.625 * Running mode=standalone, port=6379.
+redis-1     | 1:M 18 Jul 2026 00:02:49.625 * <bf> RedisBloom version 8.8.0 (Git=unknown)
+redis-1     | 1:M 18 Jul 2026 00:02:49.625 * <bf> Registering configuration options: [
+prometheus-1  | time=2026-07-18T00:02:49.675Z level=INFO source=main.go:1544 msg="updated GOGC" old=100 new=75
+prometheus-1  | time=2026-07-18T00:02:49.675Z level=INFO source=main.go:676 msg="Leaving GOMAXPROCS=15: CPU quota undefined" component=automaxprocs
+prometheus-1  | time=2026-07-18T00:02:49.675Z level=INFO source=memlimit.go:198 msg="GOMEMLIMIT is updated" component=automemlimit package=github.com/KimMachineGun/automemlimit/memlimit GOMEMLIMIT=7488733593 previous=9223372036854775807
+prometheus-1  | time=2026-07-18T00:02:49.675Z level=INFO source=main.go:718 msg="No time or size retention was set so using the default time retention" duration=15d
+prometheus-1  | time=2026-07-18T00:02:49.675Z level=INFO source=main.go:769 msg="Starting Prometheus Server" mode=server version="(version=3.5.0, branch=HEAD, revision=8be3a9560fbdd18a94dedec4b747c35178177202)"
+nginx-1       | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-1       | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+prometheus-1  | time=2026-07-18T00:02:49.675Z level=INFO source=main.go:774 msg="operational information" build_context="(go=go1.24.5, platform=linux/arm64, user=root@4451b64cb451, date=20250714-16:18:17, tags=netgo,builtinassets)" host_details="(Linux 6.12.76-linuxkit #1 SMP Thu May 28 18:54:18 UTC 2026 aarch64 00e3d94b0707 (none))" fd_limits="(soft=1048576, hard=1048576)" vm_limits="(soft=unlimited, hard=unlimited)"
+prometheus-1  | time=2026-07-18T00:02:49.676Z level=INFO source=web.go:656 msg="Start listening for connections" component=web address=0.0.0.0:9090
+prometheus-1  | time=2026-07-18T00:02:49.676Z level=INFO source=main.go:1288 msg="Starting TSDB ..."
+prometheus-1  | time=2026-07-18T00:02:49.679Z level=INFO source=tls_config.go:347 msg="Listening on" component=web address=[::]:9090
+nginx-1       | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-1       | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-1       | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+prometheus-1  | time=2026-07-18T00:02:49.679Z level=INFO source=tls_config.go:350 msg="TLS is disabled." component=web http2=false address=[::]:9090
+redis-1       | 1:M 18 Jul 2026 00:02:49.625 * <bf> 	{ bf-error-rate       :      0.01 }
+nginx-1       | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+redis-1       | 1:M 18 Jul 2026 00:02:49.625 * <bf> 	{ bf-initial-size     :       100 }
+nginx-1       | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+prometheus-1  | time=2026-07-18T00:02:49.680Z level=INFO source=head.go:657 msg="Replaying on-disk memory mappable chunks if any" component=tsdb
+nginx-1         | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+prometheus-1    | time=2026-07-18T00:02:49.680Z level=INFO source=head.go:744 msg="On-disk memory mappable chunks replay completed" component=tsdb duration=791ns
+prometheus-1    | time=2026-07-18T00:02:49.680Z level=INFO source=head.go:752 msg="Replaying WAL, this may take a while" component=tsdb
+prometheus-1    | time=2026-07-18T00:02:49.680Z level=INFO source=head.go:825 msg="WAL segment loaded" component=tsdb segment=0 maxSegment=0 duration=192.416µs
+alertmanager-1  | time=2026-07-18T00:02:49.646Z level=INFO source=main.go:191 msg="Starting Alertmanager" version="(version=0.28.1, branch=HEAD, revision=b2099eaa2c9ebc25edb26517cb9c732738e93910)"
+redis-1       | 1:M 18 Jul 2026 00:02:49.625 * <bf> 	{ bf-expansion-factor :         2 }
+redis-1         | 1:M 18 Jul 2026 00:02:49.625 * <bf> 	{ cf-bucket-size      :         2 }
+prometheus-1    | time=2026-07-18T00:02:49.680Z level=INFO source=head.go:862 msg="WAL replay completed" component=tsdb checkpoint_replay_duration=9.041µs wal_replay_duration=202.042µs wbl_replay_duration=42ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=791ns total_replay_duration=218.417µs
+nginx-1         | /docker-entrypoint.sh: Configuration complete; ready for start up
+prometheus-1    | time=2026-07-18T00:02:49.681Z level=INFO source=main.go:1309 msg="filesystem information" fs_type=EXT4_SUPER_MAGIC
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:03 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:03:04 +0000] "GET /readyz HTTP/1.1" 200 18 "-" "python-httpx/0.28.1"
+prometheus-1    | time=2026-07-18T00:02:49.681Z level=INFO source=main.go:1312 msg="TSDB started"
+prometheus-1    | time=2026-07-18T00:02:49.681Z level=INFO source=main.go:1497 msg="Loading configuration file" filename=/etc/prometheus/prometheus.yml
+prometheus-1    | time=2026-07-18T00:02:49.683Z level=INFO source=main.go:1537 msg="Completed loading of configuration file" db_storage=834ns remote_storage=958ns web_handler=250ns query_engine=667ns scrape=151µs scrape_sd=108.333µs notify=84.375µs notify_sd=3.583µs rules=1.284708ms tracing=6.75µs filename=/etc/prometheus/prometheus.yml totalDuration=2.026167ms
+prometheus-1    | time=2026-07-18T00:02:49.683Z level=INFO source=main.go:1273 msg="Server is ready to receive web requests."
+prometheus-1    | time=2026-07-18T00:02:49.683Z level=INFO source=manager.go:176 msg="Starting rule manager..." component="rule manager"
+redis-1         | 1:M 18 Jul 2026 00:02:49.625 * <bf> 	{ cf-initial-size     :      1024 }
+alertmanager-1  | time=2026-07-18T00:02:49.646Z level=INFO source=main.go:192 msg="Build context" build_context="(go=go1.23.7, platform=linux/arm64, user=root@b7f54ff1a00f, date=20250307-15:03:03, tags=netgo)"
+redis-1         | 1:M 18 Jul 2026 00:02:49.625 * <bf> 	{ cf-max-iterations   :        20 }
+redis-1         | 1:M 18 Jul 2026 00:02:49.625 * <bf> 	{ cf-expansion-factor :         1 }
+alertmanager-1  | time=2026-07-18T00:02:49.647Z level=INFO source=cluster.go:185 msg="setting advertise address explicitly" component=cluster addr=172.19.0.3 port=9094
+alertmanager-1  | time=2026-07-18T00:02:49.648Z level=INFO source=cluster.go:674 msg="Waiting for gossip to settle..." component=cluster interval=2s
+redis-1         | 1:M 18 Jul 2026 00:02:49.625 * <bf> 	{ cf-max-expansions   :        32 }
+alertmanager-1  | time=2026-07-18T00:02:49.662Z level=INFO source=coordinator.go:112 msg="Loading configuration file" component=configuration file=/etc/alertmanager/alertmanager.yml
+redis-1         | 1:M 18 Jul 2026 00:02:49.625 * <bf> ]
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:06 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:10 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:13 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:16 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:19 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:22 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:25 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:28 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:31 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 2026/07/18 00:03:36 [error] 30#30: *14 upstream timed out (110: Operation timed out) while connecting to upstream, client: 127.0.0.1, server: , request: "GET /livez HTTP/1.1", upstream: "http://172.19.0.4:8000/livez", host: "127.0.0.1:8443"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:36 +0000] "GET /livez HTTP/1.1" 504 167 "-" "Wget"
+nginx-1         | 2026/07/18 00:03:36 [error] 30#30: api could not be resolved (3: Host not found)
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:39 +0000] "GET /livez HTTP/1.1" 502 157 "-" "Wget"
+nginx-1         | 2026/07/18 00:03:39 [error] 30#30: *16 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /livez HTTP/1.1", upstream: "http://fleetpulse_api/livez", host: "127.0.0.1:8443"
+redis-1         | 1:M 18 Jul 2026 00:02:49.625 * Module 'bf' loaded from /usr/local/lib/redis/modules//redisbloom.so
+redis-1         | 1:M 18 Jul 2026 00:02:49.627 * <search> search-workers default: 15 (min of MAX_WORKER_THREADS=16 and CPU cores)
+redis-1         | 1:M 18 Jul 2026 00:02:49.627 * <search> Redis version found by RedisSearch : 8.8.0 - oss
+redis-1         | 1:M 18 Jul 2026 00:02:49.627 * <search> RediSearch version 8.8.0 (Git=d2ae026)
+redis-1         | 1:M 18 Jul 2026 00:02:49.627 * <search> Low level api version 1 initialized successfully
+redis-1         | 1:M 18 Jul 2026 00:02:49.627 * <search> gc: ON, prefix min length: 2, min word length to stem: 4, prefix max expansions: 200, query timeout (ms): 500, timeout policy: return, oom policy: return, cursor read size: 1000, cursor max idle (ms): 300000, max doctable size: 1000000, max number of search results:  1000000, default scorer: BM25STD, 
+redis-1         | 1:M 18 Jul 2026 00:02:49.627 * <search> Initialized thread pools!
+redis-1         | 1:M 18 Jul 2026 00:02:49.627 * <search> Enabled workers threadpool of size 15
+redis-1         | 1:M 18 Jul 2026 00:02:49.628 * <search> Subscribe to config changes
+redis-1         | 1:M 18 Jul 2026 00:02:49.628 * <search> Subscribe to cluster slot migration events
+redis-1         | 1:M 18 Jul 2026 00:02:49.628 * <search> Enabled role change notification
+redis-1         | 1:M 18 Jul 2026 00:02:49.628 * <search> Cluster configuration: AUTO partitions, type: 0, coordinator timeout: 0ms
+redis-1         | 1:M 18 Jul 2026 00:02:49.628 * Module 'search' loaded from /usr/local/lib/redis/modules//redisearch.so
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> RedisTimeSeries version 80800, git_sha=42ca4f1078fca732b7f9256adbf25914d67e1cc9
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> Redis version found by RedisTimeSeries : 8.8.0 - oss
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> Registering configuration options: [
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> 	{ ts-compaction-policy   :              }
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> 	{ ts-num-threads         :            3 }
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> 	{ ts-libmr-protocol      :     INTERNAL }
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> 	{ ts-retention-policy    :            0 }
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> 	{ ts-duplicate-policy    :        block }
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> 	{ ts-chunk-size-bytes    :         4096 }
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> 	{ ts-encoding            :   compressed }
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> 	{ ts-ignore-max-time-diff:            0 }
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> 	{ ts-ignore-max-val-diff :     0.000000 }
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> ]
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> Detected redis oss
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> Subscribe to ASM events
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <timeseries> Enabled diskless replication
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * Module 'timeseries' loaded from /usr/local/lib/redis/modules//redistimeseries.so
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <ReJSON> Created new data type 'ReJSON-RL'
+alertmanager-1  | time=2026-07-18T00:02:49.663Z level=INFO source=coordinator.go:125 msg="Completed loading of configuration file" component=configuration file=/etc/alertmanager/alertmanager.yml
+nginx-1         | 2026/07/18 00:03:42 [error] 30#30: *17 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /livez HTTP/1.1", upstream: "http://fleetpulse_api/livez", host: "127.0.0.1:8443"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:42 +0000] "GET /livez HTTP/1.1" 502 157 "-" "Wget"
+nginx-1         | 2026/07/18 00:03:42 [error] 30#30: api could not be resolved (3: Host not found)
+nginx-1         | 2026/07/18 00:03:45 [error] 30#30: *18 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /livez HTTP/1.1", upstream: "http://fleetpulse_api/livez", host: "127.0.0.1:8443"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:45 +0000] "GET /livez HTTP/1.1" 502 157 "-" "Wget"
+nginx-1         | 2026/07/18 00:03:48 [error] 30#30: *19 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /livez HTTP/1.1", upstream: "http://fleetpulse_api/livez", host: "127.0.0.1:8443"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:48 +0000] "GET /livez HTTP/1.1" 502 157 "-" "Wget"
+nginx-1         | 2026/07/18 00:03:48 [error] 30#30: api could not be resolved (3: Host not found)
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:51 +0000] "GET /livez HTTP/1.1" 502 157 "-" "Wget"
+alertmanager-1  | time=2026-07-18T00:02:49.664Z level=INFO source=tls_config.go:347 msg="Listening on" address=[::]:9093
+alertmanager-1  | time=2026-07-18T00:02:49.664Z level=INFO source=tls_config.go:350 msg="TLS is disabled." http2=false address=[::]:9093
+alertmanager-1  | time=2026-07-18T00:02:51.651Z level=INFO source=cluster.go:699 msg="gossip not settled" component=cluster polls=0 before=0 now=1 elapsed=2.002197626s
+alertmanager-1  | time=2026-07-18T00:02:59.653Z level=INFO source=cluster.go:691 msg="gossip settled; proceeding" component=cluster elapsed=10.004928754s
+nginx-1         | 2026/07/18 00:03:51 [error] 30#30: *20 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /livez HTTP/1.1", upstream: "http://fleetpulse_api/livez", host: "127.0.0.1:8443"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:54 +0000] "GET /livez HTTP/1.1" 502 157 "-" "Wget"
+nginx-1         | 2026/07/18 00:03:54 [error] 30#30: *21 no live upstreams while connecting to upstream, client: 127.0.0.1, server: , request: "GET /livez HTTP/1.1", upstream: "http://fleetpulse_api/livez", host: "127.0.0.1:8443"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:03:57 +0000] "GET /readyz HTTP/1.1" 200 18 "-" "python-httpx/0.28.1"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:03:57 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:00 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:03 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:06 +0000] "POST /v1/telemetry/batches HTTP/1.1" 202 111 "-" "python-httpx/0.28.1"
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <ReJSON> version: 80800 git sha: unknown branch: unknown
+redis-1         | 1:M 18 Jul 2026 00:02:49.629 * <ReJSON> Exported RedisJSON_V1 API
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * <ReJSON> Exported RedisJSON_V2 API
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * <ReJSON> Exported RedisJSON_V3 API
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * <ReJSON> Exported RedisJSON_V4 API
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * <ReJSON> Exported RedisJSON_V5 API
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * <ReJSON> Exported RedisJSON_V6 API
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * <ReJSON> Exported RedisJSON_V7 API
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * <ReJSON> Enabled diskless replication
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * <ReJSON> Initialized shared string cache, thread safe: true.
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * Module 'ReJSON' loaded from /usr/local/lib/redis/modules//rejson.so
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * <search> Acquired RedisJSON_V7 API
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * Server initialized
+redis-1         | 1:M 18 Jul 2026 00:02:49.630 * BGSAVE done, 0 keys saved, 0 keys skipped, 88 bytes written.
+redis-1         | 1:M 18 Jul 2026 00:02:49.632 * Creating AOF base file appendonly.aof.1.base.rdb on server start
+redis-1         | 1:M 18 Jul 2026 00:02:49.635 * Creating AOF incr file appendonly.aof.1.incr.aof on server start
+redis-1         | 1:M 18 Jul 2026 00:02:49.635 * Ready to accept connections tcp
+redis-1         | 1:M 18 Jul 2026 00:02:49.635 # WARNING: Redis does not require authentication and is not protected by network restrictions. Redis will accept connections from any IP address on any network interface.
+redis-1         | 1:signal-handler (1784333146) Received SIGTERM scheduling shutdown...
+redis-1         | 1:M 18 Jul 2026 00:05:46.392 * User requested shutdown...
+redis-1         | 1:M 18 Jul 2026 00:05:46.392 * Calling fsync() on the AOF file.
+redis-1         | 1:M 18 Jul 2026 00:05:46.392 * Saving the final RDB snapshot before exiting.
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:06 +0000] "GET /v1/incidents HTTP/1.1" 200 2 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:06 +0000] "GET /v1/incidents HTTP/1.1" 200 325 "-" "python-httpx/0.28.1"
+redis-1         | 1:M 18 Jul 2026 00:05:46.392 * BGSAVE done, 1 keys saved, 0 keys skipped, 902 bytes written.
+redis-1         | 1:M 18 Jul 2026 00:05:46.397 * DB saved on disk
+redis-1         | 1:M 18 Jul 2026 00:05:46.398 # Redis is now ready to exit, bye bye...
+redis-1         | Starting Redis Server
+redis-1         | 1:C 18 Jul 2026 00:05:51.446 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1         | 1:C 18 Jul 2026 00:05:51.446 * Redis version=8.8.0, bits=64, commit=00000000, modified=1, pid=1, just started
+redis-1         | 1:C 18 Jul 2026 00:05:51.446 * Configuration loaded
+redis-1         | 1:M 18 Jul 2026 00:05:51.446 * monotonic clock: ARM CNTVCT @ 24 ticks/us
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * Running mode=standalone, port=6379.
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:07 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:10 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:13 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+outbox-relay-1  | {"timestamp":"2026-07-18T00:04:06.442498+00:00","level":"INFO","logger":"fleetpulse.relay","message":"outbox events published","correlation_id":"-","event":"outbox_published","status":1}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:04:26.651293+00:00","level":"INFO","logger":"fleetpulse.relay","message":"outbox events published","correlation_id":"-","event":"outbox_published","status":1}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:04:46.802534+00:00","level":"INFO","logger":"fleetpulse.relay","message":"outbox events published","correlation_id":"-","event":"outbox_published","status":1}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:06.448330+00:00","level":"INFO","logger":"fleetpulse.relay","message":"outbox events published","correlation_id":"-","event":"outbox_published","status":1}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:26.625651+00:00","level":"INFO","logger":"fleetpulse.relay","message":"outbox events published","correlation_id":"-","event":"outbox_published","status":1}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:46.737357+00:00","level":"ERROR","logger":"fleetpulse.relay","message":"outbox publication failed","correlation_id":"-","exception":"Traceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1501, in ensure_connection\n    if await connection.can_read_destructive():\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 707, in can_read_destructive\n    return await self._parser.can_read_destructive()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/_parsers/hiredis.py\", line 247, in can_read_destructive\n    return await self.read_from_socket()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/_parsers/hiredis.py\", line 254, in read_from_socket\n    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR) from None\nredis.exceptions.ConnectionError: Connection closed by server.\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 67, in run\n    count = await publish_once(settings, redis)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 41, in publish_once\n    await redis.xadd(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py\", line 765, in execute_command\n    conn = self.connection or await pool.get_connection()\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/utils.py\", line 230, in async_wrapper\n    return await func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1454, in get_connection\n    await self.ensure_connection(connection)\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1505, in ensure_connection\n    await connection.connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 346, in connect\n    await self.retry.call_with_retry(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 81, in call_with_retry\n    raise error\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 69, in call_with_retry\n    return await do()\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 403, in connect_check_health\n    raise e\nredis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.","event":"outbox_failed"}
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> RedisBloom version 8.8.0 (Git=unknown)
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> Registering configuration options: [
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> 	{ bf-error-rate       :      0.01 }
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> 	{ bf-initial-size     :       100 }
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> 	{ bf-expansion-factor :         2 }
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:47.263305+00:00","level":"ERROR","logger":"fleetpulse.relay","message":"outbox publication failed","correlation_id":"-","exception":"Traceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 377, in connect_check_health\n    await self._connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 901, in _connect\n    reader, writer = await asyncio.open_connection(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        **self._connection_arguments()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/asyncio/streams.py\", line 48, in open_connection\n    transport, _ = await loop.create_connection(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda: protocol, host, port, **kwds)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1122, in create_connection\n    infos = await self._ensure_resolved(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        (host, port), family=family,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1518, in _ensure_resolved\n    return await loop.getaddrinfo(host, port, family=family, type=type,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                  proto=proto, flags=flags)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 939, in getaddrinfo\n    return await self.run_in_executor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        None, getaddr_func, host, port, family, type, proto, flags)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/usr/local/lib/python3.13/socket.py\", line 981, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -3] Temporary failure in name resolution\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 67, in run\n    count = await publish_once(settings, redis)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 41, in publish_once\n    await redis.xadd(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py\", line 765, in execute_command\n    conn = self.connection or await pool.get_connection()\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/utils.py\", line 230, in async_wrapper\n    return await func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1454, in get_connection\n    await self.ensure_connection(connection)\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1495, in ensure_connection\n    await connection.connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 346, in connect\n    await self.retry.call_with_retry(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 81, in call_with_retry\n    raise error\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 69, in call_with_retry\n    return await do()\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 403, in connect_check_health\n    raise e\nredis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.","event":"outbox_failed"}
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> 	{ cf-bucket-size      :         2 }
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:16 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:19 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:22 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:25 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:26 +0000] "POST /v1/telemetry/batches HTTP/1.1" 202 111 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:26 +0000] "GET /v1/incidents HTTP/1.1" 200 325 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:26 +0000] "GET /v1/incidents HTTP/1.1" 200 325 "-" "python-httpx/0.28.1"
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> 	{ cf-initial-size     :      1024 }
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> 	{ cf-max-iterations   :        20 }
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> 	{ cf-expansion-factor :         1 }
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> 	{ cf-max-expansions   :        32 }
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * <bf> ]
+redis-1         | 1:M 18 Jul 2026 00:05:51.447 * Module 'bf' loaded from /usr/local/lib/redis/modules//redisbloom.so
+redis-1         | 1:M 18 Jul 2026 00:05:51.451 * <search> search-workers default: 15 (min of MAX_WORKER_THREADS=16 and CPU cores)
+redis-1         | 1:M 18 Jul 2026 00:05:51.451 * <search> Redis version found by RedisSearch : 8.8.0 - oss
+redis-1         | 1:M 18 Jul 2026 00:05:51.451 * <search> RediSearch version 8.8.0 (Git=d2ae026)
+redis-1         | 1:M 18 Jul 2026 00:05:51.451 * <search> Low level api version 1 initialized successfully
+redis-1         | 1:M 18 Jul 2026 00:05:51.451 * <search> gc: ON, prefix min length: 2, min word length to stem: 4, prefix max expansions: 200, query timeout (ms): 500, timeout policy: return, oom policy: return, cursor read size: 1000, cursor max idle (ms): 300000, max doctable size: 1000000, max number of search results:  1000000, default scorer: BM25STD, 
+redis-1         | 1:M 18 Jul 2026 00:05:51.451 * <search> Initialized thread pools!
+redis-1         | 1:M 18 Jul 2026 00:05:51.451 * <search> Enabled workers threadpool of size 15
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <search> Subscribe to config changes
+api-1           | INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+api-1           | INFO  [alembic.runtime.migration] Will assume transactional DDL.
+api-1           | INFO  [alembic.runtime.migration] Running upgrade  -> 20260717_0001, Create durable Phase 1 ingestion tables.
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:26 +0000] "GET /v1/incidents HTTP/1.1" 200 325 "-" "python-httpx/0.28.1"
+api-1           | INFO  [alembic.runtime.migration] Running upgrade 20260717_0001 -> 20260717_0002, Add worker, fleet, incident, deployment, and dead-letter state.
+api-1           | INFO:     Started server process [1]
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:26 +0000] "GET /v1/incidents HTTP/1.1" 200 325 "-" "python-httpx/0.28.1"
+api-1           | INFO:     Waiting for application startup.
+api-1           | INFO:     Application startup complete.
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:26 +0000] "GET /v1/incidents HTTP/1.1" 200 325 "-" "python-httpx/0.28.1"
+api-1           | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:26 +0000] "GET /v1/incidents HTTP/1.1" 200 649 "-" "python-httpx/0.28.1"
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <search> Subscribe to cluster slot migration events
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:28 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <search> Enabled role change notification
+api-1           | {"timestamp":"2026-07-18T00:03:00.393346+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"22217c1c-0ed3-40b8-8bcb-e147da9eb2a4","event":"request_completed","status":200,"duration_ms":14.129}
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <search> Cluster configuration: AUTO partitions, type: 0, coordinator timeout: 0ms
+api-1           | {"timestamp":"2026-07-18T00:03:03.560316+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"087b2bb8-9d8d-44c1-bb53-3ad416c2b495","event":"request_completed","status":200,"duration_ms":1.009}
+api-1           | {"timestamp":"2026-07-18T00:03:03.913519+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"294cf8b751137d6c452b92edc9fa18e3","event":"request_completed","status":200,"duration_ms":0.304}
+api-1           | {"timestamp":"2026-07-18T00:03:04.384746+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"44c87a935164ee73d91b36bfe9b02502","event":"request_completed","status":200,"duration_ms":1.823}
+api-1           | {"timestamp":"2026-07-18T00:03:06.719334+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"c0847f05-986a-4b35-badd-96201e7f9985","event":"request_completed","status":200,"duration_ms":0.834}
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * Module 'search' loaded from /usr/local/lib/redis/modules//redisearch.so
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> RedisTimeSeries version 80800, git_sha=42ca4f1078fca732b7f9256adbf25914d67e1cc9
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> Redis version found by RedisTimeSeries : 8.8.0 - oss
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> Registering configuration options: [
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> 	{ ts-compaction-policy   :              }
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> 	{ ts-num-threads         :            3 }
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> 	{ ts-libmr-protocol      :     INTERNAL }
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> 	{ ts-retention-policy    :            0 }
+api-1           | {"timestamp":"2026-07-18T00:03:06.956168+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"e8a5b09d785ff359cd3479f8591194d5","event":"request_completed","status":200,"duration_ms":0.212}
+api-1           | {"timestamp":"2026-07-18T00:03:09.874485+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"4a9e79b3-4387-4149-b7e3-ed44775bb6cd","event":"request_completed","status":200,"duration_ms":0.917}
+api-1           | {"timestamp":"2026-07-18T00:03:10.006668+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"bfdd97fcbd04d9c4f65af42cdb2a7a70","event":"request_completed","status":200,"duration_ms":0.22}
+api-1           | {"timestamp":"2026-07-18T00:03:13.032507+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"6b868137-bccd-406d-b6ca-4dd398db53c8","event":"request_completed","status":200,"duration_ms":0.756}
+api-1           | {"timestamp":"2026-07-18T00:03:13.047099+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"c194635f791af7bb031b988a60200edc","event":"request_completed","status":200,"duration_ms":0.179}
+api-1           | {"timestamp":"2026-07-18T00:03:16.087550+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"b7ec9aed72aba33675e0dae4497af58a","event":"request_completed","status":200,"duration_ms":0.195}
+api-1           | {"timestamp":"2026-07-18T00:03:16.183259+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"764ed18e-e370-4fd0-a0d7-8e44c792f47a","event":"request_completed","status":200,"duration_ms":0.79}
+api-1           | {"timestamp":"2026-07-18T00:03:19.147735+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"84818257c6fc22c45ff114b3ee99d422","event":"request_completed","status":200,"duration_ms":0.194}
+api-1           | {"timestamp":"2026-07-18T00:03:19.311160+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"279c33c2-f67f-43ec-93e7-ed12caca6e02","event":"request_completed","status":200,"duration_ms":0.765}
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> 	{ ts-duplicate-policy    :        block }
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> 	{ ts-chunk-size-bytes    :         4096 }
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> 	{ ts-encoding            :   compressed }
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> 	{ ts-ignore-max-time-diff:            0 }
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> 	{ ts-ignore-max-val-diff :     0.000000 }
+redis-1         | 1:M 18 Jul 2026 00:05:51.452 * <timeseries> ]
+redis-1         | 1:M 18 Jul 2026 00:05:51.453 * <timeseries> Detected redis oss
+redis-1         | 1:M 18 Jul 2026 00:05:51.453 * <timeseries> Subscribe to ASM events
+redis-1         | 1:M 18 Jul 2026 00:05:51.453 * <timeseries> Enabled diskless replication
+redis-1         | 1:M 18 Jul 2026 00:05:51.453 * Module 'timeseries' loaded from /usr/local/lib/redis/modules//redistimeseries.so
+redis-1         | 1:M 18 Jul 2026 00:05:51.454 * <ReJSON> Created new data type 'ReJSON-RL'
+api-1           | {"timestamp":"2026-07-18T00:03:22.219712+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"53119c66d644d47a1726f9346578c802","event":"request_completed","status":200,"duration_ms":0.208}
+api-1           | {"timestamp":"2026-07-18T00:03:22.464761+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"b92b1174-2466-4ae7-a382-cfefb7871461","event":"request_completed","status":200,"duration_ms":0.922}
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <ReJSON> version: 80800 git sha: unknown branch: unknown
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <ReJSON> Exported RedisJSON_V1 API
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <ReJSON> Exported RedisJSON_V2 API
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <ReJSON> Exported RedisJSON_V3 API
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <ReJSON> Exported RedisJSON_V4 API
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <ReJSON> Exported RedisJSON_V5 API
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <ReJSON> Exported RedisJSON_V6 API
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <ReJSON> Exported RedisJSON_V7 API
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <ReJSON> Enabled diskless replication
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <ReJSON> Initialized shared string cache, thread safe: true.
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * Module 'ReJSON' loaded from /usr/local/lib/redis/modules//rejson.so
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <search> Acquired RedisJSON_V7 API
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * Server initialized
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <search> Loading event started
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:31 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:34 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:37 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:40 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:43 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:46 +0000] "POST /v1/telemetry/batches HTTP/1.1" 202 111 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:46 +0000] "GET /v1/incidents HTTP/1.1" 200 649 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:46 +0000] "GET /v1/incidents HTTP/1.1" 200 649 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:46 +0000] "GET /v1/incidents HTTP/1.1" 200 649 "-" "python-httpx/0.28.1"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:46 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * Reading RDB base file on AOF loading...
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * Loading RDB produced by version 8.8.0
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * RDB age 182 seconds
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * RDB memory usage when created 1.31 Mb
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * RDB is base AOF
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * Done loading RDB, keys loaded: 0, keys expired: 0.
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <search> Draining workers thread pool with threshold 100
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * DB loaded from base file appendonly.aof.1.base.rdb: 0.000 seconds
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * DB loaded from incr file appendonly.aof.1.incr.aof: 0.000 seconds
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * <search> Loading event ended successfully
+redis-1         | 1:M 18 Jul 2026 00:05:51.455 * DB loaded from append only file: 0.001 seconds
+redis-1         | 1:M 18 Jul 2026 00:05:51.456 * Opening AOF incr file appendonly.aof.1.incr.aof on server start
+redis-1         | 1:M 18 Jul 2026 00:05:51.456 * Ready to accept connections tcp
+redis-1         | 1:M 18 Jul 2026 00:05:51.456 # WARNING: Redis does not require authentication and is not protected by network restrictions. Redis will accept connections from any IP address on any network interface.
+api-1           | {"timestamp":"2026-07-18T00:03:25.272117+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"ef598352ed511764bfcfb05d284ae3cb","event":"request_completed","status":200,"duration_ms":0.213}
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:46 +0000] "GET /v1/incidents HTTP/1.1" 200 649 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:04:46 +0000] "GET /v1/incidents HTTP/1.1" 200 973 "-" "python-httpx/0.28.1"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:49 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:52 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:55 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:04:58 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:01 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:05 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:05:06 +0000] "POST /v1/telemetry/batches HTTP/1.1" 202 111 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:05:06 +0000] "GET /v1/incidents HTTP/1.1" 200 973 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:05:06 +0000] "GET /v1/incidents HTTP/1.1" 200 973 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:05:06 +0000] "GET /v1/incidents HTTP/1.1" 200 1297 "-" "python-httpx/0.28.1"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:08 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:11 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:14 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+api-1           | {"timestamp":"2026-07-18T00:03:25.622707+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"2d636857-0f4e-4c07-a38e-5d5a4e9cc911","event":"request_completed","status":200,"duration_ms":0.91}
+api-1           | {"timestamp":"2026-07-18T00:03:26.300265+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"337aa116-6b30-4e3c-81c5-e46bc48c8668","event":"request_completed","status":307,"duration_ms":0.505}
+api-1           | {"timestamp":"2026-07-18T00:03:26.302721+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"f31ebb48-ee1b-45bd-a64a-f48d67688565","event":"request_completed","status":200,"duration_ms":1.854}
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:17 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+api-1           | {"timestamp":"2026-07-18T00:03:28.335108+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"87364356aed66b24a79c66a63b08d982","event":"request_completed","status":200,"duration_ms":0.238}
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:20 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:23 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:05:26 +0000] "POST /v1/telemetry/batches HTTP/1.1" 202 111 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:05:26 +0000] "GET /v1/incidents HTTP/1.1" 200 1297 "-" "python-httpx/0.28.1"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:26 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:05:26 +0000] "GET /v1/incidents HTTP/1.1" 200 1297 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:05:26 +0000] "GET /v1/incidents HTTP/1.1" 200 1297 "-" "python-httpx/0.28.1"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:05:26 +0000] "GET /v1/incidents HTTP/1.1" 200 1621 "-" "python-httpx/0.28.1"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:29 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:32 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:35 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:38 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:41 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:44 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 172.19.0.1 - - [18/Jul/2026:00:05:46 +0000] "POST /v1/telemetry/batches HTTP/1.1" 202 113 "-" "python-httpx/0.28.1"
+api-1           | {"timestamp":"2026-07-18T00:03:28.787475+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"a9ddbafb-f70f-43a9-be84-afe58500fc74","event":"request_completed","status":200,"duration_ms":0.849}
+api-1           | {"timestamp":"2026-07-18T00:03:31.301428+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"5c624887-822b-416f-9adf-b85f2f9c8e47","event":"request_completed","status":307,"duration_ms":0.456}
+api-1           | {"timestamp":"2026-07-18T00:03:31.304137+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"54584bd9-efe2-4158-9760-d21ef9b30d4f","event":"request_completed","status":200,"duration_ms":1.765}
+api-1           | {"timestamp":"2026-07-18T00:03:31.386903+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"7642cc90dfea475589d45756ac3d6832","event":"request_completed","status":200,"duration_ms":0.201}
+api-1           | INFO:     Shutting down
+api-1           | INFO:     Waiting for application shutdown.
+api-1           | INFO:     Application shutdown complete.
+api-1           | INFO:     Finished server process [1]
+api-1           | INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:47 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:50 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:53 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:05:56 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:06:00 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:06:03 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:06:06 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+nginx-1         | 127.0.0.1 - - [18/Jul/2026:00:06:09 +0000] "GET /livez HTTP/1.1" 200 18 "-" "Wget"
+api-1           | INFO  [alembic.runtime.migration] Will assume transactional DDL.
+api-1           | INFO:     Started server process [1]
+api-1           | INFO:     Waiting for application startup.
+api-1           | INFO:     Application startup complete.
+api-1           | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+api-1           | {"timestamp":"2026-07-18T00:03:57.186446+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"95d4ca97-d324-489f-bb2f-fb1e46d91dec","event":"request_completed","status":200,"duration_ms":14.757}
+api-1           | {"timestamp":"2026-07-18T00:03:57.542862+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"8416d6eb61e6cadfb75f13c3954cc214","event":"request_completed","status":200,"duration_ms":2.102}
+api-1           | {"timestamp":"2026-07-18T00:03:57.871705+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"1d000b8d9a43c5dde65c9c0b97465be5","event":"request_completed","status":200,"duration_ms":0.347}
+api-1           | {"timestamp":"2026-07-18T00:04:00.340151+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"23d37fa4-79d9-4fdd-b85f-7bea871f5b75","event":"request_completed","status":200,"duration_ms":0.759}
+api-1           | {"timestamp":"2026-07-18T00:04:00.921909+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"0c15204a883246a8b609df3a3683950a","event":"request_completed","status":200,"duration_ms":0.204}
+api-1           | {"timestamp":"2026-07-18T00:04:03.512928+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"1d4599ae-e306-4ff6-9c8b-76a1efbe00bf","event":"request_completed","status":200,"duration_ms":0.743}
+api-1           | {"timestamp":"2026-07-18T00:04:03.975085+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"4e9afb22240f979d1f3d65230eae5a92","event":"request_completed","status":200,"duration_ms":0.218}
+api-1           | {"timestamp":"2026-07-18T00:04:06.375735+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"phase7-phase7-incident-1","event":"request_completed","status":202,"duration_ms":18.622}
+api-1           | {"timestamp":"2026-07-18T00:04:06.381503+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"dff9890a1bef9ba8a421a0ab79bb31e8","event":"request_completed","status":200,"duration_ms":3.633}
+api-1           | {"timestamp":"2026-07-18T00:04:06.487196+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"4404005057ff3f114b96a73696de6f52","event":"request_completed","status":200,"duration_ms":1.084}
+api-1           | {"timestamp":"2026-07-18T00:04:06.655466+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"e553ef8d-c98a-49df-ace4-1a8a5e652faa","event":"request_completed","status":200,"duration_ms":0.786}
+api-1           | {"timestamp":"2026-07-18T00:04:07.016244+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"452935c1103cf2a1fe67a3520d495ac7","event":"request_completed","status":200,"duration_ms":0.18}
+api-1           | {"timestamp":"2026-07-18T00:04:09.799885+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"dc9f93ad-c78d-40f5-9659-47313e9e7975","event":"request_completed","status":200,"duration_ms":0.842}
+api-1           | {"timestamp":"2026-07-18T00:04:10.060520+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"90e50e2d098b0981fb6efdbf47842fd5","event":"request_completed","status":200,"duration_ms":0.24}
+api-1           | {"timestamp":"2026-07-18T00:04:12.949665+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"5ea608d1-a0ea-42d3-ae6b-fc577ed417b2","event":"request_completed","status":200,"duration_ms":0.84}
+api-1           | {"timestamp":"2026-07-18T00:04:13.100106+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"7207dc2f48f89407aa5831192556404e","event":"request_completed","status":200,"duration_ms":0.216}
+api-1           | {"timestamp":"2026-07-18T00:04:16.106289+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"2d0d6a6f-e1fb-4bc7-9203-04995dd470e6","event":"request_completed","status":200,"duration_ms":0.96}
+api-1           | {"timestamp":"2026-07-18T00:04:16.123426+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"89c616dedef2180e5899e059ac11c6d0","event":"request_completed","status":200,"duration_ms":0.148}
+api-1           | {"timestamp":"2026-07-18T00:04:19.163237+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"229001fe01a0c443fe45248e2e36a3e7","event":"request_completed","status":200,"duration_ms":0.184}
+api-1           | {"timestamp":"2026-07-18T00:04:19.262811+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"23f76a15-0e8d-4a25-9208-7b94ea6ac166","event":"request_completed","status":200,"duration_ms":0.987}
+api-1           | {"timestamp":"2026-07-18T00:04:22.221226+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"025ec307ca92daa0273c52b03b306a95","event":"request_completed","status":200,"duration_ms":0.301}
+api-1           | {"timestamp":"2026-07-18T00:04:22.420896+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"d3995327-16d8-4ac7-b1cb-7d74f9f60189","event":"request_completed","status":200,"duration_ms":0.71}
+api-1           | {"timestamp":"2026-07-18T00:04:25.286096+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"dd8c7cac591b8c324b1e87318affd2d3","event":"request_completed","status":200,"duration_ms":0.297}
+api-1           | {"timestamp":"2026-07-18T00:04:25.593138+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"4ff6362b-470d-485d-bb33-d0f513496fce","event":"request_completed","status":200,"duration_ms":0.904}
+api-1           | {"timestamp":"2026-07-18T00:04:26.178758+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"phase7-phase7-incident-2","event":"request_completed","status":202,"duration_ms":4.202}
+api-1           | {"timestamp":"2026-07-18T00:04:26.181385+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"11c87edce0ee53013a97e8dc8f5dbd88","event":"request_completed","status":200,"duration_ms":0.97}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:47.780858+00:00","level":"ERROR","logger":"fleetpulse.relay","message":"outbox publication failed","correlation_id":"-","exception":"Traceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 377, in connect_check_health\n    await self._connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 901, in _connect\n    reader, writer = await asyncio.open_connection(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        **self._connection_arguments()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/asyncio/streams.py\", line 48, in open_connection\n    transport, _ = await loop.create_connection(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda: protocol, host, port, **kwds)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1122, in create_connection\n    infos = await self._ensure_resolved(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        (host, port), family=family,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1518, in _ensure_resolved\n    return await loop.getaddrinfo(host, port, family=family, type=type,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                  proto=proto, flags=flags)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 939, in getaddrinfo\n    return await self.run_in_executor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        None, getaddr_func, host, port, family, type, proto, flags)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/usr/local/lib/python3.13/socket.py\", line 981, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -3] Temporary failure in name resolution\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 67, in run\n    count = await publish_once(settings, redis)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 41, in publish_once\n    await redis.xadd(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py\", line 765, in execute_command\n    conn = self.connection or await pool.get_connection()\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/utils.py\", line 230, in async_wrapper\n    return await func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1454, in get_connection\n    await self.ensure_connection(connection)\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1495, in ensure_connection\n    await connection.connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 346, in connect\n    await self.retry.call_with_retry(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 81, in call_with_retry\n    raise error\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 69, in call_with_retry\n    return await do()\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 403, in connect_check_health\n    raise e\nredis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.","event":"outbox_failed"}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:48.315084+00:00","level":"ERROR","logger":"fleetpulse.relay","message":"outbox publication failed","correlation_id":"-","exception":"Traceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 377, in connect_check_health\n    await self._connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 901, in _connect\n    reader, writer = await asyncio.open_connection(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        **self._connection_arguments()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/asyncio/streams.py\", line 48, in open_connection\n    transport, _ = await loop.create_connection(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda: protocol, host, port, **kwds)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1122, in create_connection\n    infos = await self._ensure_resolved(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        (host, port), family=family,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1518, in _ensure_resolved\n    return await loop.getaddrinfo(host, port, family=family, type=type,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                  proto=proto, flags=flags)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 939, in getaddrinfo\n    return await self.run_in_executor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        None, getaddr_func, host, port, family, type, proto, flags)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/usr/local/lib/python3.13/socket.py\", line 981, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -3] Temporary failure in name resolution\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 67, in run\n    count = await publish_once(settings, redis)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 41, in publish_once\n    await redis.xadd(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py\", line 765, in execute_command\n    conn = self.connection or await pool.get_connection()\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/utils.py\", line 230, in async_wrapper\n    return await func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1454, in get_connection\n    await self.ensure_connection(connection)\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1495, in ensure_connection\n    await connection.connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 346, in connect\n    await self.retry.call_with_retry(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 81, in call_with_retry\n    raise error\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 69, in call_with_retry\n    return await do()\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 403, in connect_check_health\n    raise e\nredis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.","event":"outbox_failed"}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:48.831799+00:00","level":"ERROR","logger":"fleetpulse.relay","message":"outbox publication failed","correlation_id":"-","exception":"Traceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 377, in connect_check_health\n    await self._connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 901, in _connect\n    reader, writer = await asyncio.open_connection(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        **self._connection_arguments()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/asyncio/streams.py\", line 48, in open_connection\n    transport, _ = await loop.create_connection(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda: protocol, host, port, **kwds)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1122, in create_connection\n    infos = await self._ensure_resolved(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        (host, port), family=family,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1518, in _ensure_resolved\n    return await loop.getaddrinfo(host, port, family=family, type=type,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                  proto=proto, flags=flags)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 939, in getaddrinfo\n    return await self.run_in_executor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        None, getaddr_func, host, port, family, type, proto, flags)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/usr/local/lib/python3.13/socket.py\", line 981, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -3] Temporary failure in name resolution\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 67, in run\n    count = await publish_once(settings, redis)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 41, in publish_once\n    await redis.xadd(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py\", line 765, in execute_command\n    conn = self.connection or await pool.get_connection()\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/utils.py\", line 230, in async_wrapper\n    return await func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1454, in get_connection\n    await self.ensure_connection(connection)\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1495, in ensure_connection\n    await connection.connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 346, in connect\n    await self.retry.call_with_retry(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 81, in call_with_retry\n    raise error\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 69, in call_with_retry\n    return await do()\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 403, in connect_check_health\n    raise e\nredis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.","event":"outbox_failed"}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:49.363324+00:00","level":"ERROR","logger":"fleetpulse.relay","message":"outbox publication failed","correlation_id":"-","exception":"Traceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 377, in connect_check_health\n    await self._connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 901, in _connect\n    reader, writer = await asyncio.open_connection(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        **self._connection_arguments()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/asyncio/streams.py\", line 48, in open_connection\n    transport, _ = await loop.create_connection(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda: protocol, host, port, **kwds)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1122, in create_connection\n    infos = await self._ensure_resolved(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        (host, port), family=family,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1518, in _ensure_resolved\n    return await loop.getaddrinfo(host, port, family=family, type=type,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                  proto=proto, flags=flags)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 939, in getaddrinfo\n    return await self.run_in_executor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        None, getaddr_func, host, port, family, type, proto, flags)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/usr/local/lib/python3.13/socket.py\", line 981, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -3] Temporary failure in name resolution\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 67, in run\n    count = await publish_once(settings, redis)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 41, in publish_once\n    await redis.xadd(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py\", line 765, in execute_command\n    conn = self.connection or await pool.get_connection()\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/utils.py\", line 230, in async_wrapper\n    return await func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1454, in get_connection\n    await self.ensure_connection(connection)\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1495, in ensure_connection\n    await connection.connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 346, in connect\n    await self.retry.call_with_retry(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 81, in call_with_retry\n    raise error\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 69, in call_with_retry\n    return await do()\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 403, in connect_check_health\n    raise e\nredis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.","event":"outbox_failed"}
+api-1           | {"timestamp":"2026-07-18T00:04:26.292295+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"08fc27982b9f4cd742db0abcfb28f5c0","event":"request_completed","status":200,"duration_ms":2.355}
+api-1           | {"timestamp":"2026-07-18T00:04:26.299891+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"f5191549-2e82-4d5b-9d7c-8fe7c7f8ae36","event":"request_completed","status":307,"duration_ms":0.221}
+api-1           | {"timestamp":"2026-07-18T00:04:26.302245+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"3be6cfec-4d3d-4e5e-a662-7bfa2082ab9c","event":"request_completed","status":200,"duration_ms":1.706}
+api-1           | {"timestamp":"2026-07-18T00:04:26.403970+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"ebcc8b5bfc7c8fe6bbb6fa5d04506184","event":"request_completed","status":200,"duration_ms":3.115}
+api-1           | {"timestamp":"2026-07-18T00:04:26.511203+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"39ebe1d069549e5fb4aa1b620e0e1f3b","event":"request_completed","status":200,"duration_ms":2.076}
+api-1           | {"timestamp":"2026-07-18T00:04:26.623012+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"14b9073812fbd41c06c9f2b89bdc427d","event":"request_completed","status":200,"duration_ms":3.728}
+api-1           | {"timestamp":"2026-07-18T00:04:26.735168+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"6d24ebbc91dc7647629fd94155a95bdb","event":"request_completed","status":200,"duration_ms":1.558}
+api-1           | {"timestamp":"2026-07-18T00:04:28.337361+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"a943011aacd5ea42364b04adac6007a1","event":"request_completed","status":200,"duration_ms":0.278}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:49.885709+00:00","level":"ERROR","logger":"fleetpulse.relay","message":"outbox publication failed","correlation_id":"-","exception":"Traceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 377, in connect_check_health\n    await self._connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 901, in _connect\n    reader, writer = await asyncio.open_connection(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        **self._connection_arguments()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/asyncio/streams.py\", line 48, in open_connection\n    transport, _ = await loop.create_connection(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda: protocol, host, port, **kwds)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1122, in create_connection\n    infos = await self._ensure_resolved(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        (host, port), family=family,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1518, in _ensure_resolved\n    return await loop.getaddrinfo(host, port, family=family, type=type,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                  proto=proto, flags=flags)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 939, in getaddrinfo\n    return await self.run_in_executor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        None, getaddr_func, host, port, family, type, proto, flags)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/usr/local/lib/python3.13/socket.py\", line 981, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -3] Temporary failure in name resolution\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 67, in run\n    count = await publish_once(settings, redis)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 41, in publish_once\n    await redis.xadd(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py\", line 765, in execute_command\n    conn = self.connection or await pool.get_connection()\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/utils.py\", line 230, in async_wrapper\n    return await func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1454, in get_connection\n    await self.ensure_connection(connection)\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1495, in ensure_connection\n    await connection.connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 346, in connect\n    await self.retry.call_with_retry(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 81, in call_with_retry\n    raise error\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 69, in call_with_retry\n    return await do()\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 403, in connect_check_health\n    raise e\nredis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.","event":"outbox_failed"}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:50.402138+00:00","level":"ERROR","logger":"fleetpulse.relay","message":"outbox publication failed","correlation_id":"-","exception":"Traceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 377, in connect_check_health\n    await self._connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 901, in _connect\n    reader, writer = await asyncio.open_connection(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        **self._connection_arguments()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/asyncio/streams.py\", line 48, in open_connection\n    transport, _ = await loop.create_connection(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda: protocol, host, port, **kwds)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1122, in create_connection\n    infos = await self._ensure_resolved(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        (host, port), family=family,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1518, in _ensure_resolved\n    return await loop.getaddrinfo(host, port, family=family, type=type,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                  proto=proto, flags=flags)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 939, in getaddrinfo\n    return await self.run_in_executor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        None, getaddr_func, host, port, family, type, proto, flags)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/usr/local/lib/python3.13/socket.py\", line 981, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -3] Temporary failure in name resolution\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 67, in run\n    count = await publish_once(settings, redis)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 41, in publish_once\n    await redis.xadd(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py\", line 765, in execute_command\n    conn = self.connection or await pool.get_connection()\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/utils.py\", line 230, in async_wrapper\n    return await func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1454, in get_connection\n    await self.ensure_connection(connection)\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1495, in ensure_connection\n    await connection.connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 346, in connect\n    await self.retry.call_with_retry(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 81, in call_with_retry\n    raise error\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 69, in call_with_retry\n    return await do()\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 403, in connect_check_health\n    raise e\nredis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.","event":"outbox_failed"}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:50.927453+00:00","level":"ERROR","logger":"fleetpulse.relay","message":"outbox publication failed","correlation_id":"-","exception":"Traceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 377, in connect_check_health\n    await self._connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 901, in _connect\n    reader, writer = await asyncio.open_connection(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        **self._connection_arguments()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/asyncio/streams.py\", line 48, in open_connection\n    transport, _ = await loop.create_connection(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda: protocol, host, port, **kwds)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1122, in create_connection\n    infos = await self._ensure_resolved(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        (host, port), family=family,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1518, in _ensure_resolved\n    return await loop.getaddrinfo(host, port, family=family, type=type,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                  proto=proto, flags=flags)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 939, in getaddrinfo\n    return await self.run_in_executor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        None, getaddr_func, host, port, family, type, proto, flags)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/usr/local/lib/python3.13/socket.py\", line 981, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -3] Temporary failure in name resolution\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 67, in run\n    count = await publish_once(settings, redis)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 41, in publish_once\n    await redis.xadd(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py\", line 765, in execute_command\n    conn = self.connection or await pool.get_connection()\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/utils.py\", line 230, in async_wrapper\n    return await func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1454, in get_connection\n    await self.ensure_connection(connection)\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1495, in ensure_connection\n    await connection.connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 346, in connect\n    await self.retry.call_with_retry(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 81, in call_with_retry\n    raise error\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 69, in call_with_retry\n    return await do()\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 403, in connect_check_health\n    raise e\nredis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.","event":"outbox_failed"}
+api-1           | {"timestamp":"2026-07-18T00:04:28.747408+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"8ed07204-d627-4a87-a9af-56ce646fb6ec","event":"request_completed","status":200,"duration_ms":0.892}
+api-1           | {"timestamp":"2026-07-18T00:04:31.300157+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"bd311c30-31f8-4229-9de3-64d92beb9d83","event":"request_completed","status":307,"duration_ms":0.269}
+api-1           | {"timestamp":"2026-07-18T00:04:31.302139+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"e3e29c41-f6dd-4130-9cad-5a6339c30429","event":"request_completed","status":200,"duration_ms":1.479}
+api-1           | {"timestamp":"2026-07-18T00:04:31.406413+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"1190537439e424966bdbbcf25b27642f","event":"request_completed","status":200,"duration_ms":0.244}
+api-1           | {"timestamp":"2026-07-18T00:04:31.917329+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"d366112f-f670-46de-bde2-3bcb90955122","event":"request_completed","status":200,"duration_ms":0.746}
+api-1           | {"timestamp":"2026-07-18T00:04:34.470560+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"9d2c43dc47efb6d3b2c695a593b0f02f","event":"request_completed","status":200,"duration_ms":0.261}
+api-1           | {"timestamp":"2026-07-18T00:04:35.078947+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"24d996c5-07f1-4980-99b4-99ffb82ed9ea","event":"request_completed","status":200,"duration_ms":0.708}
+api-1           | {"timestamp":"2026-07-18T00:04:36.300869+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"f3dd2e5c-a96c-4bc5-a28a-99c589ddae77","event":"request_completed","status":307,"duration_ms":0.166}
+api-1           | {"timestamp":"2026-07-18T00:04:36.302262+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"d322d8c6-8a61-4336-9366-e3f104ed646e","event":"request_completed","status":200,"duration_ms":1.071}
+api-1           | {"timestamp":"2026-07-18T00:04:37.523141+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"4c58e374bf9caa425b3d77815fd7cbc8","event":"request_completed","status":200,"duration_ms":0.375}
+api-1           | {"timestamp":"2026-07-18T00:04:38.247059+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"f7c241a6-7a8a-427f-b0ee-7d5858d75cbb","event":"request_completed","status":200,"duration_ms":0.822}
+api-1           | {"timestamp":"2026-07-18T00:04:40.591524+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"ea9d5c71b4d86303356e15ca94acd426","event":"request_completed","status":200,"duration_ms":0.314}
+api-1           | {"timestamp":"2026-07-18T00:04:41.299822+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"9c8cddfb-c6b1-4b6b-aa3a-9e2219fd3b4b","event":"request_completed","status":307,"duration_ms":0.204}
+api-1           | {"timestamp":"2026-07-18T00:04:41.301828+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"79e2ad7a-3c82-49e5-b861-e19bf22752ce","event":"request_completed","status":200,"duration_ms":1.449}
+api-1           | {"timestamp":"2026-07-18T00:04:41.412816+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"a4f56dd7-197c-4bc3-96b5-b497cacbc6a6","event":"request_completed","status":200,"duration_ms":0.748}
+api-1           | {"timestamp":"2026-07-18T00:04:43.647647+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"7dbc2374d5edc00a210a5a89f3e2abdb","event":"request_completed","status":200,"duration_ms":0.207}
+api-1           | {"timestamp":"2026-07-18T00:04:44.575309+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"f91d5f9a-569c-454e-b271-aa68707066e7","event":"request_completed","status":200,"duration_ms":0.789}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:51.447950+00:00","level":"ERROR","logger":"fleetpulse.relay","message":"outbox publication failed","correlation_id":"-","exception":"Traceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 377, in connect_check_health\n    await self._connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 901, in _connect\n    reader, writer = await asyncio.open_connection(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        **self._connection_arguments()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/asyncio/streams.py\", line 48, in open_connection\n    transport, _ = await loop.create_connection(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda: protocol, host, port, **kwds)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1171, in create_connection\n    raise exceptions[0]\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1146, in create_connection\n    sock = await self._connect_sock(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n        exceptions, addrinfo, laddr_infos)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/base_events.py\", line 1045, in _connect_sock\n    await self.sock_connect(sock, address)\n  File \"/usr/local/lib/python3.13/asyncio/selector_events.py\", line 647, in sock_connect\n    return await fut\n           ^^^^^^^^^\n  File \"/usr/local/lib/python3.13/asyncio/selector_events.py\", line 687, in _sock_connect_cb\n    raise OSError(err, f'Connect call failed {address}')\nConnectionRefusedError: [Errno 111] Connect call failed ('172.20.0.3', 6379)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 67, in run\n    count = await publish_once(settings, redis)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/fleetpulse/worker/relay.py\", line 41, in publish_once\n    await redis.xadd(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py\", line 765, in execute_command\n    conn = self.connection or await pool.get_connection()\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/utils.py\", line 230, in async_wrapper\n    return await func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1454, in get_connection\n    await self.ensure_connection(connection)\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 1495, in ensure_connection\n    await connection.connect()\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 346, in connect\n    await self.retry.call_with_retry(\n    ...<7 lines>...\n    )\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 81, in call_with_retry\n    raise error\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py\", line 69, in call_with_retry\n    return await do()\n           ^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py\", line 403, in connect_check_health\n    raise e\nredis.exceptions.ConnectionError: Error 111 connecting to redis:6379. Connect call failed ('172.20.0.3', 6379).","event":"outbox_failed"}
+outbox-relay-1  | {"timestamp":"2026-07-18T00:05:51.981542+00:00","level":"INFO","logger":"fleetpulse.relay","message":"outbox events published","correlation_id":"-","event":"outbox_published","status":1}
+worker-1        | {"timestamp":"2026-07-18T00:04:06.485637+00:00","level":"INFO","logger":"fleetpulse.worker","message":"event processed","correlation_id":"phase7-phase7-incident-1","event":"event_processed","status":"fc59b69b6e84-eaacea3a"}
+worker-1        | {"timestamp":"2026-07-18T00:04:26.670374+00:00","level":"INFO","logger":"fleetpulse.worker","message":"event processed","correlation_id":"phase7-phase7-incident-2","event":"event_processed","status":"fc59b69b6e84-eaacea3a"}
+worker-1        | {"timestamp":"2026-07-18T00:04:46.820497+00:00","level":"INFO","logger":"fleetpulse.worker","message":"event processed","correlation_id":"phase7-phase7-incident-3","event":"event_processed","status":"fc59b69b6e84-eaacea3a"}
+worker-1        | {"timestamp":"2026-07-18T00:05:06.468010+00:00","level":"INFO","logger":"fleetpulse.worker","message":"event processed","correlation_id":"phase7-phase7-incident-4","event":"event_processed","status":"fc59b69b6e84-eaacea3a"}
+worker-1        | {"timestamp":"2026-07-18T00:05:26.645026+00:00","level":"INFO","logger":"fleetpulse.worker","message":"event processed","correlation_id":"phase7-phase7-incident-5","event":"event_processed","status":"fc59b69b6e84-eaacea3a"}
+worker-1        | Traceback (most recent call last):
+worker-1        |   File "<frozen runpy>", line 203, in _run_module_as_main
+worker-1        |   File "<frozen runpy>", line 88, in _run_code
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 259, in <module>
+worker-1        |     main()
+worker-1        |     ~~~~^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 255, in main
+worker-1        |     asyncio.run(run(settings))
+worker-1        |     ~~~~~~~~~~~^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/runners.py", line 196, in run
+worker-1        |     return runner.run(main)
+worker-1        |            ~~~~~~~~~~^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/runners.py", line 119, in run
+worker-1        |     return self._loop.run_until_complete(task)
+worker-1        |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+worker-1        |     return future.result()
+worker-1        |            ~~~~~~~~~~~~~^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 231, in run
+worker-1        |     messages: Any = await redis.xreadgroup(
+worker-1        |                     ^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |     ...<5 lines>...
+worker-1        |     )
+worker-1        |     ^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/commands/core.py", line 4536, in _record_and_return
+worker-1        |     actual_response = await response
+worker-1        |                       ^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py", line 782, in execute_command
+worker-1        |     result = await conn.retry.call_with_retry(
+worker-1        |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |     ...<5 lines>...
+worker-1        |     )
+worker-1        |     ^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py", line 81, in call_with_retry
+worker-1        |     raise error
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py", line 69, in call_with_retry
+worker-1        |     return await do()
+worker-1        |            ^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py", line 723, in _send_command_parse_response
+worker-1        |     return await self.parse_response(conn, command_name, **options)
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py", line 824, in parse_response
+worker-1        |     response = await connection.read_response()
+worker-1        |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 732, in read_response
+worker-1        |     response = await self._parser.read_response(
+worker-1        |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         disable_decoding=disable_decoding
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |     )
+worker-1        |     ^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/_parsers/hiredis.py", line 275, in read_response
+worker-1        |     await self.read_from_socket()
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/_parsers/hiredis.py", line 254, in read_from_socket
+worker-1        |     raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR) from None
+worker-1        | redis.exceptions.ConnectionError: Connection closed by server.
+worker-1        | Traceback (most recent call last):
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 377, in connect_check_health
+worker-1        |     await self._connect()
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 901, in _connect
+worker-1        |     reader, writer = await asyncio.open_connection(
+worker-1        |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         **self._connection_arguments()
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |     )
+worker-1        |     ^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/streams.py", line 48, in open_connection
+worker-1        |     transport, _ = await loop.create_connection(
+worker-1        |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         lambda: protocol, host, port, **kwds)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 1122, in create_connection
+worker-1        |     infos = await self._ensure_resolved(
+worker-1        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         (host, port), family=family,
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 1518, in _ensure_resolved
+worker-1        |     return await loop.getaddrinfo(host, port, family=family, type=type,
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |                                   proto=proto, flags=flags)
+worker-1        |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 939, in getaddrinfo
+worker-1        |     return await self.run_in_executor(
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         None, getaddr_func, host, port, family, type, proto, flags)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+worker-1        |     result = self.fn(*self.args, **self.kwargs)
+worker-1        |   File "/usr/local/lib/python3.13/socket.py", line 981, in getaddrinfo
+worker-1        |     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+worker-1        |                ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        | socket.gaierror: [Errno -3] Temporary failure in name resolution
+worker-1        | 
+worker-1        | During handling of the above exception, another exception occurred:
+worker-1        | 
+worker-1        | Traceback (most recent call last):
+worker-1        |   File "<frozen runpy>", line 203, in _run_module_as_main
+worker-1        |   File "<frozen runpy>", line 88, in _run_code
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 259, in <module>
+api-1           | {"timestamp":"2026-07-18T00:04:46.301867+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"137e2ff6-9be8-467e-a25a-89a414de01d4","event":"request_completed","status":307,"duration_ms":0.203}
+api-1           | {"timestamp":"2026-07-18T00:04:46.303660+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"5d43fa0c-9cc3-4b85-98f4-b0146641dde7","event":"request_completed","status":200,"duration_ms":1.378}
+api-1           | {"timestamp":"2026-07-18T00:04:46.400758+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"phase7-phase7-incident-3","event":"request_completed","status":202,"duration_ms":3.802}
+api-1           | {"timestamp":"2026-07-18T00:04:46.404649+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"88a73c51e144fa75eb743632e60a0ddc","event":"request_completed","status":200,"duration_ms":1.122}
+api-1           | {"timestamp":"2026-07-18T00:04:46.519509+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"ceee9be1fd1a6a671014896acbd77549","event":"request_completed","status":200,"duration_ms":2.292}
+api-1           | {"timestamp":"2026-07-18T00:04:46.631700+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"8856593457954e05fa5adcd1e6a7353f","event":"request_completed","status":200,"duration_ms":2.527}
+api-1           | {"timestamp":"2026-07-18T00:04:46.708656+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"d1ff5ba6fe589371abd5a17b9f0ab9bf","event":"request_completed","status":200,"duration_ms":0.242}
+api-1           | {"timestamp":"2026-07-18T00:04:46.736969+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"fa8e7a3406776316306022f86b58cbdb","event":"request_completed","status":200,"duration_ms":1.375}
+worker-1        |     main()
+worker-1        |     ~~~~^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 255, in main
+api-1           | {"timestamp":"2026-07-18T00:04:46.847004+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"d96a67280f92e6fbc892a90007d69cda","event":"request_completed","status":200,"duration_ms":1.215}
+worker-1        |     asyncio.run(run(settings))
+api-1           | {"timestamp":"2026-07-18T00:04:47.742710+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"58a45f59-9f79-4eb5-b10d-92de77488395","event":"request_completed","status":200,"duration_ms":0.738}
+api-1           | {"timestamp":"2026-07-18T00:04:49.761355+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"dedd52a231d2fa2ed9fb1b23a9556f02","event":"request_completed","status":200,"duration_ms":0.201}
+api-1           | {"timestamp":"2026-07-18T00:04:50.910862+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"dc0436f2-c752-4f9e-95a0-ddf857c4a819","event":"request_completed","status":200,"duration_ms":0.775}
+api-1           | {"timestamp":"2026-07-18T00:04:51.308789+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"a98b01a8-a9c4-4948-94c6-626dcfff2e6f","event":"request_completed","status":307,"duration_ms":0.514}
+api-1           | {"timestamp":"2026-07-18T00:04:51.312424+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"06981845-57ff-44b7-bd1f-06964b78bbc4","event":"request_completed","status":200,"duration_ms":2.74}
+api-1           | {"timestamp":"2026-07-18T00:04:52.815153+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"3fd63979c21b33ed90d4b5ee00c0d099","event":"request_completed","status":200,"duration_ms":0.227}
+api-1           | {"timestamp":"2026-07-18T00:04:54.076129+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"61d13c4e-8aac-4fdb-8049-f8803ad60faf","event":"request_completed","status":200,"duration_ms":0.735}
+api-1           | {"timestamp":"2026-07-18T00:04:55.866878+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"a3d1af18e4db7b73ca57162f0777084d","event":"request_completed","status":200,"duration_ms":0.177}
+api-1           | {"timestamp":"2026-07-18T00:04:56.301158+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"6c7f4476-c8f5-4361-b95a-1dbc62595c94","event":"request_completed","status":307,"duration_ms":0.356}
+api-1           | {"timestamp":"2026-07-18T00:04:56.304413+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"d0feac4a-9c81-4209-b5a2-d50c7a375c2a","event":"request_completed","status":200,"duration_ms":2.257}
+api-1           | {"timestamp":"2026-07-18T00:04:57.235712+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"18465018-3801-47d1-9094-a02f096a2b5a","event":"request_completed","status":200,"duration_ms":0.719}
+api-1           | {"timestamp":"2026-07-18T00:04:58.932696+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"b0ecff7e51cf07f109f6baa8dccd27da","event":"request_completed","status":200,"duration_ms":0.241}
+api-1           | {"timestamp":"2026-07-18T00:05:00.405934+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"8580c265-1efb-4e8c-b529-53d3e02f9145","event":"request_completed","status":200,"duration_ms":0.794}
+api-1           | {"timestamp":"2026-07-18T00:05:01.306314+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"54955b26-83d8-4f70-a4fc-7dd2b441fdc8","event":"request_completed","status":307,"duration_ms":0.238}
+api-1           | {"timestamp":"2026-07-18T00:05:01.308826+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"459e8fa4-b550-49fa-b680-2be57a141bb2","event":"request_completed","status":200,"duration_ms":1.909}
+api-1           | {"timestamp":"2026-07-18T00:05:01.986883+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"b4379ee6ddfe1ad56f70485346739fdf","event":"request_completed","status":200,"duration_ms":0.301}
+api-1           | {"timestamp":"2026-07-18T00:05:03.564656+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"2f99a2e0-dcb2-461b-83e8-2b1f4e782700","event":"request_completed","status":200,"duration_ms":0.764}
+api-1           | {"timestamp":"2026-07-18T00:05:05.045940+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"0991d57e233768f9d8e3c97920cb8ed9","event":"request_completed","status":200,"duration_ms":0.268}
+api-1           | {"timestamp":"2026-07-18T00:05:06.246289+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"phase7-phase7-incident-4","event":"request_completed","status":202,"duration_ms":7.443}
+api-1           | {"timestamp":"2026-07-18T00:05:06.250441+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"33f02a98f40a657bb158668607e75e11","event":"request_completed","status":200,"duration_ms":1.84}
+api-1           | {"timestamp":"2026-07-18T00:05:06.305761+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"9e31ba8d-ba6b-438d-9cfb-00eb93406e37","event":"request_completed","status":307,"duration_ms":0.426}
+api-1           | {"timestamp":"2026-07-18T00:05:06.308854+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"898b66f0-170e-405f-bc36-b7462319570d","event":"request_completed","status":200,"duration_ms":2.403}
+api-1           | {"timestamp":"2026-07-18T00:05:06.365600+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"8ae0e4adabfc91feaaa69ac4e9db34a9","event":"request_completed","status":200,"duration_ms":2.693}
+api-1           | {"timestamp":"2026-07-18T00:05:06.477779+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"61a59df7500ecbe93b5c5794ab4d57c9","event":"request_completed","status":200,"duration_ms":1.183}
+api-1           | {"timestamp":"2026-07-18T00:05:06.685968+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"ea36c819-edfe-45c0-805e-b270b38f0993","event":"request_completed","status":200,"duration_ms":0.787}
+api-1           | {"timestamp":"2026-07-18T00:05:08.099067+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"7e1f552141fca5aa97c67632ea074cf5","event":"request_completed","status":200,"duration_ms":0.187}
+api-1           | {"timestamp":"2026-07-18T00:05:09.836079+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"190fbc16-866a-44ce-a1e0-3b6d8e811f35","event":"request_completed","status":200,"duration_ms":0.734}
+api-1           | {"timestamp":"2026-07-18T00:05:11.153668+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"e85df47679d8b0013a907d0f51198aab","event":"request_completed","status":200,"duration_ms":0.183}
+api-1           | {"timestamp":"2026-07-18T00:05:11.310963+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"4fd90bbb-07c7-46be-be4a-45a46de4027e","event":"request_completed","status":307,"duration_ms":0.203}
+api-1           | {"timestamp":"2026-07-18T00:05:11.312765+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"f87baec1-196a-46d7-a0ee-ccc4f2942f3d","event":"request_completed","status":200,"duration_ms":1.432}
+api-1           | {"timestamp":"2026-07-18T00:05:12.984714+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"a04421eb-b771-4eda-82b5-935290f05690","event":"request_completed","status":200,"duration_ms":0.766}
+api-1           | {"timestamp":"2026-07-18T00:05:14.211608+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"cb90631e8c7f1a1c10f64bc7c101ec32","event":"request_completed","status":200,"duration_ms":0.269}
+api-1           | {"timestamp":"2026-07-18T00:05:16.138780+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"54d85db7-d20b-47e2-8e23-f734d69e5d10","event":"request_completed","status":200,"duration_ms":0.831}
+api-1           | {"timestamp":"2026-07-18T00:05:16.308933+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"c509e351-d47c-4547-b24b-ff7ce2641ef4","event":"request_completed","status":307,"duration_ms":0.22}
+api-1           | {"timestamp":"2026-07-18T00:05:16.310994+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"bc666173-da83-4211-a620-8a07c20b3b97","event":"request_completed","status":200,"duration_ms":1.533}
+api-1           | {"timestamp":"2026-07-18T00:05:17.262565+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"538e6c4c52f4805bcdf201a4b9410ce4","event":"request_completed","status":200,"duration_ms":0.287}
+worker-1        |     ~~~~~~~~~~~^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/runners.py", line 196, in run
+worker-1        |     return runner.run(main)
+worker-1        |            ~~~~~~~~~~^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/runners.py", line 119, in run
+worker-1        |     return self._loop.run_until_complete(task)
+worker-1        |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+worker-1        |     return future.result()
+worker-1        |            ~~~~~~~~~~~~~^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 214, in run
+worker-1        |     await redis.xgroup_create(
+worker-1        |         settings.telemetry_stream, settings.consumer_group, id="0", mkstream=True
+worker-1        |     )
+api-1           | {"timestamp":"2026-07-18T00:05:19.302904+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"5ab13b31-5ebf-421e-a69e-459314d68bb4","event":"request_completed","status":200,"duration_ms":0.826}
+api-1           | {"timestamp":"2026-07-18T00:05:20.322888+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"8f2c45f24840d169814660e40cbe1fcc","event":"request_completed","status":200,"duration_ms":0.177}
+api-1           | {"timestamp":"2026-07-18T00:05:21.311176+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"61fe973a-5a68-4161-a2e1-9d5471605814","event":"request_completed","status":307,"duration_ms":0.313}
+api-1           | {"timestamp":"2026-07-18T00:05:21.314739+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"c457ce4a-36db-4fbc-becb-eaa41fd1f23b","event":"request_completed","status":200,"duration_ms":2.345}
+api-1           | {"timestamp":"2026-07-18T00:05:22.466245+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"ab210a09-e29d-4178-ad26-d26d9d9073bf","event":"request_completed","status":200,"duration_ms":0.809}
+api-1           | {"timestamp":"2026-07-18T00:05:23.388088+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"9d069afb08d7754b18815614ab52a37e","event":"request_completed","status":200,"duration_ms":0.23}
+api-1           | {"timestamp":"2026-07-18T00:05:25.635902+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"80d9170c-bdb2-4608-bdd5-2680264c5e9f","event":"request_completed","status":200,"duration_ms":0.824}
+api-1           | {"timestamp":"2026-07-18T00:05:26.309808+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"bd6e22a9-2100-4754-bcd0-1a637b97960c","event":"request_completed","status":307,"duration_ms":0.328}
+api-1           | {"timestamp":"2026-07-18T00:05:26.312410+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"e7e652a9-3369-429b-90f5-5838c773208c","event":"request_completed","status":200,"duration_ms":1.739}
+api-1           | {"timestamp":"2026-07-18T00:05:26.411721+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"phase7-phase7-incident-5","event":"request_completed","status":202,"duration_ms":4.325}
+api-1           | {"timestamp":"2026-07-18T00:05:26.414721+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"6e022a35e190ec339aa769dedc64b8d7","event":"request_completed","status":200,"duration_ms":1.321}
+api-1           | {"timestamp":"2026-07-18T00:05:26.442708+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"904e378a270a82751a7a6809bc8ebcec","event":"request_completed","status":200,"duration_ms":0.194}
+api-1           | {"timestamp":"2026-07-18T00:05:26.527179+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"6731fa165abde7c0f2d5a4e65c1e1ee8","event":"request_completed","status":200,"duration_ms":1.663}
+api-1           | {"timestamp":"2026-07-18T00:05:26.639046+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"a2c8c2d9a6bdd198a739ba7ae4a9900b","event":"request_completed","status":200,"duration_ms":1.271}
+api-1           | {"timestamp":"2026-07-18T00:05:26.753038+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"294b4d8f562740d80c685e40083285cb","event":"request_completed","status":200,"duration_ms":1.735}
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py", line 765, in execute_command
+worker-1        |     conn = self.connection or await pool.get_connection()
+worker-1        |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/utils.py", line 230, in async_wrapper
+worker-1        |     return await func(*args, **kwargs)
+api-1           | {"timestamp":"2026-07-18T00:05:28.792669+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"bab1e36f-6254-4014-a556-6ba0293e645f","event":"request_completed","status":200,"duration_ms":0.769}
+api-1           | {"timestamp":"2026-07-18T00:05:29.495071+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"c69f8e2bcabfc95bccff8cdbcbb11523","event":"request_completed","status":200,"duration_ms":0.281}
+api-1           | {"timestamp":"2026-07-18T00:05:31.300461+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"2b10a719-16d7-4128-ba63-1eb37775a5f9","event":"request_completed","status":307,"duration_ms":0.339}
+api-1           | {"timestamp":"2026-07-18T00:05:31.303133+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"35c089e5-eda7-4514-9cf1-342de68cf332","event":"request_completed","status":200,"duration_ms":1.974}
+api-1           | {"timestamp":"2026-07-18T00:05:31.947823+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"09b62847-61b4-421a-b80f-6592171bf585","event":"request_completed","status":200,"duration_ms":0.707}
+api-1           | {"timestamp":"2026-07-18T00:05:32.545532+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"c9f2c15fba3df1bb8c70681b8655385f","event":"request_completed","status":200,"duration_ms":0.2}
+api-1           | {"timestamp":"2026-07-18T00:05:35.117509+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"f0b2ba61-75fe-400e-a424-3dae0662d57e","event":"request_completed","status":200,"duration_ms":0.747}
+api-1           | {"timestamp":"2026-07-18T00:05:35.603442+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"9841dc3e083a5c41229a60ccf99f0887","event":"request_completed","status":200,"duration_ms":0.239}
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 1454, in get_connection
+worker-1        |     await self.ensure_connection(connection)
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 1495, in ensure_connection
+worker-1        |     await connection.connect()
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 346, in connect
+worker-1        |     await self.retry.call_with_retry(
+api-1           | {"timestamp":"2026-07-18T00:05:36.301731+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"e9d96dab-1327-4d09-834b-3034e5c703e6","event":"request_completed","status":307,"duration_ms":0.264}
+api-1           | {"timestamp":"2026-07-18T00:05:36.304823+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"a4a14395-5806-46f2-a7e6-d096f809441f","event":"request_completed","status":200,"duration_ms":2.452}
+api-1           | {"timestamp":"2026-07-18T00:05:38.278157+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"86eea824-123c-4f92-9455-067a247584f2","event":"request_completed","status":200,"duration_ms":0.771}
+api-1           | {"timestamp":"2026-07-18T00:05:38.667841+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"8a023c84fa299bb5f455b135d86e3c8b","event":"request_completed","status":200,"duration_ms":0.205}
+api-1           | {"timestamp":"2026-07-18T00:05:41.300041+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"b97cfc82-0651-4b00-aab8-e6997991b6a6","event":"request_completed","status":307,"duration_ms":0.22}
+api-1           | {"timestamp":"2026-07-18T00:05:41.302050+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"22259ed2-ac35-4f79-b858-1b6980e75bf4","event":"request_completed","status":200,"duration_ms":1.541}
+api-1           | {"timestamp":"2026-07-18T00:05:41.442115+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"cbff702a-bb5a-4502-a577-f5e255390cf4","event":"request_completed","status":200,"duration_ms":0.822}
+api-1           | {"timestamp":"2026-07-18T00:05:41.720361+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"086aa57640d9770613af90bd2631c018","event":"request_completed","status":200,"duration_ms":0.199}
+api-1           | {"timestamp":"2026-07-18T00:05:44.611421+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"9f0b6ee1-08cc-43ae-8b03-88b6e3448dc2","event":"request_completed","status":200,"duration_ms":0.998}
+api-1           | {"timestamp":"2026-07-18T00:05:44.784447+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"9a8d952e6041ba0d5584bb3e9e553063","event":"request_completed","status":200,"duration_ms":0.187}
+api-1           | {"timestamp":"2026-07-18T00:05:46.303571+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"4be9d5fc-aee5-4298-a051-f36b390a956f","event":"request_completed","status":307,"duration_ms":0.46}
+api-1           | {"timestamp":"2026-07-18T00:05:46.306144+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"ce6b93bd-c0a7-4dc1-8538-df53dbe872f9","event":"request_completed","status":200,"duration_ms":1.784}
+api-1           | {"timestamp":"2026-07-18T00:05:46.511657+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"phase7-phase7-redis-outage","event":"request_completed","status":202,"duration_ms":4.195}
+api-1           | {"timestamp":"2026-07-18T00:05:47.751282+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"1192e1aa-5a15-491b-b234-38c07fbdf5b2","event":"request_completed","status":200,"duration_ms":0.771}
+api-1           | {"timestamp":"2026-07-18T00:05:47.819543+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"ef8c1ad0ba8d756670a6d21937ec2c48","event":"request_completed","status":200,"duration_ms":0.141}
+api-1           | {"timestamp":"2026-07-18T00:05:50.854474+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"ede84892c557c17683e64b7093ce6234","event":"request_completed","status":200,"duration_ms":0.16}
+api-1           | {"timestamp":"2026-07-18T00:05:50.915967+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"1a52807d-10c0-4afc-bdbb-ebde186c48a9","event":"request_completed","status":200,"duration_ms":0.805}
+api-1           | {"timestamp":"2026-07-18T00:05:51.303333+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"44329d84-9d09-43f2-a757-b13c8909ad46","event":"request_completed","status":307,"duration_ms":0.209}
+api-1           | {"timestamp":"2026-07-18T00:05:51.305236+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"9f52d881-07f1-4d1c-b518-8083fe610544","event":"request_completed","status":200,"duration_ms":1.413}
+api-1           | {"timestamp":"2026-07-18T00:05:53.917399+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"1bd6a837af181ec64b38130bc30ce531","event":"request_completed","status":200,"duration_ms":0.211}
+api-1           | {"timestamp":"2026-07-18T00:05:54.067847+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"0960c176-5196-459e-924e-585b885ef5d4","event":"request_completed","status":200,"duration_ms":1.281}
+api-1           | {"timestamp":"2026-07-18T00:05:56.306864+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"168f91a7-b234-4f1c-b361-b741264bbffd","event":"request_completed","status":307,"duration_ms":0.256}
+api-1           | {"timestamp":"2026-07-18T00:05:56.310335+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"a67680bc-67d4-42a9-92d9-3d4327bcb0c3","event":"request_completed","status":200,"duration_ms":2.589}
+api-1           | {"timestamp":"2026-07-18T00:05:56.975134+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"1216ab67d7508eac78ea77b1b0003d94","event":"request_completed","status":200,"duration_ms":0.208}
+api-1           | {"timestamp":"2026-07-18T00:05:57.187039+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"0b0f1ebe-13d6-4382-8729-2fcb2a4f289b","event":"request_completed","status":200,"duration_ms":0.775}
+api-1           | {"timestamp":"2026-07-18T00:06:00.021965+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"8259ca84d5311c78b92d1057e1a245f1","event":"request_completed","status":200,"duration_ms":0.171}
+api-1           | {"timestamp":"2026-07-18T00:06:00.357159+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"2c54734c-9ae7-4b15-83b3-ea762d225aa5","event":"request_completed","status":200,"duration_ms":0.738}
+api-1           | {"timestamp":"2026-07-18T00:06:01.310667+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"dc036293-742d-499a-a08b-a15c1c1ac6e2","event":"request_completed","status":307,"duration_ms":0.679}
+api-1           | {"timestamp":"2026-07-18T00:06:01.314161+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"b897df8d-deb0-4def-b039-a1b66f9bce4b","event":"request_completed","status":200,"duration_ms":2.383}
+api-1           | {"timestamp":"2026-07-18T00:06:03.076194+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"6330c542b2a1e07211bfebc539e3608d","event":"request_completed","status":200,"duration_ms":0.203}
+api-1           | {"timestamp":"2026-07-18T00:06:03.519208+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"83e26975-6248-4804-9fc8-3651dd9ea4bf","event":"request_completed","status":200,"duration_ms":0.814}
+api-1           | {"timestamp":"2026-07-18T00:06:06.139512+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"a808d18015b737e0c380cef7c70c54a9","event":"request_completed","status":200,"duration_ms":0.215}
+api-1           | {"timestamp":"2026-07-18T00:06:06.301823+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"81440a38-edfe-43a4-bda5-a1babf6e689b","event":"request_completed","status":307,"duration_ms":0.174}
+api-1           | {"timestamp":"2026-07-18T00:06:06.303414+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"cd6b2e11-e4f8-434c-b4b4-c9dd087f54af","event":"request_completed","status":200,"duration_ms":1.229}
+api-1           | {"timestamp":"2026-07-18T00:06:06.680952+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"4b563787-cc8b-4162-b4da-caca1e121b88","event":"request_completed","status":200,"duration_ms":0.758}
+api-1           | {"timestamp":"2026-07-18T00:06:09.195471+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"2f1ebb0eace6722f136443b17afcdd8d","event":"request_completed","status":200,"duration_ms":0.21}
+api-1           | {"timestamp":"2026-07-18T00:06:09.838850+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"1f56d958-3e03-4505-ac14-2c038a795b30","event":"request_completed","status":200,"duration_ms":0.797}
+api-1           | {"timestamp":"2026-07-18T00:06:11.299442+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"ebce7dc8-378c-45bb-9401-13289fb16756","event":"request_completed","status":307,"duration_ms":0.178}
+api-1           | {"timestamp":"2026-07-18T00:06:11.300851+00:00","level":"INFO","logger":"fleetpulse.api.access","message":"request completed","correlation_id":"3a3ee345-a2f4-413f-867d-9828ace0d827","event":"request_completed","status":200,"duration_ms":1.082}
+worker-1        |     ...<7 lines>...
+worker-1        |     )
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py", line 81, in call_with_retry
+worker-1        |     raise error
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py", line 69, in call_with_retry
+worker-1        |     return await do()
+worker-1        |            ^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 403, in connect_check_health
+worker-1        |     raise e
+worker-1        | redis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.
+worker-1        | Traceback (most recent call last):
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 377, in connect_check_health
+worker-1        |     await self._connect()
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 901, in _connect
+worker-1        |     reader, writer = await asyncio.open_connection(
+worker-1        |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         **self._connection_arguments()
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |     )
+worker-1        |     ^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/streams.py", line 48, in open_connection
+worker-1        |     transport, _ = await loop.create_connection(
+worker-1        |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         lambda: protocol, host, port, **kwds)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 1122, in create_connection
+worker-1        |     infos = await self._ensure_resolved(
+worker-1        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         (host, port), family=family,
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 1518, in _ensure_resolved
+worker-1        |     return await loop.getaddrinfo(host, port, family=family, type=type,
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |                                   proto=proto, flags=flags)
+worker-1        |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 939, in getaddrinfo
+worker-1        |     return await self.run_in_executor(
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         None, getaddr_func, host, port, family, type, proto, flags)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+worker-1        |     result = self.fn(*self.args, **self.kwargs)
+worker-1        |   File "/usr/local/lib/python3.13/socket.py", line 981, in getaddrinfo
+worker-1        |     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+worker-1        |                ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        | socket.gaierror: [Errno -3] Temporary failure in name resolution
+worker-1        | 
+worker-1        | During handling of the above exception, another exception occurred:
+worker-1        | 
+worker-1        | Traceback (most recent call last):
+worker-1        |   File "<frozen runpy>", line 203, in _run_module_as_main
+worker-1        |   File "<frozen runpy>", line 88, in _run_code
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 259, in <module>
+worker-1        |     main()
+worker-1        |     ~~~~^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 255, in main
+worker-1        |     asyncio.run(run(settings))
+worker-1        |     ~~~~~~~~~~~^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/runners.py", line 196, in run
+worker-1        |     return runner.run(main)
+worker-1        |            ~~~~~~~~~~^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/runners.py", line 119, in run
+worker-1        |     return self._loop.run_until_complete(task)
+worker-1        |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+worker-1        |     return future.result()
+worker-1        |            ~~~~~~~~~~~~~^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 214, in run
+worker-1        |     await redis.xgroup_create(
+worker-1        |         settings.telemetry_stream, settings.consumer_group, id="0", mkstream=True
+worker-1        |     )
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py", line 765, in execute_command
+worker-1        |     conn = self.connection or await pool.get_connection()
+worker-1        |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/utils.py", line 230, in async_wrapper
+worker-1        |     return await func(*args, **kwargs)
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 1454, in get_connection
+worker-1        |     await self.ensure_connection(connection)
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 1495, in ensure_connection
+worker-1        |     await connection.connect()
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 346, in connect
+worker-1        |     await self.retry.call_with_retry(
+worker-1        |     ...<7 lines>...
+worker-1        |     )
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py", line 81, in call_with_retry
+worker-1        |     raise error
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py", line 69, in call_with_retry
+worker-1        |     return await do()
+worker-1        |            ^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 403, in connect_check_health
+worker-1        |     raise e
+worker-1        | redis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.
+worker-1        | Traceback (most recent call last):
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 377, in connect_check_health
+worker-1        |     await self._connect()
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 901, in _connect
+worker-1        |     reader, writer = await asyncio.open_connection(
+worker-1        |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         **self._connection_arguments()
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |     )
+worker-1        |     ^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/streams.py", line 48, in open_connection
+worker-1        |     transport, _ = await loop.create_connection(
+worker-1        |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         lambda: protocol, host, port, **kwds)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 1122, in create_connection
+worker-1        |     infos = await self._ensure_resolved(
+worker-1        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         (host, port), family=family,
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 1518, in _ensure_resolved
+worker-1        |     return await loop.getaddrinfo(host, port, family=family, type=type,
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |                                   proto=proto, flags=flags)
+worker-1        |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 939, in getaddrinfo
+worker-1        |     return await self.run_in_executor(
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         None, getaddr_func, host, port, family, type, proto, flags)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+worker-1        |     result = self.fn(*self.args, **self.kwargs)
+worker-1        |   File "/usr/local/lib/python3.13/socket.py", line 981, in getaddrinfo
+worker-1        |     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+worker-1        |                ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        | socket.gaierror: [Errno -3] Temporary failure in name resolution
+worker-1        | 
+worker-1        | During handling of the above exception, another exception occurred:
+worker-1        | 
+worker-1        | Traceback (most recent call last):
+worker-1        |   File "<frozen runpy>", line 203, in _run_module_as_main
+worker-1        |   File "<frozen runpy>", line 88, in _run_code
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 259, in <module>
+worker-1        |     main()
+worker-1        |     ~~~~^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 255, in main
+worker-1        |     asyncio.run(run(settings))
+worker-1        |     ~~~~~~~~~~~^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/runners.py", line 196, in run
+worker-1        |     return runner.run(main)
+worker-1        |            ~~~~~~~~~~^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/runners.py", line 119, in run
+worker-1        |     return self._loop.run_until_complete(task)
+worker-1        |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+worker-1        |     return future.result()
+worker-1        |            ~~~~~~~~~~~~~^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 214, in run
+worker-1        |     await redis.xgroup_create(
+worker-1        |         settings.telemetry_stream, settings.consumer_group, id="0", mkstream=True
+worker-1        |     )
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py", line 765, in execute_command
+worker-1        |     conn = self.connection or await pool.get_connection()
+worker-1        |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/utils.py", line 230, in async_wrapper
+worker-1        |     return await func(*args, **kwargs)
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 1454, in get_connection
+worker-1        |     await self.ensure_connection(connection)
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 1495, in ensure_connection
+worker-1        |     await connection.connect()
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 346, in connect
+worker-1        |     await self.retry.call_with_retry(
+worker-1        |     ...<7 lines>...
+worker-1        |     )
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py", line 81, in call_with_retry
+worker-1        |     raise error
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py", line 69, in call_with_retry
+worker-1        |     return await do()
+worker-1        |            ^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 403, in connect_check_health
+worker-1        |     raise e
+worker-1        | redis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.
+worker-1        | Traceback (most recent call last):
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 377, in connect_check_health
+worker-1        |     await self._connect()
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 901, in _connect
+worker-1        |     reader, writer = await asyncio.open_connection(
+worker-1        |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         **self._connection_arguments()
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |     )
+worker-1        |     ^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/streams.py", line 48, in open_connection
+worker-1        |     transport, _ = await loop.create_connection(
+worker-1        |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         lambda: protocol, host, port, **kwds)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 1122, in create_connection
+worker-1        |     infos = await self._ensure_resolved(
+worker-1        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         (host, port), family=family,
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 1518, in _ensure_resolved
+worker-1        |     return await loop.getaddrinfo(host, port, family=family, type=type,
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |                                   proto=proto, flags=flags)
+worker-1        |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 939, in getaddrinfo
+worker-1        |     return await self.run_in_executor(
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |         None, getaddr_func, host, port, family, type, proto, flags)
+worker-1        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+worker-1        |     result = self.fn(*self.args, **self.kwargs)
+worker-1        |   File "/usr/local/lib/python3.13/socket.py", line 981, in getaddrinfo
+worker-1        |     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+worker-1        |                ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        | socket.gaierror: [Errno -3] Temporary failure in name resolution
+worker-1        | 
+worker-1        | During handling of the above exception, another exception occurred:
+worker-1        | 
+worker-1        | Traceback (most recent call last):
+worker-1        |   File "<frozen runpy>", line 203, in _run_module_as_main
+worker-1        |   File "<frozen runpy>", line 88, in _run_code
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 259, in <module>
+worker-1        |     main()
+worker-1        |     ~~~~^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 255, in main
+worker-1        |     asyncio.run(run(settings))
+worker-1        |     ~~~~~~~~~~~^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/runners.py", line 196, in run
+worker-1        |     return runner.run(main)
+worker-1        |            ~~~~~~~~~~^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/runners.py", line 119, in run
+worker-1        |     return self._loop.run_until_complete(task)
+worker-1        |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+worker-1        |     return future.result()
+worker-1        |            ~~~~~~~~~~~~~^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/fleetpulse/worker/main.py", line 214, in run
+worker-1        |     await redis.xgroup_create(
+worker-1        |         settings.telemetry_stream, settings.consumer_group, id="0", mkstream=True
+worker-1        |     )
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/client.py", line 765, in execute_command
+worker-1        |     conn = self.connection or await pool.get_connection()
+worker-1        |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/utils.py", line 230, in async_wrapper
+worker-1        |     return await func(*args, **kwargs)
+worker-1        |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 1454, in get_connection
+worker-1        |     await self.ensure_connection(connection)
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 1495, in ensure_connection
+worker-1        |     await connection.connect()
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 346, in connect
+worker-1        |     await self.retry.call_with_retry(
+worker-1        |     ...<7 lines>...
+worker-1        |     )
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py", line 81, in call_with_retry
+worker-1        |     raise error
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/retry.py", line 69, in call_with_retry
+worker-1        |     return await do()
+worker-1        |            ^^^^^^^^^^
+worker-1        |   File "/usr/local/lib/python3.13/site-packages/redis/asyncio/connection.py", line 403, in connect_check_health
+worker-1        |     raise e
+worker-1        | redis.exceptions.ConnectionError: Error -3 connecting to redis:6379. Temporary failure in name resolution.
+worker-1        | {"timestamp":"2026-07-18T00:05:52.489341+00:00","level":"INFO","logger":"fleetpulse.worker","message":"event processed","correlation_id":"phase7-phase7-redis-outage","event":"event_processed","status":"fc59b69b6e84-33e7b3ea"}

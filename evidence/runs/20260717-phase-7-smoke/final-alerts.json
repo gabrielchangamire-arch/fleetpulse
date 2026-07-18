@@ -1,0 +1,19 @@
+{
+  "data": {
+    "alerts": [
+      {
+        "activeAt": "2026-07-17T23:53:56.144381159Z",
+        "annotations": {
+          "summary": "Synthetic Alertmanager routing verification"
+        },
+        "labels": {
+          "alertname": "FleetPulseSynthetic",
+          "severity": "test"
+        },
+        "state": "firing",
+        "value": "1e+00"
+      }
+    ]
+  },
+  "status": "success"
+}

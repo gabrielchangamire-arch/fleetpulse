@@ -1,0 +1,9 @@
+NAME                                    IMAGE                                 COMMAND                  SERVICE        CREATED         STATUS                    PORTS
+fleetpulse-p7-76bf7821-alertmanager-1   prom/alertmanager:v0.28.1             "/bin/alertmanager -…"   alertmanager   3 minutes ago   Up 3 minutes              127.0.0.1:9093->9093/tcp
+fleetpulse-p7-76bf7821-api-1            fleetpulse-p7-76bf7821-api            "sh -c 'alembic upgr…"   api            3 minutes ago   Up 2 minutes (healthy)    8000/tcp
+fleetpulse-p7-76bf7821-nginx-1          nginx:1.29-alpine                     "/docker-entrypoint.…"   nginx          3 minutes ago   Up 3 minutes (healthy)    127.0.0.1:8080->8080/tcp, 127.0.0.1:8443->8443/tcp
+fleetpulse-p7-76bf7821-outbox-relay-1   fleetpulse-p7-76bf7821-outbox-relay   "python -m fleetpuls…"   outbox-relay   3 minutes ago   Up 3 minutes (healthy)    
+fleetpulse-p7-76bf7821-postgres-1       postgres:17-alpine                    "docker-entrypoint.s…"   postgres       3 minutes ago   Up 3 minutes (healthy)    5432/tcp
+fleetpulse-p7-76bf7821-prometheus-1     prom/prometheus:v3.5.0                "/bin/prometheus --c…"   prometheus     3 minutes ago   Up 3 minutes              127.0.0.1:9090->9090/tcp
+fleetpulse-p7-76bf7821-redis-1          redis:8-alpine                        "docker-entrypoint.s…"   redis          3 minutes ago   Up 19 seconds (healthy)   6379/tcp
+fleetpulse-p7-76bf7821-worker-1         fleetpulse-p7-76bf7821-worker         "python -m fleetpuls…"   worker         3 minutes ago   Up 19 seconds (healthy)   

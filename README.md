@@ -4,7 +4,7 @@ FleetPulse is a local-first Linux fleet reliability and incident-response platfo
 
 ## Project status
 
-Phases 0 through 6 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, a provisioned Prometheus/Grafana/Alertmanager stack, reproducible kind/k3d deployments, and a repeated local performance/capacity evidence suite. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+Phases 0 through 7 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, a provisioned Prometheus/Grafana/Alertmanager stack, reproducible kind/k3d deployments, repeated performance evidence, and controlled failure/recovery drills. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
 
 ## Verified today
 
@@ -25,6 +25,8 @@ Phase 4 evidence: [SLO observability verification](evidence/runs/20260717-phase-
 Phase 5 evidence: [local Kubernetes verification](evidence/runs/20260717-phase-5/summary.md).
 
 Phase 6 evidence: [performance and capacity verification](evidence/runs/20260717-phase-6/summary.md).
+
+Phase 7 evidence: [failure detection and recovery verification](evidence/runs/20260717-phase-7/summary.md).
 
 ## Non-negotiable boundaries
 
@@ -75,6 +77,10 @@ make performance-matrix
 
 See the [performance testing runbook](docs/runbooks/performance-testing.md). Workload rates are
 inputs, not capacity claims; measured results and projections are labeled separately.
+
+Controlled local failures can be reproduced with `make reliability-smoke` and
+`make reliability-drills`; see the
+[failure drill runbook](docs/runbooks/controlled-failure-drills.md).
 
 ## Architecture
 

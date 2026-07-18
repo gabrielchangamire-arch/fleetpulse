@@ -1,0 +1,37 @@
+Phase 7 verification record
+===========================
+
+Implementation commit under test:
+4dd717dfc39b8dd795ab985d2ecf52cce81461cd
+
+Repository gate:
+- Ruff lint: passed
+- Ruff format: passed, 44 files
+- mypy strict: passed, 39 source files
+- pytest: passed, 21 tests
+- repository isolation contract: passed
+
+Prometheus rule gate:
+- promtool check rules: SUCCESS, 7 rules found
+
+GitHub Actions baseline repair:
+- quality run 29621536925: passed
+- python-quality: passed
+- dependency-audit: passed
+- secret-scan: passed, full history and no leaks
+- compose-smoke: passed with ephemeral TLS generation
+
+Live drill smoke:
+- API outage injection/detection/recovery: passed
+- one threshold incident injection/detection: passed
+- Redis outage durable acceptance and exact-event recovery: passed
+
+Five-trial evidence run:
+- API alert fired and cleared; readiness recovered
+- 5/5 threshold incidents became queryable and alerted
+- nearest-rank p95 end-to-end threshold detection: 5.224 seconds
+- Redis-outage batch durable while Redis was stopped: 1
+- exact processed event after recovery: 1
+- unpublished matching outbox rows after recovery: 0
+- dead letters after recovery: 0
+- run-specific Compose project and volumes removed

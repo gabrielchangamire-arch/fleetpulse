@@ -1,0 +1,20 @@
+{
+  "compose_project": "fleetpulse-p7-089c9a04",
+  "credentials": "ephemeral and excluded from evidence",
+  "docker_version": "29.5.3",
+  "git_commit": "0cd087a6d492c62c05e1501b34d06dafc62fe2e2",
+  "git_worktree_dirty": true,
+  "host": {
+    "logical_cpus": 15,
+    "machine": "arm64",
+    "release": "25.5.0",
+    "system": "Darwin"
+  },
+  "incident_repetitions": 1,
+  "prometheus_intervals": {
+    "evaluation_seconds": 5,
+    "scrape_seconds": 5
+  },
+  "recorded_at": "2026-07-17T23:54:07.768330+00:00",
+  "repository": "/Users/gabriel/Projects/fleetpulse"
+}
