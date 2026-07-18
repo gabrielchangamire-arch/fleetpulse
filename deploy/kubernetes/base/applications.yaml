@@ -37,7 +37,7 @@ spec:
           resources:
             requests: {cpu: 10m, memory: 24Mi}
             limits: {cpu: 100m, memory: 64Mi}
-          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
       containers:
         - name: api
           image: fleetpulse-api:dev
@@ -68,7 +68,7 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
-            readOnlyRootFilesystem: false
+            readOnlyRootFilesystem: true
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -109,7 +109,7 @@ spec:
           resources:
             requests: {cpu: 10m, memory: 24Mi}
             limits: {cpu: 100m, memory: 64Mi}
-          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
       containers:
         - name: worker
           image: fleetpulse-worker:dev
@@ -128,6 +128,7 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
+            readOnlyRootFilesystem: true
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -168,7 +169,7 @@ spec:
           resources:
             requests: {cpu: 10m, memory: 24Mi}
             limits: {cpu: 100m, memory: 64Mi}
-          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
       containers:
         - name: outbox-relay
           image: fleetpulse-outbox-relay:dev
@@ -187,6 +188,7 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
+            readOnlyRootFilesystem: true
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -208,7 +210,7 @@ spec:
       securityContext: {runAsNonRoot: true, runAsUser: 101, runAsGroup: 101, seccompProfile: {type: RuntimeDefault}}
       containers:
         - name: nginx
-          image: nginx:1.29-alpine
+          image: nginx:1.29-alpine@sha256:5616878291a2eed594aee8db4dade5878cf7edcb475e59193904b198d9b830de
           imagePullPolicy: IfNotPresent
           ports:
             - {name: http, containerPort: 8080}
@@ -220,7 +222,7 @@ spec:
             timeoutSeconds: 2
             failureThreshold: 10
           livenessProbe:
-            httpGet: {scheme: HTTPS, path: /livez, port: https}
+            httpGet: {scheme: HTTPS, path: /nginx-health, port: https}
             initialDelaySeconds: 10
             periodSeconds: 10
             timeoutSeconds: 2
@@ -232,12 +234,19 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
+            readOnlyRootFilesystem: true
           volumeMounts:
             - {name: config, mountPath: /etc/nginx/nginx.conf, subPath: nginx.conf, readOnly: true}
             - {name: tls, mountPath: /etc/nginx/tls, readOnly: true}
+            - {name: nginx-cache, mountPath: /var/cache/nginx}
+            - {name: nginx-run, mountPath: /var/run}
+            - {name: tmp, mountPath: /tmp}
       volumes:
         - {name: config, configMap: {name: nginx-config}}
         - {name: tls, secret: {secretName: fleetpulse-tls}}
+        - {name: nginx-cache, emptyDir: {sizeLimit: 64Mi}}
+        - {name: nginx-run, emptyDir: {sizeLimit: 8Mi}}
+        - {name: tmp, emptyDir: {sizeLimit: 16Mi}}
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -281,6 +290,7 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
+            readOnlyRootFilesystem: true
           volumeMounts:
             - {name: spool, mountPath: /var/lib/fleetpulse}
             - {name: tls, mountPath: /etc/fleetpulse/tls, readOnly: true}

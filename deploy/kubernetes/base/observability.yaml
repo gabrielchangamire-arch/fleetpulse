@@ -14,7 +14,7 @@ spec:
       securityContext: {runAsNonRoot: true, runAsUser: 65534, runAsGroup: 65534, fsGroup: 65534, seccompProfile: {type: RuntimeDefault}}
       containers:
         - name: prometheus
-          image: prom/prometheus:v3.5.0
+          image: prom/prometheus:v3.5.0@sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996
           args: [--config.file=/etc/prometheus/prometheus.yml, --storage.tsdb.path=/prometheus]
           ports: [{name: http, containerPort: 9090}]
           readinessProbe: {httpGet: {path: /-/ready, port: http}, periodSeconds: 3, timeoutSeconds: 2}
@@ -25,6 +25,7 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
+            readOnlyRootFilesystem: true
           volumeMounts:
             - {name: config, mountPath: /etc/prometheus/prometheus.yml, subPath: prometheus.yml, readOnly: true}
             - {name: config, mountPath: /etc/prometheus/rules.yml, subPath: rules.yml, readOnly: true}
@@ -49,7 +50,7 @@ spec:
       securityContext: {runAsNonRoot: true, runAsUser: 65534, runAsGroup: 65534, seccompProfile: {type: RuntimeDefault}}
       containers:
         - name: alertmanager
-          image: prom/alertmanager:v0.28.1
+          image: prom/alertmanager:v0.28.1@sha256:27c475db5fb156cab31d5c18a4251ac7ed567746a2483ff264516437a39b15ba
           args: [--config.file=/etc/alertmanager/alertmanager.yml]
           ports: [{name: http, containerPort: 9093}]
           readinessProbe: {httpGet: {path: /-/ready, port: http}, periodSeconds: 3, timeoutSeconds: 2}
@@ -60,8 +61,13 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
-          volumeMounts: [{name: config, mountPath: /etc/alertmanager/alertmanager.yml, subPath: alertmanager.yml, readOnly: true}]
-      volumes: [{name: config, configMap: {name: alertmanager-config}}]
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - {name: config, mountPath: /etc/alertmanager/alertmanager.yml, subPath: alertmanager.yml, readOnly: true}
+            - {name: data, mountPath: /alertmanager}
+      volumes:
+        - {name: config, configMap: {name: alertmanager-config}}
+        - {name: data, emptyDir: {sizeLimit: 128Mi}}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -79,7 +85,7 @@ spec:
       securityContext: {runAsNonRoot: true, runAsUser: 472, runAsGroup: 0, fsGroup: 472, seccompProfile: {type: RuntimeDefault}}
       containers:
         - name: grafana
-          image: grafana/grafana:12.1.0
+          image: grafana/grafana:12.1.0@sha256:6ac590e7cabc2fbe8d7b8fc1ce9c9f0582177b334e0df9c927ebd9670469440f
           env:
             - {name: GF_AUTH_ANONYMOUS_ENABLED, value: "true"}
             - {name: GF_AUTH_ANONYMOUS_ORG_ROLE, value: Viewer}
@@ -94,6 +100,7 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
+            readOnlyRootFilesystem: true
           volumeMounts:
             - {name: config, mountPath: /etc/grafana/provisioning/datasources/datasource.yml, subPath: datasource.yml, readOnly: true}
             - {name: config, mountPath: /etc/grafana/provisioning/dashboards/dashboards.yml, subPath: dashboards.yml, readOnly: true}

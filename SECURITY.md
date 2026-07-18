@@ -17,7 +17,14 @@ Nginx is the only application ingress. PostgreSQL and Redis remain on private co
 
 The optional assistant receives curated, redacted evidence. It has no shell, Kubernetes, cloud, deployment, or remediation tool. It may return a cited proposal; a human may record approval, but approval does not create an execution path.
 
+## Supply chain
+
+GitHub Actions use commit SHAs; container references use OCI digests; Python dependencies use
+hashed lock files. CI retains CycloneDX SBOMs and complete Trivy reports for every application
+image. A green gate means no reported HIGH/CRITICAL finding had an available upstream fix at scan
+time—it does not mean the scanner reported zero inherited risk. Review the full artifact and the
+risk register.
+
 ## Reporting
 
 Do not open a public issue containing an exploit or secret. Record a sanitized reproduction and remediation in the repository's security documentation.
-

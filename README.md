@@ -89,6 +89,11 @@ evaluation. Run `make assistant-eval` or start only the offline optional service
 `make assistant-up`; see the [assistant runbook](docs/runbooks/assistant.md). Human approval records
 a decision but cannot execute a remediation.
 
+For the complete local CI-equivalent security gate, run `make final-gate`. `make clean-clone`
+repeats the gate and Compose smoke tests from committed files only. See the
+[supply-chain runbook](docs/runbooks/supply-chain.md) and the
+[evidence-to-claim index](evidence/INDEX.md).
+
 ## Architecture
 
 The system design and network boundaries are documented in [docs/architecture/system.md](docs/architecture/system.md). Security assumptions are in [docs/security/threat-model.md](docs/security/threat-model.md), and outstanding engineering risks are tracked in the [risk register](docs/risk-register.md).

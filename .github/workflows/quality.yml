@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.12"
           cache: pip
@@ -31,28 +31,66 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.12"
       - name: Audit Python dependencies
         run: |
-          python -m pip install pip-audit
-          python -m pip install -e ".[dev]"
-          python -m pip_audit
+          python -m pip install pip-audit==2.10.1
+          python -m pip_audit --require-hashes -r requirements.lock
 
   secret-scan:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
         with:
           fetch-depth: 0
       - name: Scan full repository history
         run: >-
           docker run --rm -v "$PWD:/repo"
-          ghcr.io/gitleaks/gitleaks:v8.24.3
+          ghcr.io/gitleaks/gitleaks:v8.24.3@sha256:e1b35e12a8c6fa8901f060459cfb6b2fc4c484d3afbe3b029733a3bbfab07055
           git --redact --verbose /repo
+
+  manifest-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install contract dependencies
+        run: |
+          python -m venv .venv
+          .venv/bin/python -m pip install pyyaml==6.0.3
+      - name: Validate workflow, manifests, boundaries, and evidence claims
+        run: ./scripts/security/static_gate.sh
+
+  image-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Prepare report runtime
+        run: python -m venv .venv
+      - name: Build application images
+        run: ./scripts/security/build_images.sh phase9
+      - name: Generate SBOMs and scan all application images
+        run: ./scripts/security/scan_images.sh phase9 artifacts/supply-chain
+      - name: Upload SBOM and vulnerability evidence
+        if: always()
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+        with:
+          name: fleetpulse-supply-chain-${{ github.sha }}
+          path: artifacts/supply-chain
+          if-no-files-found: error
+          retention-days: 30
 
   compose-smoke:
     runs-on: ubuntu-latest
@@ -61,8 +99,8 @@ jobs:
       FLEETPULSE_AGENT_TOKEN: ci-test-token-not-a-secret
       FLEETPULSE_POSTGRES_PASSWORD: ci-test-password-not-a-secret
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.12"
           cache: pip

@@ -33,6 +33,11 @@ data:
         ssl_certificate_key /etc/nginx/tls/tls.key;
         ssl_protocols TLSv1.2 TLSv1.3;
         client_max_body_size 2m;
+        location = /nginx-health {
+          access_log off;
+          default_type text/plain;
+          return 200 "ok\n";
+        }
         location / {
           proxy_pass http://fleetpulse_api;
           proxy_connect_timeout 2s;

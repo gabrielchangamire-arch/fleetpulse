@@ -4,7 +4,7 @@ BIN := $(VENV)/bin
 
 COMPOSE := docker compose
 
-.PHONY: assistant-eval assistant-up bootstrap compose-build compose-down compose-up contract format-check k3d-down k3d-up k8s-build k8s-validate kind-down kind-up lint performance-matrix performance-smoke phase1-smoke phase2-smoke reliability-drills reliability-smoke test typecheck verify
+.PHONY: assistant-eval assistant-up bootstrap clean-clone compose-build compose-down compose-up contract final-gate format-check image-build image-scan k3d-down k3d-up k8s-build k8s-validate kind-down kind-up lint lock performance-matrix performance-smoke phase1-smoke phase2-smoke reliability-drills reliability-smoke security-static test typecheck verify
 
 assistant-eval:
 	$(BIN)/python tools/assistant_accuracy.py
@@ -14,8 +14,12 @@ assistant-up:
 
 bootstrap:
 	$(PYTHON) -m venv $(VENV)
-	$(BIN)/python -m pip install --upgrade pip
-	$(BIN)/python -m pip install -e ".[dev]"
+	$(BIN)/python -m pip install --upgrade pip==26.0.1
+	$(BIN)/python -m pip install --require-hashes -r requirements-dev.lock
+	$(BIN)/python -m pip install --no-deps -e .
+
+clean-clone:
+	./scripts/ci/clean_clone_gate.sh
 
 compose-build:
 	$(COMPOSE) build
@@ -60,6 +64,17 @@ format-check:
 lint:
 	$(BIN)/ruff check .
 
+lock:
+	$(BIN)/python -m pip install pip-tools==7.5.3
+	$(BIN)/pip-compile --generate-hashes --strip-extras --output-file=requirements.lock pyproject.toml
+	$(BIN)/pip-compile --generate-hashes --strip-extras --extra dev --output-file=requirements-dev.lock pyproject.toml
+
+image-build:
+	./scripts/security/build_images.sh phase9
+
+image-scan: image-build
+	./scripts/security/scan_images.sh phase9 artifacts/supply-chain
+
 phase1-smoke:
 	$(BIN)/python scripts/phase1_smoke.py --token "$(FLEETPULSE_AGENT_TOKEN)"
 
@@ -78,6 +93,9 @@ reliability-smoke:
 reliability-drills:
 	$(BIN)/python tools/reliability_runner.py --incident-repetitions 5
 
+security-static:
+	./scripts/security/static_gate.sh
+
 test:
 	$(BIN)/pytest
 
@@ -86,3 +104,7 @@ typecheck:
 
 verify: lint format-check typecheck test contract
 	$(BIN)/python tools/assistant_accuracy.py >/dev/null
+	$(BIN)/python tools/ci_contract.py
+	$(BIN)/python tools/evidence_claims.py
+
+final-gate: verify security-static image-scan

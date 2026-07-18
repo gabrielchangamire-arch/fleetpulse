@@ -15,6 +15,7 @@ dist/
 coverage.xml
 htmlcov/
 .coverage
+artifacts/
 
 # Generated secrets and local TLS material
 secrets/
@@ -26,4 +27,3 @@ certs/generated/
 # Local runtime state
 .fleetpulse/
 data/
-

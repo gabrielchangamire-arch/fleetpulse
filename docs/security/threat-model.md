@@ -28,6 +28,6 @@
 | AI prompt injection or hallucination | Bounded untrusted evidence, pre/post redaction, strict output schema, citation allowlist, fail-closed abstention, deterministic accuracy tests, no tools |
 | AI/provider availability becomes operational dependency | Disabled default profile, offline test provider, no core-service dependency, no database/Redis credential |
 | Unauthorized remediation | No execution endpoint; generated proposals require explicit review; approval receipts state execution is unavailable |
-| Supply-chain compromise | Locked dependencies, dependency and image scanning, SBOMs, pinned CI actions |
+| Supply-chain compromise | Hashed Python locks; commit-pinned actions; digest-pinned base, service, and scanner images; dependency/config/image scans; per-image CycloneDX SBOMs and checksums |
 
 Residual risks and test evidence are updated as each runtime phase is implemented.
