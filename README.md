@@ -4,7 +4,7 @@ FleetPulse is a local-first Linux fleet reliability and incident-response platfo
 
 ## Project status
 
-Phases 0 through 8 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, a provisioned Prometheus/Grafana/Alertmanager stack, reproducible kind/k3d deployments, repeated performance evidence, controlled failure/recovery drills, and an optional read-only incident assistant with deterministic safety evaluation. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+Phases 0 through 9 are complete and verified. FleetPulse has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, a provisioned Prometheus/Grafana/Alertmanager stack, reproducible kind/k3d deployments, repeated performance evidence, controlled failure/recovery drills, an optional read-only incident assistant with deterministic safety evaluation, and immutable CI/supply-chain gates. See [ROADMAP.md](ROADMAP.md).
 
 ## Verified today
 
@@ -30,6 +30,8 @@ Phase 7 evidence: [failure detection and recovery verification](evidence/runs/20
 
 Phase 8 evidence: [read-only assistant safety verification](evidence/runs/20260717-phase-8/summary.md).
 
+Phase 9 evidence: [final CI and supply-chain verification](evidence/runs/20260717-phase-9/summary.md).
+
 ## Non-negotiable boundaries
 
 - This repository is independent from every Nemo or Oracle VM project.
@@ -40,9 +42,9 @@ Phase 8 evidence: [read-only assistant safety verification](evidence/runs/202607
 - Results are labeled as measured, projected, or target values.
 - Raw evidence supporting performance and reliability claims is preserved under `evidence/`.
 
-## Planned developer workflow
+## Developer workflow
 
-The initial repository checks can be run with Python 3.11 or later:
+The repository checks require Python 3.12 or later:
 
 ```bash
 make bootstrap

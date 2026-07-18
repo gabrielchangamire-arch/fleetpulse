@@ -1,0 +1,33 @@
+{
+  "classification": "measured local CI, supply-chain, Compose, and Kubernetes evidence",
+  "commands": [
+    "make verify",
+    "make security-static",
+    "./scripts/security/scan_images.sh phase9 artifacts/supply-chain",
+    "docker run --rm -v $PWD:/repo gitleaks@sha256 git --redact --verbose /repo",
+    "FLEETPULSE_CLEAN_OUTPUT_DIR=artifacts/phase9-final make clean-clone",
+    "FLEETPULSE_AGENT_TOKEN=<placeholder> FLEETPULSE_POSTGRES_PASSWORD=<placeholder> make kind-up",
+    "phase1_smoke.py and phase2_smoke.py through kind TLS ingress",
+    "make kind-down",
+    "FLEETPULSE_AGENT_TOKEN=<placeholder> FLEETPULSE_POSTGRES_PASSWORD=<placeholder> make k3d-up",
+    "phase1_smoke.py and phase2_smoke.py through k3d TLS ingress",
+    "make k3d-down"
+  ],
+  "docker_server_version": "29.5.3",
+  "git_sha_under_test": "83ac5ebacfc2b68df17c92486a304e55f0c2599c",
+  "host_architecture": "arm64",
+  "host_os": "macOS 26.5.2 (25F84)",
+  "k3d_version": "v5.9.0",
+  "kind_version": "v0.32.0",
+  "kubectl_client_version": "v1.34.1",
+  "python_version": "3.13.14",
+  "scenario": "phase-9-final-delivery-gate",
+  "tool_images": {
+    "actionlint": "rhysd/actionlint:1.7.12@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667",
+    "kubeconform": "ghcr.io/yannh/kubeconform:v0.8.0@sha256:faffaf43f95aa6425306e1ab8d6fcad72acb9049158f38e574c085ea1ec0f64e",
+    "syft": "anchore/syft:v1.44.0@sha256:86fde6445b483d902fe011dd9f68c4987dd94e07da1e9edc004e3c2422650de6",
+    "trivy": "aquasec/trivy:0.70.0@sha256:be1190afcb28352bfddc4ddeb71470835d16462af68d310f9f4bca710961a41e"
+  },
+  "utc_date": "2026-07-18",
+  "worktree_clean_before_evidence_generation": true
+}

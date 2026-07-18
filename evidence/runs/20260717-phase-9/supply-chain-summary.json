@@ -1,0 +1,53 @@
+{
+  "images": {
+    "agent": {
+      "components_total": 2865,
+      "critical": 3,
+      "file_components": 2735,
+      "fixable_high_or_critical": 0,
+      "high": 19,
+      "package_components": 130
+    },
+    "api": {
+      "components_total": 2865,
+      "critical": 3,
+      "file_components": 2735,
+      "fixable_high_or_critical": 0,
+      "high": 19,
+      "package_components": 130
+    },
+    "assistant": {
+      "components_total": 2865,
+      "critical": 3,
+      "file_components": 2735,
+      "fixable_high_or_critical": 0,
+      "high": 19,
+      "package_components": 130
+    },
+    "outbox-relay": {
+      "components_total": 2865,
+      "critical": 3,
+      "file_components": 2735,
+      "fixable_high_or_critical": 0,
+      "high": 19,
+      "package_components": 130
+    },
+    "worker": {
+      "components_total": 2865,
+      "critical": 3,
+      "file_components": 2735,
+      "fixable_high_or_critical": 0,
+      "high": 19,
+      "package_components": 130
+    }
+  },
+  "policy": "Report all HIGH/CRITICAL findings and fail the gate when any has an upstream fix.",
+  "totals": {
+    "components_total": 14325,
+    "critical": 15,
+    "file_components": 13675,
+    "fixable_high_or_critical": 0,
+    "high": 95,
+    "package_components": 650
+  }
+}

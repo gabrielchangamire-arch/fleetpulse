@@ -16,3 +16,4 @@ Phase summaries:
 - [Phase 6 performance and capacity](runs/20260717-phase-6/summary.md)
 - [Phase 7 failure detection and recovery](runs/20260717-phase-7/summary.md)
 - [Phase 8 assistant safety contract](runs/20260717-phase-8/summary.md)
+- [Phase 9 final CI and supply-chain gate](runs/20260717-phase-9/summary.md)

@@ -1,0 +1,61 @@
+Phase 9 verification against 83ac5ebacfc2b68df17c92486a304e55f0c2599c
+
+make verify
+- ruff check: passed
+- ruff format --check: 58 files already formatted
+- mypy strict: 53 source files, no issues
+- pytest: 32 passed, 1 third-party deprecation warning
+- repository contract: passed
+- assistant deterministic gate: passed
+- CI/supply-chain reference contract: passed
+- evidence-to-claim audit before Phase 9 evidence: 6 claims passed
+
+static security gate
+- actionlint: passed
+- kubeconform strict kind overlay: 42 valid, 0 invalid, 0 errors
+- kubeconform strict k3d overlay: 42 valid, 0 invalid, 0 errors
+- Kubernetes boundary contract: passed
+- default and optional-AI Compose configurations: valid
+- Trivy configuration scan: 16 files, 0 HIGH/CRITICAL misconfigurations
+
+dependency and secret audits
+- pip-audit 2.10.1 with requirements.lock hashes: no known vulnerabilities found
+- Gitleaks 8.24.3: 23 commits and approximately 1.19 MB scanned; no leaks found
+
+application-image supply chain
+- five application images built from the digest-pinned python:3.13-slim base
+- five CycloneDX JSON SBOMs and five full Trivy JSON reports generated
+- 2,865 SBOM components per image: 2,735 file and 130 package components
+- 19 HIGH and 3 CRITICAL findings per image, inherited from the shared base image
+- 0 HIGH/CRITICAL findings had an available upstream fixed version
+- policy passed: retain all findings and fail if any HIGH/CRITICAL item is fixable
+- 7,677,824 bytes of full local SBOM/report/checksum output preserved in ignored artifacts
+
+clean-clone CI-equivalent gate
+- committed files cloned into an ephemeral directory
+- Python 3.13 hashed bootstrap, verify, pip-audit, static gate, image build/scan: passed
+- isolated Compose build and all health checks: passed
+- Phase 1 TLS authentication, correlation, idempotency, and durable-row smoke: passed
+- Phase 2 ingestion, fleet state, incident, and deployment smoke: passed
+- exact tested SHA: 83ac5ebacfc2b68df17c92486a304e55f0c2599c
+- isolated containers, networks, and volumes removed
+
+local Kubernetes runtime
+- clean kind cold start: 13/13 pods ready, 0 restarts
+- kind Phase 1 and Phase 2 TLS smoke tests: passed
+- clean k3d cold start: 13/13 pods ready, 0 restarts
+- k3d Phase 1 and Phase 2 TLS smoke tests: passed
+- both temporary fleetpulse clusters and their attached volumes removed
+
+repository boundary
+- /Users/gabriel/Documents/Fleet-Pulse status hash remained
+  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+Limitations
+- Image counts are repeated per-image results sharing one base and are not unique-vulnerability totals.
+- A green scan does not claim zero vulnerabilities; 19 HIGH and 3 CRITICAL unfixed inherited
+  findings remain visible per image and require continued upstream monitoring.
+- Kubernetes and Compose results are single-host local functional checks, not production-scale or
+  cloud-availability measurements.
+- Full 7.68 MB SBOM and Trivy reports remain ignored locally and are uploaded by GitHub Actions
+  with 30-day retention; committed checksums and the compact summary identify the tested set.

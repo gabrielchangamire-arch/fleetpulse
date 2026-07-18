@@ -2,7 +2,8 @@
 
 FleetPulse advances only after the current phase has a reproducible verification record. A phase report records the exact commands, results, environment, known limitations, and the Git commit under test.
 
-Current status: Phases 0 through 8 are complete. Phase 9 is next.
+Current status: Phases 0 through 9 are complete and verified. The planned local-first portfolio
+scope is delivered; future work is maintenance or optional expansion, not an unfinished phase.
 
 | Phase | Scope | Exit evidence |
 | --- | --- | --- |

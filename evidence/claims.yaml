@@ -77,3 +77,16 @@ claims:
     limitations: >-
       No live model call was measured; five deterministic cases validate the application safety
       contract, not general AI accuracy.
+  - id: immutable_supply_chain_gate
+    classification: evaluated
+    resume_bullet: >-
+      Hardened FleetPulse delivery with hash-locked Python dependencies, digest-pinned runtime and
+      scanner images, commit-pinned GitHub Actions, strict manifest checks, image vulnerability
+      policy, CycloneDX SBOMs, secret scanning, and a clean-clone CI-equivalent gate.
+    evidence:
+      - evidence/runs/20260717-phase-9/summary.md
+      - evidence/runs/20260717-phase-9/verification.txt
+      - evidence/runs/20260717-phase-9/supply-chain-summary.json
+    limitations: >-
+      The local scan reported inherited unfixed base-image findings; a passing gate means no
+      HIGH/CRITICAL finding had an available upstream fix, not that the images were vulnerability-free.

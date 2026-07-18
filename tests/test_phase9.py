@@ -19,7 +19,7 @@ def test_tool_and_runtime_images_are_digest_pinned() -> None:
 
 def test_every_portfolio_claim_has_existing_evidence() -> None:
     claims = load_claims()
-    assert len(claims) == 6
+    assert len(claims) == 7
     assert INDEX.read_text() == render_index(claims)
 
 
