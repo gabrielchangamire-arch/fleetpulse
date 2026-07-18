@@ -1,0 +1,21 @@
+{
+  "classification": "measured local deterministic safety/accuracy evidence",
+  "commands": [
+    "make verify",
+    ".venv/bin/python tools/assistant_accuracy.py --output evidence/runs/20260717-phase-8/accuracy.json",
+    "docker run --rm -v $PWD:/repo ghcr.io/gitleaks/gitleaks:v8.24.3 git --redact --verbose /repo",
+    "COMPOSE_PROJECT_NAME=fleetpulse-phase8-evidence docker compose --profile ai up -d --build --wait assistant",
+    "HTTP readiness, analysis, and human-review smoke requests",
+    "Docker network, port, user, and environment-name inspection",
+    "COMPOSE_PROJECT_NAME=fleetpulse-phase8-evidence docker compose --profile ai down --remove-orphans"
+  ],
+  "docker_server_version": "29.5.3",
+  "git_sha_under_test": "ac8a43fc8dd975198546b00eb09416d2cd9ecad0",
+  "host_architecture": "arm64",
+  "host_os": "macOS 26.5.2 (25F84)",
+  "live_model_call_performed": false,
+  "provider": "offline deterministic fixture provider",
+  "scenario": "phase-8-read-only-assistant",
+  "utc_date": "2026-07-18",
+  "worktree_clean_before_evidence_generation": true
+}

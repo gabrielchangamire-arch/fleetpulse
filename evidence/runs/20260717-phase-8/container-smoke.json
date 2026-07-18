@@ -1,0 +1,44 @@
+{
+  "analysis": {
+    "abstained": false,
+    "citations_resolve": true,
+    "proposal_status": "requires_human_approval",
+    "provider": "offline",
+    "redacted_marker_present": true,
+    "redaction_count": 1,
+    "request_id": "phase8-evidence-analysis",
+    "safety": {
+      "approval_required": true,
+      "can_execute": false,
+      "read_only": true
+    },
+    "secret_absent": true,
+    "status": 200
+  },
+  "container": {
+    "default_profile_includes_assistant": false,
+    "environment_names": [
+      "FLEETPULSE_ASSISTANT_API_KEY",
+      "FLEETPULSE_ASSISTANT_LOG_LEVEL",
+      "FLEETPULSE_ASSISTANT_MODEL",
+      "FLEETPULSE_ASSISTANT_PROVIDER"
+    ],
+    "has_operational_credentials": false,
+    "network_count": 1,
+    "network_role": "edge-only",
+    "port_binding": "127.0.0.1:8081",
+    "user": "fleetpulse"
+  },
+  "ready": {
+    "authority": "read-only",
+    "provider": "offline",
+    "request_id": "phase8-evidence-ready",
+    "status": 200
+  },
+  "review": {
+    "decision": "approved",
+    "execution_available": false,
+    "request_id": "phase8-evidence-review",
+    "status": 200
+  }
+}

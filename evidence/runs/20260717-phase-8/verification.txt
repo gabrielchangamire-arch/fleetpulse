@@ -1,0 +1,47 @@
+Phase 8 verification against ac8a43fc8dd975198546b00eb09416d2cd9ecad0
+
+make verify
+- ruff check: passed
+- ruff format --check: 54 files already formatted
+- mypy strict: 49 source files, no issues
+- pytest: 28 passed (7 assistant tests), 1 third-party deprecation warning
+- repository contract: passed
+- assistant golden-set gate: passed
+
+assistant accuracy harness
+- cases: 5
+- passed: 5
+- failed: 0
+- deterministic pass rate: 1.0
+- supported citations, redaction, unknown-citation abstention, empty-evidence abstention,
+  prompt-injection containment, read-only authority, and approval gating: passed
+
+optional Compose container
+- image built from services/assistant/Dockerfile
+- health: healthy
+- readiness authority: read-only
+- secret marker absent after one measured redaction
+- every returned citation resolved to request evidence
+- generated proposal status: requires_human_approval
+- approved review receipt: execution_available=false
+- host binding: 127.0.0.1:8081
+- container user: fleetpulse
+- network: edge only
+- operational database, Redis, and agent credentials: absent
+- assistant absent from default Compose profile
+- isolated evidence container and network removed after the smoke test
+
+secret scan
+- gitleaks v8.24.3 scanned 21 commits and approximately 952 KB
+- no leaks found
+
+repository boundary
+- /Users/gabriel/Documents/Fleet-Pulse status hash remained
+  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+Limitations
+- No live OpenAI request was made and no external API credential was used.
+- The 100% result is a five-case deterministic application safety-contract evaluation, not a
+  general model-accuracy or production-scale claim.
+- Human review receipts are bounded in-memory demo audit state and are not durable across restart
+  or coordinated across replicas.

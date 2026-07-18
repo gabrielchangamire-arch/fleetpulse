@@ -4,7 +4,7 @@ FleetPulse is a local-first Linux fleet reliability and incident-response platfo
 
 ## Project status
 
-Phases 0 through 7 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, a provisioned Prometheus/Grafana/Alertmanager stack, reproducible kind/k3d deployments, repeated performance evidence, and controlled failure/recovery drills. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
+Phases 0 through 8 are complete and verified. FleetPulse now has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, a provisioned Prometheus/Grafana/Alertmanager stack, reproducible kind/k3d deployments, repeated performance evidence, controlled failure/recovery drills, and an optional read-only incident assistant with deterministic safety evaluation. Runtime services are intentionally introduced one verified phase at a time; see [ROADMAP.md](ROADMAP.md).
 
 ## Verified today
 
@@ -27,6 +27,8 @@ Phase 5 evidence: [local Kubernetes verification](evidence/runs/20260717-phase-5
 Phase 6 evidence: [performance and capacity verification](evidence/runs/20260717-phase-6/summary.md).
 
 Phase 7 evidence: [failure detection and recovery verification](evidence/runs/20260717-phase-7/summary.md).
+
+Phase 8 evidence: [read-only assistant safety verification](evidence/runs/20260717-phase-8/summary.md).
 
 ## Non-negotiable boundaries
 
@@ -81,6 +83,11 @@ inputs, not capacity claims; measured results and projections are labeled separa
 Controlled local failures can be reproduced with `make reliability-smoke` and
 `make reliability-drills`; see the
 [failure drill runbook](docs/runbooks/controlled-failure-drills.md).
+
+The incident assistant is disabled by default and requires no model or network for its golden-set
+evaluation. Run `make assistant-eval` or start only the offline optional service with
+`make assistant-up`; see the [assistant runbook](docs/runbooks/assistant.md). Human approval records
+a decision but cannot execute a remediation.
 
 ## Architecture
 
