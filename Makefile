@@ -4,7 +4,13 @@ BIN := $(VENV)/bin
 
 COMPOSE := docker compose
 
-.PHONY: bootstrap compose-build compose-down compose-up contract format-check k3d-down k3d-up k8s-build k8s-validate kind-down kind-up lint performance-matrix performance-smoke phase1-smoke phase2-smoke reliability-drills reliability-smoke test typecheck verify
+.PHONY: assistant-eval assistant-up bootstrap compose-build compose-down compose-up contract format-check k3d-down k3d-up k8s-build k8s-validate kind-down kind-up lint performance-matrix performance-smoke phase1-smoke phase2-smoke reliability-drills reliability-smoke test typecheck verify
+
+assistant-eval:
+	$(BIN)/python tools/assistant_accuracy.py
+
+assistant-up:
+	$(COMPOSE) --profile ai up -d --build --wait assistant
 
 bootstrap:
 	$(PYTHON) -m venv $(VENV)
@@ -79,3 +85,4 @@ typecheck:
 	$(BIN)/mypy
 
 verify: lint format-check typecheck test contract
+	$(BIN)/python tools/assistant_accuracy.py >/dev/null

@@ -56,9 +56,12 @@ REQUIRED_FILES = (
     "migrations/versions/20260717_0002_phase2.py",
     "pyproject.toml",
     "services/api/Dockerfile",
+    "services/assistant/Dockerfile",
     "services/outbox_relay/Dockerfile",
     "services/worker/Dockerfile",
     "src/fleetpulse/telemetry.py",
+    "src/fleetpulse/assistant/app.py",
+    "evaluations/assistant_golden.json",
 )
 
 

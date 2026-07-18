@@ -25,9 +25,9 @@
 | Lateral access to data stores | No public ports, private networks, least-privilege roles, Kubernetes NetworkPolicies |
 | Queue poisoning or retry storm | Schema validation, capped retries with jitter, retry budget, DLQ, backlog alerts |
 | Cache poisoning or stale authorization | Cache only non-secret derived reads, versioned keys, bounded TTL, source-of-truth checks |
-| AI prompt injection or hallucination | Curated evidence, redaction, strict output schema, citations, abstention, accuracy tests, no tools |
-| Unauthorized remediation | No execution endpoint; approval is auditable metadata only |
+| AI prompt injection or hallucination | Bounded untrusted evidence, pre/post redaction, strict output schema, citation allowlist, fail-closed abstention, deterministic accuracy tests, no tools |
+| AI/provider availability becomes operational dependency | Disabled default profile, offline test provider, no core-service dependency, no database/Redis credential |
+| Unauthorized remediation | No execution endpoint; generated proposals require explicit review; approval receipts state execution is unavailable |
 | Supply-chain compromise | Locked dependencies, dependency and image scanning, SBOMs, pinned CI actions |
 
 Residual risks and test evidence are updated as each runtime phase is implemented.
-

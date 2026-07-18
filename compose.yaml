@@ -160,6 +160,33 @@ services:
     networks:
       - data
 
+  assistant:
+    profiles: ["ai"]
+    build:
+      context: .
+      dockerfile: services/assistant/Dockerfile
+    environment:
+      FLEETPULSE_ASSISTANT_PROVIDER: ${FLEETPULSE_ASSISTANT_PROVIDER:-offline}
+      FLEETPULSE_ASSISTANT_API_KEY: ${FLEETPULSE_ASSISTANT_API_KEY:-}
+      FLEETPULSE_ASSISTANT_MODEL: ${FLEETPULSE_ASSISTANT_MODEL:-gpt-5-mini}
+      FLEETPULSE_ASSISTANT_LOG_LEVEL: INFO
+    ports: ["127.0.0.1:8081:8081"]
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8081/readyz', timeout=2)",
+        ]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - edge
+
   prometheus:
     image: prom/prometheus:v3.5.0
     command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus"]

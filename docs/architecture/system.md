@@ -9,7 +9,8 @@
 5. Workers update fleet summaries, evaluate incident conditions, and manage retry and dead-letter state through idempotent database transitions.
 6. Redis also provides bounded cache-aside entries and narrow distributed coordination with ownership tokens and expirations.
 7. Prometheus scrapes bounded-cardinality metrics. Grafana visualizes service and fleet health. Alertmanager routes locally testable alerts.
-8. The optional assistant receives only evidence selected and redacted by the API. It returns cited analysis or abstains and cannot execute changes.
+8. The optional assistant receives only operator-selected evidence, redacts it before provider
+   access, returns cited analysis or abstains, and cannot execute changes.
 
 ## Durable ingestion flow
 
@@ -48,6 +49,8 @@ Acknowledgement occurs only after the PostgreSQL transaction commits. Redis unav
 | API/relay/workers to Redis | RESP/TCP | Private network only |
 | Prometheus scrapes | HTTP/TCP | Monitoring network only |
 | Grafana to Prometheus | HTTP/TCP | Monitoring network only |
+| Operator to optional assistant | HTTP/TCP | Loopback only; disabled by default |
+| Optional assistant to provider | HTTPS/TCP | Redacted evidence only; no tools or operational credentials |
 
 Local diagnostics will explicitly exercise DNS resolution, TCP connections, TLS negotiation, HTTP behavior, socket visibility, reverse proxying, caching, load balancing, and firewall-style NetworkPolicies.
 
@@ -61,4 +64,3 @@ Local diagnostics will explicitly exercise DNS resolution, TCP connections, TLS 
 | Alert detection | 95% within 60 seconds | First threshold-crossing sample through durable incident creation |
 
 These values are targets until evidence demonstrates otherwise.
-
