@@ -28,3 +28,12 @@ provide a backend API key, available model, approved request budget and optional
 
 The existing fleet stack, container scans and load/drill suites were not rerun for this isolated
 assistant change. The branch preserves earlier evidence without presenting it as a new measurement.
+
+## CI follow-up
+
+The first draft-branch CI run passed Python quality, dependency audit, full-history secret scan,
+manifest security and Compose ingestion smoke. Image security failed: the existing pinned base
+contained 50 fixable HIGH/CRITICAL findings per image, repeated across five images. The official
+Python 3.13 slim index was refreshed to the registry-verified digest
+`sha256:bf44cdfcb76cd3b41e879bc058fc37ec5872002ccfde7fcb765e218cde0cd79c`
+(Python 3.13.16, published 2026-10-06). The gate and finding thresholds are unchanged.
