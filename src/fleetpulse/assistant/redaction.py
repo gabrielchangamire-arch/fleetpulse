@@ -23,8 +23,8 @@ class SecretRedactor:
         re.compile(r"(?i)(authorization\s*:\s*bearer\s+)[^\s,;]+"),
         re.compile(r"(?i)\b(bearer\s+)[A-Za-z0-9._~+/=-]{8,}"),
         re.compile(
-            r"(?i)\b(api[_-]?key|token|password|passwd|secret)\b(\s*[:=]\s*)"
-            r"([^\s,;]+)"
+            r"(?i)\b(api[_-]?key|token|password|passwd|secret)\b([\"\x27]?\s*[:=]\s*)"
+            r"(\"[^\"]*\"|'[^']*'|[^\s,;]+)"
         ),
         re.compile(r"(?i)(postgres(?:ql)?://[^:\s/@]+:)[^@\s/]+(@)"),
         re.compile(r"(?s)-----BEGIN [A-Z ]*PRIVATE KEY-----.*?-----END [A-Z ]*PRIVATE KEY-----"),
@@ -36,7 +36,13 @@ class SecretRedactor:
         total = 0
         for index, pattern in enumerate(self._patterns):
             if index == 2:
-                text, count = pattern.subn(r"\1\2" + REDACTED, text)
+
+                def replace_assignment(match: re.Match[str]) -> str:
+                    value = match.group(3)
+                    quote = value[0] if value[0] in {"'", '"'} else ""
+                    return match.group(1) + match.group(2) + quote + REDACTED + quote
+
+                text, count = pattern.subn(replace_assignment, text)
             elif index == 3:
                 text, count = pattern.subn(r"\1" + REDACTED + r"\2", text)
             elif index == 4:

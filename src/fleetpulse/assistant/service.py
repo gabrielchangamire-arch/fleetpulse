@@ -10,14 +10,17 @@ from uuid import uuid4
 from fleetpulse.assistant.models import (
     AnalysisRequest,
     AnalysisResponse,
+    Claim,
     EvidenceInput,
     EvidenceItem,
     ProviderAnalysis,
+    ProviderMetrics,
+    ProviderRemediation,
     RemediationProposal,
     ReviewReceipt,
     ReviewRequest,
 )
-from fleetpulse.assistant.providers import IncidentProvider
+from fleetpulse.assistant.providers import IncidentProvider, ProviderFailure
 from fleetpulse.assistant.redaction import SecretRedactor
 
 
@@ -64,11 +67,14 @@ class AssistantService:
                 analysis_id,
                 evidence,
                 redaction_count,
-                f"Provider output was unavailable or invalid ({type(exc).__name__}).",
+                "Provider output was unavailable or invalid.",
+                exc.metrics if isinstance(exc, ProviderFailure) else None,
             )
 
         if validation_error:
-            return self._abstention(analysis_id, evidence, redaction_count, validation_error)
+            return self._abstention(
+                analysis_id, evidence, redaction_count, validation_error, provider_output._metrics
+            )
 
         proposals = [
             RemediationProposal(
@@ -76,13 +82,19 @@ class AssistantService:
                 action=item.action,
                 rationale=item.rationale,
                 citations=item.citations,
+                evidence_excerpts=item.evidence_excerpts,
             )
             for index, item in enumerate(safe_output.proposed_remediations, start=1)
         ]
         response = AnalysisResponse(
             analysis_id=analysis_id,
             provider=self.provider.name,
-            summary=safe_output.summary,
+            summary=(
+                "The assistant abstained; inspect the evidence manually."
+                if safe_output.abstained
+                else "\n".join(claim.text for claim in safe_output.claims)
+            ),
+            metrics=provider_output._metrics,
             evidence=evidence,
             claims=safe_output.claims,
             proposed_remediations=proposals,
@@ -173,6 +185,19 @@ class AssistantService:
         unknown = sorted(set(cited) - valid)
         if unknown:
             return f"Provider cited unknown evidence identifiers: {', '.join(unknown)}."
+        sources = {item.id: item.content for item in evidence}
+        statements: list[Claim | ProviderRemediation] = [
+            *output.claims,
+            *output.proposed_remediations,
+        ]
+        for statement in statements:
+            if set(statement.citations) != {
+                quote.evidence_id for quote in statement.evidence_excerpts
+            }:
+                return "Every citation must have an evidence excerpt."
+            for quote in statement.evidence_excerpts:
+                if quote.excerpt not in sources.get(quote.evidence_id, ""):
+                    return "An evidence excerpt does not occur in its cited source."
         return None
 
     async def _register(self, analysis_id: str, proposals: list[RemediationProposal]) -> None:
@@ -188,6 +213,7 @@ class AssistantService:
         evidence: list[EvidenceItem],
         redaction_count: int,
         reason: str,
+        metrics: ProviderMetrics | None = None,
     ) -> AnalysisResponse:
         return AnalysisResponse(
             analysis_id=analysis_id,
@@ -198,5 +224,6 @@ class AssistantService:
             proposed_remediations=[],
             abstained=True,
             abstention_reason=reason,
+            metrics=metrics or ProviderMetrics(),
             redaction_count=redaction_count,
         )
