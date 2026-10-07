@@ -72,7 +72,10 @@ async def evaluate(
         # Stable content digest ties human grades to the exact output, not a case name alone.
         digest = hashlib.sha256(
             json.dumps(
-                {k: body[k] for k in ("summary", "claims", "abstained", "abstention_reason", "evidence")},
+                {
+                    k: body[k]
+                    for k in ("summary", "claims", "abstained", "abstention_reason", "evidence")
+                },
                 sort_keys=True,
             ).encode()
         ).hexdigest()
@@ -121,13 +124,18 @@ async def evaluate(
             }
         )
     return {
-        "provider_configuration": ({
-            "model": settings.model, "max_retries": settings.max_retries,
-            "max_output_tokens": settings.max_output_tokens,
-            "request_timeout_seconds": settings.request_timeout_seconds,
-            "input_cost_per_million": settings.input_cost_per_million,
-            "output_cost_per_million": settings.output_cost_per_million,
-        } if settings else None),
+        "provider_configuration": (
+            {
+                "model": settings.model,
+                "max_retries": settings.max_retries,
+                "max_output_tokens": settings.max_output_tokens,
+                "request_timeout_seconds": settings.request_timeout_seconds,
+                "input_cost_per_million": settings.input_cost_per_million,
+                "output_cost_per_million": settings.output_cost_per_million,
+            }
+            if settings
+            else None
+        ),
         "prompt_sha256": hashlib.sha256(SYSTEM_INSTRUCTIONS.encode()).hexdigest(),
         "dataset_version": dataset["version"],
         "dataset_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
