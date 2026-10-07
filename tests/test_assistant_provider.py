@@ -236,6 +236,15 @@ async def test_versioned_dataset_is_disjoint_and_exposes_semantic_failures() -> 
         assert all(row["boundary_pass"] for row in report["results"])
         assert report["metrics"]["redaction_failures"] == 0
         assert report["metrics"]["claim_support"]["rate"] < 1
+        if split == "held-out":
+            rejected = next(r for r in report["results"] if r["id"] == "unknown-id")
+            assert rejected["boundary_pass"] is True
+            assert rejected["diagnosis_correct"] is False
+            assert rejected["appropriate_abstention"] is False
+        else:
+            irrelevant = next(r for r in report["results"] if r["id"] == "irrelevant-cite")
+            assert irrelevant["diagnosis_correct"] is True
+            assert irrelevant["claim_support"] == [False]
     assert len(ids) >= 30
 
 

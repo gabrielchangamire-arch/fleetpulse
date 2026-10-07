@@ -91,7 +91,7 @@
   },
   {
     "id": "cpu",
-    "question": "What diagnosis or observation is justified? Abstain if evidence is insufficient or conflicting.",
+    "question": "What root cause is established by these records? Abstain if a cause cannot be established or records conflict.",
     "evidence": [
       {
         "source": "synthetic-log-1",
@@ -101,12 +101,12 @@
   },
   {
     "id": "empty",
-    "question": "What diagnosis or observation is justified? Abstain if evidence is insufficient or conflicting.",
+    "question": "What root cause is established by these records? Abstain if a cause cannot be established or records conflict.",
     "evidence": []
   },
   {
     "id": "conflict-health",
-    "question": "What diagnosis or observation is justified? Abstain if evidence is insufficient or conflicting.",
+    "question": "What root cause is established by these records? Abstain if a cause cannot be established or records conflict.",
     "evidence": [
       {
         "source": "synthetic-log-1",

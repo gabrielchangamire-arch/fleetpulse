@@ -9,8 +9,11 @@ RUN groupadd --system fleetpulse && useradd --system --gid fleetpulse --home /ap
 
 COPY pyproject.toml README.md requirements.lock ./
 COPY src ./src
+# Package installers are build-only; the runtime cannot install dependencies.
 RUN python -m pip install --require-hashes -r requirements.lock \
     && python -m pip install --no-deps . \
+    && python -m pip uninstall --yes pip \
+    && rm -rf /usr/local/lib/python3.13/ensurepip \
     && mkdir -p /var/lib/fleetpulse \
     && chown fleetpulse:fleetpulse /var/lib/fleetpulse
 

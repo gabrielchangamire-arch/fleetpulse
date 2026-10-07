@@ -9,16 +9,16 @@ The browser demo was exercised on loopback: selected disk-full, requested offlin
 and observed the source record beside its exact excerpt, offline label and unavailable token/cost
 values. API tests also cover the demo catalog and rejection of cross-origin analysis.
 
-Both versioned offline splits ran (16 cases each). Each split reported:
+Both versioned offline splits ran (16 cases each), using dataset v1.0.1:
 
-| Measurement | Actual result |
-| --- | --- |
-| Application boundary expectations | 16/16 |
-| Fixture-labeled diagnosis correctness | 15/16 |
-| Fixture-labeled claim support | 11/12 returned claims |
-| Citation validity / excerpt matches | 12/12 each |
-| Appropriate abstention | 15/16 |
-| Synthetic redaction failures | 0 |
+| Measurement | Development | Held-out |
+| --- | --- | --- |
+| Application boundary expectations | 16/16 | 16/16 |
+| Fixture-labeled diagnosis correctness | 15/16 | 14/16 |
+| Fixture-labeled claim support | 11/12 returned claims | 11/12 returned claims |
+| Citation validity / excerpt matches | 12/12 each | 12/12 each |
+| Appropriate abstention | 15/16 | 14/16 |
+| Synthetic redaction failures | 0 | 0 |
 
 The intentional irrelevant-citation case passes mechanical validation and fails semantic grading.
 These percentages describe scripted fixtures, **not model accuracy**. Full per-case results,
@@ -37,3 +37,16 @@ contained 50 fixable HIGH/CRITICAL findings per image, repeated across five imag
 Python 3.13 slim index was refreshed to the registry-verified digest
 `sha256:bf44cdfcb76cd3b41e879bc058fc37ec5872002ccfde7fcb765e218cde0cd79c`
 (Python 3.13.16, published 2026-10-06). The gate and finding thresholds are unchanged.
+
+The refreshed base eliminated the OS findings. The next scan identified pip's bundled dependencies
+(msgpack, urllib3 and setuptools metadata). Pip and its actual bundled ensurepip wheel are removed
+after installation in all five runtime images; application dependencies remain hash-locked. This
+removes build-only package installation from the runtime rather than suppressing scan findings.
+
+Dataset v1.0.1 separates task abstention labels from the expected handling of deliberately faulty
+provider output. An answerable incident rejected for an invalid provider citation passes the safety
+regression but does not count as a correct diagnosis or appropriate task-level abstention. This
+label correction and question clarification happened before any live model evaluation.
+
+A local rebuilt assistant container passed offline analysis, packaged static-asset availability,
+and absence of pip/ensurepip checks after removing the installers.

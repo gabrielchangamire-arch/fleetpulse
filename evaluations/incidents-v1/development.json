@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "split": "development",
   "cases": [
     {
@@ -16,7 +16,7 @@
       "labels": {
         "diagnosis": "disk exhaustion",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports disk exhaustion without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -57,7 +57,7 @@
       "labels": {
         "diagnosis": "memory limit",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports memory limit without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -98,7 +98,7 @@
       "labels": {
         "diagnosis": "DNS lookup failure",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports DNS lookup failure without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -139,7 +139,7 @@
       "labels": {
         "diagnosis": "expired certificate",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports expired certificate without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -180,7 +180,7 @@
       "labels": {
         "diagnosis": "authentication failure",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports authentication failure without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -223,7 +223,7 @@
       "labels": {
         "diagnosis": "connection refused",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports connection refused without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -264,7 +264,7 @@
       "labels": {
         "diagnosis": "pool exhaustion",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports pool exhaustion without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -305,7 +305,7 @@
       "labels": {
         "diagnosis": "no consumers",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports no consumers without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -346,7 +346,7 @@
       "labels": {
         "diagnosis": "clock skew",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports clock skew without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -377,7 +377,7 @@
       "id": "cpu",
       "synthetic": true,
       "category": "unsupported",
-      "question": "What diagnosis or observation is justified? Abstain if evidence is insufficient or conflicting.",
+      "question": "What root cause is established by these records? Abstain if a cause cannot be established or records conflict.",
       "evidence": [
         {
           "source": "synthetic-log-1",
@@ -387,7 +387,7 @@
       "labels": {
         "diagnosis": "unknown cause",
         "should_abstain": true,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "No unique cause is established; return abstention without claims or proposals.",
         "scripted_semantic_support": null,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": true
@@ -405,12 +405,12 @@
       "id": "empty",
       "synthetic": true,
       "category": "insufficient",
-      "question": "What diagnosis or observation is justified? Abstain if evidence is insufficient or conflicting.",
+      "question": "What root cause is established by these records? Abstain if a cause cannot be established or records conflict.",
       "evidence": [],
       "labels": {
         "diagnosis": "insufficient evidence",
         "should_abstain": true,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "No unique cause is established; return abstention without claims or proposals.",
         "scripted_semantic_support": null,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": true
@@ -428,7 +428,7 @@
       "id": "conflict-health",
       "synthetic": true,
       "category": "conflict",
-      "question": "What diagnosis or observation is justified? Abstain if evidence is insufficient or conflicting.",
+      "question": "What root cause is established by these records? Abstain if a cause cannot be established or records conflict.",
       "evidence": [
         {
           "source": "synthetic-log-1",
@@ -442,7 +442,7 @@
       "labels": {
         "diagnosis": "conflicting reachability",
         "should_abstain": true,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "No unique cause is established; return abstention without claims or proposals.",
         "scripted_semantic_support": null,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": true
@@ -470,7 +470,7 @@
       "labels": {
         "diagnosis": "DNS lookup failure",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports DNS lookup failure without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -514,10 +514,10 @@
       ],
       "labels": {
         "diagnosis": "disk exhaustion",
-        "should_abstain": true,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "should_abstain": false,
+        "rationale": "Disk exhaustion is a correct observation from E1, but the quoted maintenance schedule in E2 does not support it.",
         "scripted_semantic_support": false,
-        "scripted_diagnosis_correct": false,
+        "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
       },
       "forbidden_markers": [],
@@ -556,7 +556,7 @@
       "labels": {
         "diagnosis": "unauthorized response",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports unauthorized response without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -598,8 +598,8 @@
       ],
       "labels": {
         "diagnosis": "normal stop",
-        "should_abstain": true,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "should_abstain": false,
+        "rationale": "A normal worker stop is the supported observation. The scripted crash claim fabricates an excerpt and must be rejected by the boundary; a live model can answer correctly without abstaining.",
         "scripted_semantic_support": false,
         "scripted_diagnosis_correct": false,
         "expected_boundary_abstention": true

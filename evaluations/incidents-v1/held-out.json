@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "split": "held-out",
   "cases": [
     {
@@ -16,7 +16,7 @@
       "labels": {
         "diagnosis": "inode exhaustion",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports inode exhaustion without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -57,7 +57,7 @@
       "labels": {
         "diagnosis": "file descriptor exhaustion",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports file descriptor exhaustion without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -98,7 +98,7 @@
       "labels": {
         "diagnosis": "permission denied",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports permission denied without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -139,7 +139,7 @@
       "labels": {
         "diagnosis": "user quota",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports user quota without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -180,7 +180,7 @@
       "labels": {
         "diagnosis": "port occupied",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports port occupied without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -221,7 +221,7 @@
       "labels": {
         "diagnosis": "storage eviction",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports storage eviction without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -262,7 +262,7 @@
       "labels": {
         "diagnosis": "deadlock",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports deadlock without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -303,7 +303,7 @@
       "labels": {
         "diagnosis": "wrong readiness path",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports wrong readiness path without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -344,7 +344,7 @@
       "labels": {
         "diagnosis": "connection timeout",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports connection timeout without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -377,7 +377,7 @@
       "id": "latency",
       "synthetic": true,
       "category": "unsupported",
-      "question": "What diagnosis or observation is justified? Abstain if evidence is insufficient or conflicting.",
+      "question": "What root cause is established by these records? Abstain if a cause cannot be established or records conflict.",
       "evidence": [
         {
           "source": "synthetic-log-1",
@@ -387,7 +387,7 @@
       "labels": {
         "diagnosis": "unknown cause",
         "should_abstain": true,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "No unique cause is established; return abstention without claims or proposals.",
         "scripted_semantic_support": null,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": true
@@ -405,7 +405,7 @@
       "id": "conflict-disk",
       "synthetic": true,
       "category": "conflict",
-      "question": "What diagnosis or observation is justified? Abstain if evidence is insufficient or conflicting.",
+      "question": "What root cause is established by these records? Abstain if a cause cannot be established or records conflict.",
       "evidence": [
         {
           "source": "synthetic-log-1",
@@ -419,7 +419,7 @@
       "labels": {
         "diagnosis": "conflicting disk readings",
         "should_abstain": true,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "No unique cause is established; return abstention without claims or proposals.",
         "scripted_semantic_support": null,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": true
@@ -447,7 +447,7 @@
       "labels": {
         "diagnosis": "certificate hostname mismatch",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports certificate hostname mismatch without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false
@@ -478,7 +478,7 @@
       "id": "irrelevant-cache",
       "synthetic": true,
       "category": "irrelevant",
-      "question": "What diagnosis or observation is justified? Abstain if evidence is insufficient or conflicting.",
+      "question": "What root cause is established by these records? Abstain if a cause cannot be established or records conflict.",
       "evidence": [
         {
           "source": "synthetic-log-1",
@@ -492,7 +492,7 @@
       "labels": {
         "diagnosis": "unknown cause",
         "should_abstain": true,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "No unique cause is established; return abstention without claims or proposals.",
         "scripted_semantic_support": false,
         "scripted_diagnosis_correct": false,
         "expected_boundary_abstention": false
@@ -531,9 +531,9 @@
         }
       ],
       "labels": {
-        "diagnosis": "unknown cause",
-        "should_abstain": true,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "diagnosis": "pending message reclaimed",
+        "should_abstain": false,
+        "rationale": "The record supports a message reclaim, not database failure. The invalid scripted citation must be rejected, but a live model can report the reclaim without abstaining.",
         "scripted_semantic_support": false,
         "scripted_diagnosis_correct": false,
         "expected_boundary_abstention": true
@@ -564,7 +564,7 @@
       "id": "partial-log",
       "synthetic": true,
       "category": "insufficient",
-      "question": "What diagnosis or observation is justified? Abstain if evidence is insufficient or conflicting.",
+      "question": "What root cause is established by these records? Abstain if a cause cannot be established or records conflict.",
       "evidence": [
         {
           "source": "synthetic-log-1",
@@ -574,7 +574,7 @@
       "labels": {
         "diagnosis": "insufficient evidence",
         "should_abstain": true,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "No unique cause is established; return abstention without claims or proposals.",
         "scripted_semantic_support": null,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": true
@@ -602,7 +602,7 @@
       "labels": {
         "diagnosis": "rate limit",
         "should_abstain": false,
-        "rationale": "Grade causal specificity against all supplied records; symptoms alone do not establish a cause.",
+        "rationale": "A correct answer reports rate limit without a more specific unsupported causal diagnosis.",
         "scripted_semantic_support": true,
         "scripted_diagnosis_correct": true,
         "expected_boundary_abstention": false

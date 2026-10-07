@@ -1,4 +1,4 @@
-# Incident evaluation v1.0.0
+# Incident evaluation v1.0.1
 
 All 32 incidents are synthetic: 16 development and 16 held-out cases. IDs and split membership
 are fixed in the two JSON files. Development cases are also used in the local demo; held-out cases
@@ -18,6 +18,11 @@ From the repository root after `make bootstrap`:
 .venv/bin/python -m fleetpulse_project.incident_eval --split development --output artifacts/offline-development.json
 .venv/bin/python -m fleetpulse_project.incident_eval --split held-out --output artifacts/offline-held-out.json
 ```
+
+Task-level abstention labels are independent of the deliberately faulty scripted output. An
+invalid citation can force application abstention on an otherwise answerable case; this passes
+the boundary regression but fails the task-level answer score. Version 1.0.1 corrects those labels
+and clarifies root-cause questions before any live evaluation; split membership is unchanged.
 
 Every report identifies its mode, version, split, dataset SHA-256, per-case output, and denominators.
 UUIDs differ between runs; checks and fixture grades are deterministic. Offline token/cost values
