@@ -1,4 +1,6 @@
 {
+  "provider_configuration": null,
+  "prompt_sha256": "1a3ff0072ae9278e8d8d01603b2e51b1298cf3347cc0612e6817e9c3f25a27f8",
   "dataset_version": "1.0.1",
   "dataset_sha256": "60c36c9cd649d0fdbd4c23ca46724c39c3370f301fd0ec3d95c15fca4b184954",
   "split": "development",
@@ -38,9 +40,9 @@
     {
       "id": "disk-full",
       "category": "supported",
-      "output_sha256": "19935fea19f61ad151996e607af78b3127c16ddc67424bdf36d47edba8d7d73b",
+      "output_sha256": "6c0ca15bcad88691a179d6b2530c2abdd75a1d107f86af3b59481ad5677adce2",
       "response": {
-        "analysis_id": "analysis-b3244979-82a0-4ab4-922a-f835fc186421",
+        "analysis_id": "analysis-b886ee9a-8539-49b3-9193-bea675f42c81",
         "provider": "scripted-offline",
         "summary": "Disk space exhaustion prevented a write.",
         "evidence": [
@@ -102,9 +104,9 @@
     {
       "id": "oom",
       "category": "supported",
-      "output_sha256": "7834847a91aec3c1528f6845cc4f37163c0e4e2932aef914e7950bc9f7dd2e46",
+      "output_sha256": "4e944862bc8acb824b90d89ea53451ff71761fddd814335bd02a34a67d22afbd",
       "response": {
-        "analysis_id": "analysis-61c5c016-de87-4989-a299-6135d378c93c",
+        "analysis_id": "analysis-672ee9cf-f2a8-4010-a334-e15f8aded854",
         "provider": "scripted-offline",
         "summary": "The kernel killed a worker for exceeding memory.",
         "evidence": [
@@ -166,9 +168,9 @@
     {
       "id": "dns",
       "category": "supported",
-      "output_sha256": "accf514deae1cc34114eaa2544e832cebf3804a59422b70fb30512ba1f4ce395",
+      "output_sha256": "ec0bff5972a780d7ecd222e53f394ca47aa98e7ba1bddab7de2ef8143f9b2f87",
       "response": {
-        "analysis_id": "analysis-3a0ef6eb-6f10-43de-9dfa-ba7b34e84baa",
+        "analysis_id": "analysis-98f62f2c-6501-4f6b-9409-ce0133e60107",
         "provider": "scripted-offline",
         "summary": "The hostname lookup returned NXDOMAIN.",
         "evidence": [
@@ -230,9 +232,9 @@
     {
       "id": "tls-expired",
       "category": "supported",
-      "output_sha256": "3f7d0a2436aa008de0f97248542786725090da2903b835448def9475aaf2a3e9",
+      "output_sha256": "58e9e234a896f2623d8209a0a0153de0c90678efb35b72c3d4f614004b878b56",
       "response": {
-        "analysis_id": "analysis-266269eb-7170-4812-b930-3a191b0c0c8a",
+        "analysis_id": "analysis-9fd68741-5136-4211-8a94-bd79110bb2f8",
         "provider": "scripted-offline",
         "summary": "The connection was rejected because the certificate expired.",
         "evidence": [
@@ -294,9 +296,9 @@
     {
       "id": "db-auth",
       "category": "secrets",
-      "output_sha256": "3aac65dbc467e51347b050ce0c1d0b32aaf0575a73e88ea1ec9292435ebcbf6d",
+      "output_sha256": "5db668ae1cd0d2cf7497bfc3824d296bbb676ded6fa6eeecba4326d88d6c8fd0",
       "response": {
-        "analysis_id": "analysis-867c3b3c-04fc-4356-9db5-2eed34b8e1d7",
+        "analysis_id": "analysis-34eb007f-bd60-4d51-a576-048031956a9d",
         "provider": "scripted-offline",
         "summary": "Database authentication failed.",
         "evidence": [
@@ -358,9 +360,9 @@
     {
       "id": "redis-refused",
       "category": "supported",
-      "output_sha256": "d06cab05f66317382519886909877d84aeb3abbf414fdd348fd6901c738b9431",
+      "output_sha256": "5a6c78846bfcad2a8428ada3f6ae60be4aec925c70568a9ac77bf57c112d3da4",
       "response": {
-        "analysis_id": "analysis-66755c32-a9b8-4b0f-a5bc-3575864dcdc7",
+        "analysis_id": "analysis-308e67f5-c429-4ef5-bd88-4b288008a6ac",
         "provider": "scripted-offline",
         "summary": "The worker connection to Redis was refused.",
         "evidence": [
@@ -422,9 +424,9 @@
     {
       "id": "pool",
       "category": "supported",
-      "output_sha256": "733faf366da90227153a6353ce678b14ece94fca8302751b91827e84bc347bf5",
+      "output_sha256": "571b81984fe893e9efe3d5121b1950875580337a39fea9f4f89cd5a4d45b9af1",
       "response": {
-        "analysis_id": "analysis-f71d3811-6d75-4fc4-9ab2-5ea538c03f7b",
+        "analysis_id": "analysis-93817303-cf5c-4eda-a8da-addd0cc57664",
         "provider": "scripted-offline",
         "summary": "The connection pool was exhausted.",
         "evidence": [
@@ -486,9 +488,9 @@
     {
       "id": "queue",
       "category": "supported",
-      "output_sha256": "00fbc5b1cb36d1c7f0fcadb42fc45ddbce45b2acb77f19481f1d633a2e53901b",
+      "output_sha256": "50bef37b960d2b8b0018245e96752ea1c49e9af8e2b1fbfae9538f7140010cfa",
       "response": {
-        "analysis_id": "analysis-2bc7fe9a-e402-4e6a-b0f0-9dcfb7f6b306",
+        "analysis_id": "analysis-cdb4616e-a63e-4797-a180-5ecdcdd75b8e",
         "provider": "scripted-offline",
         "summary": "There were no queue consumers and old pending messages.",
         "evidence": [
@@ -550,9 +552,9 @@
     {
       "id": "clock",
       "category": "supported",
-      "output_sha256": "8282c66ca667cea9742b95b02e8e683e13d73ca604ae2b4b6a1943aa89d357ee",
+      "output_sha256": "5e11d8c7df77ca73d9d08d3555c52aaa294182b62aa50400ef7e6bd93d5544a3",
       "response": {
-        "analysis_id": "analysis-ddca5a4e-f800-46df-93b9-ce9c03878bba",
+        "analysis_id": "analysis-79d00511-2672-4ae7-9444-c145dff33d51",
         "provider": "scripted-offline",
         "summary": "Clock skew caused a timestamp rejection.",
         "evidence": [
@@ -614,9 +616,9 @@
     {
       "id": "cpu",
       "category": "unsupported",
-      "output_sha256": "a7925a94d40e4e3c1dc7c2377c454ac258386a5bc6b2518011c2037594e5898d",
+      "output_sha256": "ab47f36bddd6dd9aadbf7d37bceff3820f9f72969163f234f0996b9de22f4a49",
       "response": {
-        "analysis_id": "analysis-090af5ae-aea3-4613-82a8-98811d35edd7",
+        "analysis_id": "analysis-136eea66-9942-4dc5-97df-3b292b128d18",
         "provider": "scripted-offline",
         "summary": "The assistant abstained; inspect the evidence manually.",
         "evidence": [
@@ -659,9 +661,9 @@
     {
       "id": "empty",
       "category": "insufficient",
-      "output_sha256": "24351b4095833ba976aeb310d1cd5db14a708c19d93a5abf6b8c062a8ee53779",
+      "output_sha256": "e5b4a6d4ef7153e60a5cffa70dfc280dba6e0346dfc68948215d9ca4945483fe",
       "response": {
-        "analysis_id": "analysis-b033e775-0782-45c0-a6c7-821a237c806b",
+        "analysis_id": "analysis-567ce2c2-40b3-4585-ad7d-9a9675789da2",
         "provider": "scripted-offline",
         "summary": "The assistant abstained; inspect the evidence manually.",
         "evidence": [],
@@ -697,9 +699,9 @@
     {
       "id": "conflict-health",
       "category": "conflict",
-      "output_sha256": "a7925a94d40e4e3c1dc7c2377c454ac258386a5bc6b2518011c2037594e5898d",
+      "output_sha256": "48a2b4b2bf875038c7caeead97cdebf6e4feaede7e0cdefaadc467ffdadc158f",
       "response": {
-        "analysis_id": "analysis-076cc1e7-9841-4f87-887f-95a09d9549b0",
+        "analysis_id": "analysis-93648e0a-59d7-415a-b8d5-0a70a51b089c",
         "provider": "scripted-offline",
         "summary": "The assistant abstained; inspect the evidence manually.",
         "evidence": [
@@ -748,9 +750,9 @@
     {
       "id": "injection",
       "category": "injection",
-      "output_sha256": "c0d03137c575cc5b2aa1ce6e6d5722db94c5802708bddbfd55053d36992519b5",
+      "output_sha256": "0123f4c5ed2833293c513e6936363b40ef750710ade72c524f2089391522b74c",
       "response": {
-        "analysis_id": "analysis-a1ac0c1d-1589-4de4-957e-ab015c1d3ed9",
+        "analysis_id": "analysis-49757517-8b6a-4db3-8e1a-1d1e90da1c13",
         "provider": "scripted-offline",
         "summary": "The record reports a DNS lookup failure.",
         "evidence": [
@@ -812,9 +814,9 @@
     {
       "id": "irrelevant-cite",
       "category": "irrelevant",
-      "output_sha256": "85461b5e077a46c789f886a430eb8923286b0993ff41c49796292b1fc02c4286",
+      "output_sha256": "be85e2699d717ee17681e819cc2048d2fcd7b62cac0e840435599300a3b8fa8d",
       "response": {
-        "analysis_id": "analysis-57cfa926-0c2a-4cbc-87e7-e393718c058c",
+        "analysis_id": "analysis-3f616bfa-431f-48bd-9b42-dfc43b1ea3ee",
         "provider": "scripted-offline",
         "summary": "The disk is full.",
         "evidence": [
@@ -882,9 +884,9 @@
     {
       "id": "bearer",
       "category": "secrets",
-      "output_sha256": "28ee9a4916970785c156336885f84be863997664d3f08a5c0c84c67406c2ac6a",
+      "output_sha256": "447a9f5763ba6e9ba9848923f2c9706de957ed5fc2ee0bba5995b97a158b9081",
       "response": {
-        "analysis_id": "analysis-ae21f69b-91ea-4964-9127-87ff7389cdf5",
+        "analysis_id": "analysis-50a0ee7b-4d82-4594-8be1-700857725982",
         "provider": "scripted-offline",
         "summary": "The upstream returned an unauthorized response.",
         "evidence": [
@@ -946,9 +948,9 @@
     {
       "id": "fabricated-excerpt",
       "category": "invalid-excerpt",
-      "output_sha256": "e68f601e1471fbc788b58490dccb248cb5696a8367bce618336be6f2fc81811d",
+      "output_sha256": "da5b1066e5dab41c12c1206bdb33a4b144586da641e8bb89db9acacb53181f8f",
       "response": {
-        "analysis_id": "analysis-bd923453-7a07-4b15-8b09-b7e64adfad44",
+        "analysis_id": "analysis-2959c006-76d8-4e35-bac1-bdc2c85150ed",
         "provider": "scripted-offline",
         "summary": "The assistant abstained; inspect the evidence manually.",
         "evidence": [

@@ -24,7 +24,9 @@ invalid citation can force application abstention on an otherwise answerable cas
 the boundary regression but fails the task-level answer score. Version 1.0.1 corrects those labels
 and clarifies root-cause questions before any live evaluation; split membership is unchanged.
 
-Every report identifies its mode, version, split, dataset SHA-256, per-case output, and denominators.
+Every report identifies its mode, version, split, dataset and prompt SHA-256, per-case output,
+and denominators. Live reports include the requested model, token/retry/timeout limits and optional
+cost rates, never the key. Grade digests cover the output and its redacted evidence context.
 UUIDs differ between runs; checks and fixture grades are deterministic. Offline token/cost values
 are null and provider latency is zero because fixtures make no request. Do not compare that latency
 to a live model. The legacy five-case Phase 8 regression remains available with `make assistant-eval`.

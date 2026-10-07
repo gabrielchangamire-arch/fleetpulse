@@ -11,7 +11,7 @@ from typing import Any
 
 from fleetpulse.assistant.config import AssistantSettings
 from fleetpulse.assistant.models import AnalysisRequest, EvidenceItem, ProviderAnalysis
-from fleetpulse.assistant.providers import IncidentProvider, create_provider
+from fleetpulse.assistant.providers import SYSTEM_INSTRUCTIONS, IncidentProvider, create_provider
 from fleetpulse.assistant.service import AssistantService
 
 
@@ -57,11 +57,12 @@ async def evaluate(
 ) -> dict[str, Any]:
     dataset = json.loads(path.read_text())
     results = []
+    settings = AssistantSettings(provider="openai") if mode == "live" else None
     for case in dataset["cases"][:limit]:
         provider: IncidentProvider = (
             FixtureProvider(case["scripted_output"])
             if mode == "offline"
-            else create_provider(AssistantSettings(provider="openai"))
+            else create_provider(settings or AssistantSettings())
         )
         recorder = RecordingProvider(provider, case["forbidden_markers"])
         response = await AssistantService(recorder).analyze(
@@ -71,7 +72,7 @@ async def evaluate(
         # Stable content digest ties human grades to the exact output, not a case name alone.
         digest = hashlib.sha256(
             json.dumps(
-                {k: body[k] for k in ("summary", "claims", "abstained", "abstention_reason")},
+                {k: body[k] for k in ("summary", "claims", "abstained", "abstention_reason", "evidence")},
                 sort_keys=True,
             ).encode()
         ).hexdigest()
@@ -120,6 +121,14 @@ async def evaluate(
             }
         )
     return {
+        "provider_configuration": ({
+            "model": settings.model, "max_retries": settings.max_retries,
+            "max_output_tokens": settings.max_output_tokens,
+            "request_timeout_seconds": settings.request_timeout_seconds,
+            "input_cost_per_million": settings.input_cost_per_million,
+            "output_cost_per_million": settings.output_cost_per_million,
+        } if settings else None),
+        "prompt_sha256": hashlib.sha256(SYSTEM_INSTRUCTIONS.encode()).hexdigest(),
         "dataset_version": dataset["version"],
         "dataset_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         "split": dataset["split"],
@@ -163,6 +172,8 @@ def main() -> None:
         if not args.grades:
             parser.error("--grade-report requires --grades")
         report = json.loads(args.grade_report.read_text())
+        if report.get("mode") != "live":
+            parser.error("Human live grading requires a saved live report")
         grades = json.loads(args.grades.read_text())
         for row in report["results"]:
             grade = grades.get(row["id"])

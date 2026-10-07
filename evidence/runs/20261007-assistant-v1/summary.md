@@ -26,8 +26,8 @@ denominators and dataset hashes are in `offline-development.json` and `offline-h
 No live-model request was made; token usage and estimated cost are unavailable. To run live tests,
 provide a backend API key, available model, approved request budget and optional current USD rates.
 
-The existing fleet stack, container scans and load/drill suites were not rerun for this isolated
-assistant change. The branch preserves earlier evidence without presenting it as a new measurement.
+The local load/drill suites were not rerun. Subsequent CI Compose and image checks are recorded
+below. The branch preserves historical phase evidence without presenting it as a new measurement.
 
 ## CI follow-up
 
