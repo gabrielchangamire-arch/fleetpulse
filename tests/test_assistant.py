@@ -13,6 +13,7 @@ from fleetpulse.assistant.config import AssistantSettings
 from fleetpulse.assistant.models import (
     AnalysisRequest,
     Claim,
+    EvidenceExcerpt,
     EvidenceInput,
     EvidenceItem,
     ProviderAnalysis,
@@ -40,12 +41,19 @@ class CapturingProvider:
 def supported_output(citation: str = "E1") -> ProviderAnalysis:
     return ProviderAnalysis(
         summary="Supported summary.",
-        claims=[Claim(text="A supported claim.", citations=[citation])],
+        claims=[
+            Claim(
+                text="A supported claim.",
+                citations=[citation],
+                evidence_excerpts=[EvidenceExcerpt(evidence_id=citation, excerpt="worker stopped")],
+            )
+        ],
         proposed_remediations=[
             ProviderRemediation(
                 action="Inspect the component.",
                 rationale="The evidence names it.",
                 citations=[citation],
+                evidence_excerpts=[EvidenceExcerpt(evidence_id=citation, excerpt="worker stopped")],
             )
         ],
         abstained=False,
@@ -82,7 +90,7 @@ async def test_input_is_redacted_before_provider_and_proposals_require_approval(
             evidence=[
                 EvidenceInput(
                     source="log",
-                    content="password=evidence-evaluation-value connection failed",
+                    content="password=evidence-evaluation-value worker stopped",
                 )
             ],
         )
@@ -122,7 +130,7 @@ async def test_provider_output_is_redacted_before_return() -> None:
         )
     )
     assert "provider-evaluation-value" not in response.model_dump_json()
-    assert response.summary == f"token={REDACTED}"
+    assert response.summary == "A supported claim."
     assert response.redaction_count == 1
 
 

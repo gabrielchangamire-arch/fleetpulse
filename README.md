@@ -2,6 +2,35 @@
 
 FleetPulse is a local-first Linux fleet reliability and incident-response platform. It is designed to demonstrate production engineering practices through reproducible implementation and measured evidence, not unverified scale claims.
 
+## Try the read-only incident demo
+
+The assistant runs independently of the fleet infrastructure. Python 3.13 is the default for
+reproducible local checks (Python 3.12+ is supported by the workflow):
+
+```bash
+make bootstrap
+make verify
+.venv/bin/uvicorn fleetpulse.assistant.app:create_app --factory --host 127.0.0.1 --port 8765
+```
+
+Open <http://127.0.0.1:8765>, select a synthetic development incident, inspect its evidence and
+request analysis. The page labels **offline** versus **live** mode and puts claims next to exact
+source excerpts. Offline mode echoes records; it does not diagnose incidents. No route can execute
+remediation. To enable live mode, configure the backend environment as described in the
+[evaluation guide](evaluations/incidents-v1/README.md), then set
+`FLEETPULSE_ASSISTANT_PROVIDER=openai` before starting the server. Never put keys in browser code.
+
+Architecture: bounded request → redaction → existing provider adapter → structured validation →
+redaction → citation/excerpt validation → read-only response. Summaries are derived from cited
+claims. Literal excerpt matches establish traceability, **not factual correctness**; semantic
+support is graded separately. The versioned evaluation has 32 synthetic cases and a fixed
+16/16 development/held-out split, plus opt-in live reporting and human grading of saved outputs.
+
+See [reproducible current evidence](evidence/runs/20261007-assistant-v1/summary.md),
+[grading and limitations](evaluations/incidents-v1/README.md), and the
+[interview walkthrough](docs/architecture/assistant-walkthrough.md). Historical phase results below
+are preserved; they are not claims that the new branch reran infrastructure or live-model tests.
+
 ## Project status
 
 Phases 0 through 9 are complete and verified. FleetPulse has durable ingestion, Redis Stream workers, an Nginx/TLS edge with load balancing and cache-aside fleet reads, a provisioned Prometheus/Grafana/Alertmanager stack, reproducible kind/k3d deployments, repeated performance evidence, controlled failure/recovery drills, an optional read-only incident assistant with deterministic safety evaluation, and immutable CI/supply-chain gates. See [ROADMAP.md](ROADMAP.md).

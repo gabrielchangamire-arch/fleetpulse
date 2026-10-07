@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, PrivateAttr
 
 
 class StrictModel(BaseModel):
@@ -38,11 +38,31 @@ class AnalysisRequest(StrictModel):
     evidence: list[EvidenceInput] = Field(max_length=50)
 
 
+class EvidenceExcerpt(StrictModel):
+    """Exact substring of redacted source content; not a semantic truth check."""
+
+    evidence_id: str = Field(min_length=1, max_length=20)
+    excerpt: str = Field(min_length=1, max_length=2000, pattern=r"\S")
+
+
+class ProviderMetrics(StrictModel):
+    """Application measurements; unknown usage and cost remain null."""
+
+    request_id: str | None = None
+    attempts: int = 0
+    latency_ms: float = 0
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+    estimated_cost_usd: float | None = None
+    error_code: str | None = None
+
+
 class Claim(StrictModel):
     """A factual statement with evidence identifiers."""
 
     text: str = Field(min_length=1, max_length=2_000)
     citations: list[str] = Field(min_length=1, max_length=20)
+    evidence_excerpts: list[EvidenceExcerpt] = Field(min_length=1, max_length=20)
 
 
 class ProviderRemediation(StrictModel):
@@ -51,10 +71,13 @@ class ProviderRemediation(StrictModel):
     action: str = Field(min_length=1, max_length=2_000)
     rationale: str = Field(min_length=1, max_length=2_000)
     citations: list[str] = Field(min_length=1, max_length=20)
+    evidence_excerpts: list[EvidenceExcerpt] = Field(min_length=1, max_length=20)
 
 
 class ProviderAnalysis(StrictModel):
     """Strict provider output before FleetPulse safety validation."""
+
+    _metrics: ProviderMetrics = PrivateAttr(default_factory=ProviderMetrics)
 
     summary: str = Field(max_length=4_000)
     claims: list[Claim] = Field(max_length=50)
@@ -90,6 +113,8 @@ class AnalysisResponse(StrictModel):
     abstained: bool
     abstention_reason: str | None
     redaction_count: int
+    metrics: ProviderMetrics = Field(default_factory=ProviderMetrics)
+    grounding: Literal["excerpt-match-only"] = "excerpt-match-only"
     safety: SafetyBoundary = Field(default_factory=SafetyBoundary)
 
 

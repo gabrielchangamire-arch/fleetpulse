@@ -2,7 +2,7 @@
 
 from typing import Literal
 
-from pydantic import SecretStr, model_validator
+from pydantic import Field, SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -14,8 +14,11 @@ class AssistantSettings(BaseSettings):
     provider: Literal["offline", "openai"] = "offline"
     api_key: SecretStr | None = None
     model: str = "gpt-5-mini"
-    request_timeout_seconds: float = 20.0
-    max_retries: int = 2
+    request_timeout_seconds: float = Field(default=20.0, gt=0, le=60)
+    max_retries: int = Field(default=2, ge=0, le=3)
+    max_output_tokens: int = Field(default=2000, ge=128, le=8000)
+    input_cost_per_million: float | None = Field(default=None, ge=0)
+    output_cost_per_million: float | None = Field(default=None, ge=0)
     log_level: str = "INFO"
 
     @model_validator(mode="after")
